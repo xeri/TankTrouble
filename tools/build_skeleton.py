@@ -140,7 +140,9 @@ STUBS = {
     "srv/includes/getUserAuthentication.php": ("M3",
         "5 client call sites in decompiled AS2; behaviour unknown", AUTH_EXTRA),
     "srv/includes/db.php": ("M3", "none - name invented", ""),
-    "srv/game/embed.php": ("M2", "obs in CDX", ""),
+    "srv/tankRanks/index.php": ("M2",
+        "dir /tankRanks/ 86x200 CDX 2010-2015; era ?lab pages open it via "
+        "window.open('tankRanks',...) (DEDUCE.md 2.2); index filename convention-inferred", ""),
 }
 for d in ("faq", "shop", "privacy", "like", "statistics", "spreadTheWord",
           "tellAFriendMail", "ios", "theLabReport"):

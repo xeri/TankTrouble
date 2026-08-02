@@ -9,7 +9,6 @@ srv/content.php	M2	—	written 2026-08-02	obs in CDX	—	501 stub (milestone 1)
 srv/embed.php	M2	—	written 2026-08-02	obs in CDX; embed target	—	501 stub (milestone 1)
 srv/faq/index.php	M2	—	written 2026-08-02	directory /faq/ observed in CDX; index filename convention-inferred	—	501 stub (milestone 1)
 srv/feedback.php	M2	—	written 2026-08-02	http-observed (HUNT-LOG 46); referenced in 2018 bodies	—	501 stub (milestone 1)
-srv/game/embed.php	M2	—	written 2026-08-02	obs in CDX	—	501 stub (milestone 1)
 srv/getimage.php	M2	—	written 2026-08-02	obs in CDX x99; ?id=N ?at2x; images content-addressed by integer (HUNT-LOG 46 n.3)	—	501 stub (milestone 1)
 srv/images/betaAccessBackground.png	O	65890d8e4f17aa4c32c009c3ad5889cc9943fb274225ef3133e7a7e8293e0255	archive/classic-ui-images/betaAccessBackground.png	recovered classic /images/ set, 122 files (HUNT-LOG 27)	tests/test_assets.py	—
 srv/images/betaSign.png	O	fb66ee87c8c5f0120554854b16f5cef694b6a626ae3574ff637eb1ae538842fc	archive/classic-ui-images/betaSign.png	recovered classic /images/ set, 122 files (HUNT-LOG 27)	tests/test_assets.py	—
@@ -223,6 +222,7 @@ srv/sendRequest.php	M2	—	written 2026-08-02	inf; named in infirmary page autho
 srv/shop/index.php	M2	—	written 2026-08-02	directory /shop/ observed in CDX; index filename convention-inferred	—	501 stub (milestone 1)
 srv/spreadTheWord/index.php	M2	—	written 2026-08-02	directory /spreadTheWord/ observed in CDX; index filename convention-inferred	—	501 stub (milestone 1)
 srv/statistics/index.php	M2	—	written 2026-08-02	directory /statistics/ observed in CDX; index filename convention-inferred	—	501 stub (milestone 1)
+srv/tankRanks/index.php	M2	—	written 2026-08-03	dir /tankRanks/ 86x200 CDX 2010-2015; era ?lab pages open it via window.open('tankRanks',...) (DEDUCE.md 2.2); index filename convention-inferred	—	501 stub (tree correction, DEDUCE.md)
 srv/tellAFriendMail/index.php	M2	—	written 2026-08-02	directory /tellAFriendMail/ observed in CDX; index filename convention-inferred	—	501 stub (milestone 1)
 srv/theLabReport/index.php	M2	—	written 2026-08-02	directory /theLabReport/ observed in CDX; index filename convention-inferred	—	dir layout is FLAT (The_Lab_Report_volume_N_issue_M.pdf, CDX-verified); guide 2 vol{1..14} shape wrong; PDFs still-fetchable, deferred
 srv/uploadimage.php	M2	—	written 2026-08-02	obs in CDX (2021 capture, post-era); admin news upload	—	501 stub (milestone 1)

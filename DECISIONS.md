@@ -95,3 +95,21 @@ been run. Validate before milestone 2 seeding.
 ## 2026-08-02 — uploadimage.php observed post-era
 Only CDX capture is 2021. Kept in the tree (guide §2 lists it) with the
 caveat in its stub evidence line.
+
+## 2026-08-03 — tree corrections from DEDUCE.md §2.2 (CDX-reverified here)
+DEDUCE.md and PORT-FEASIBILITY.md landed in the repo root; their filesystem
+claims were spot-checked against the raw CDX before adoption.
+* srv/game/embed.php REMOVED. Its sole CDX row is
+  `https://tanktrouble.com/?game/embed.php` — a query string on `/`, not a
+  path. Guide §2's "(obs)" grading is wrong; the real file is top-level
+  srv/embed.php (170 CDX rows), already present. Supersedes the milestone-1
+  decision that gave game/ only embed.php.
+* srv/tankRanks/index.php ADDED (M2 stub). /tankRanks/ has 86 200s
+  (2010-2015, zero era CDX rows) BUT 2017-2018 ?lab captures ship
+  `window.open('tankRanks',...)` — the live era site still linked it, so the
+  era tree includes it. Absence from era CDX has a mechanism: popup page,
+  nothing crawled it.
+* /verification/, /facebook/, /kickstarterFAQ/ NOT added: all captures
+  pre-era, zero era CDX rows, zero references in 206 era-captured bodies.
+  DEDUCE.md documents the all-years classic filesystem; srv/ is era-scoped.
+  Revisit if era evidence appears.
