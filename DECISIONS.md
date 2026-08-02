@@ -113,3 +113,75 @@ claims were spot-checked against the raw CDX before adoption.
   pre-era, zero era CDX rows, zero references in 206 era-captured bodies.
   DEDUCE.md documents the all-years classic filesystem; srv/ is era-scoped.
   Revisit if era evidence appears.
+
+## 2026-08-03 — milestone-2 DDL choices are M3 (guide §5.2)
+Engine MyISAM (period default at the site's 2008 birth; matches mysql_*-era
+PHP), charset utf8 (=utf8mb3) collation utf8_general_ci. Basis: full-corpus
+scan found 44,739 BMP non-ASCII chars and ZERO astral chars, so utf8mb3 is
+lossless for everything held; latin1 would mangle 301 of 468 threads.
+Column types/widths sized from observed maxima (header 50→VARCHAR(64),
+message 5,755→TEXT, creator ids ≤8 chars→VARCHAR(16), maze data 275→
+VARCHAR(512)). forum `banned` was observed ONLY as null — TINYINT(1) NULL is
+a pure guess. None of this DDL is recovered; do not promote.
+
+## 2026-08-03 — news is verbatim blobs; the page was hand-maintained
+One ?news capture mixes ≥3 markup generations ("news4 standard" collapsed,
+"news standard"+header/content pretty-printed, "text medium" boxed), with
+drifting indentation, a duplicated back-to-back anchor (26-01-2009), and
+titles live-edited across captures (28-04-2017 lost "- 7 Days Left to
+Vote"). A single template looping over field data cannot emit that; the page
+was hand-edited HTML or stored per-item HTML blobs — which, is NOT
+observable. Consequence: guide §5's "news: schema M1" is overclaimed —
+seeded as byte-verbatim per-item slices (data O) keyed (posted, seq), schema
+M2. Anchor dates collide (03-10-2016 ×2), so the site's own permalink is not
+a unique key. The social-share widget is per-item template output, present
+only in later captures; blobs keep the latest capture's state and the
+importer records every cross-capture divergence in the SQL trailer.
+Milestone-3 de-render may supersede the table with literal HTML; the blobs
+transfer unchanged.
+
+## 2026-08-03 — forum seed: what is and is not a row
+Fetch-era fields `html` (2026 client rendering) and `time` (fetch clock) are
+NOT seeded; `threadMeta` (a captured listing page, redundant with the thread
+objects) is skipped. thread_467915.json is an archived fetch-miss — no
+thread payload came back — so it gets NO row; fabricating one would be M3
+data in an O table. Actual counts: 467 threads + 228,316 replies from 468
+archived thread files (guide §5's 468/225,438 was point-in-time). The corpus
+includes post-classic posts (created up to 2026): ALL are seeded — the data
+is O and era-scoping is a render-time concern for gate F, not a seed-time
+truncation. creator/coCreator/moderatedBy are modern numeric id strings kept
+as display metadata with deliberately no FK to users (guide §5.1).
+
+## 2026-08-03 — maze seed keyed by corpus filename code
+Archived loadMaze bodies hold only `r=`; the userName request key survives
+only in the corpus filename `<fetchts>_<CODE>.txt`. MazeDataFetcher.as shows
+loadMaze queries by userName (one maze slot per user), so mazes.user_code =
+that code. The one notFound=true payload proves its slot was EMPTY: gate-B
+replay must reproduce it by the row's absence, so it is recorded in the SQL
+trailer, never as a row.
+
+## 2026-08-03 — accessories seed = the developer's DEBUG catalogue
+The live accessory catalogue (initCode tal/baral/fal/bacal, "id-toolbox,"
+pairs) flowed only to logged-in garages and was never captured; era signup
+embeds carry NO initCode. The only recoverable listing is the DEBUG block in
+the signUpTankDesign18 decompile — seeded as-is, M2, clearly labelled. The
+same applies to achievements: only ids {28,29,30,31,32,34,35,36} appear at
+v4.0 call sites; the numbering proves 1–27 and 33 existed, but unobserved
+means no rows.
+
+## 2026-08-03 — seed outputs carry provenance in-file, not in LEDGER.tsv
+LEDGER.tsv stays srv/-scoped (its rule is "every file in srv/ has a row").
+Generated docker/mysql/init/*.sql files carry a machine-parseable
+`-- @provenance data <tier> / schema <tier>` header instead, enforced by
+tests/test_seed.py, and reproducibility is enforced by byte-identical
+regeneration (forum exempted from the re-run for cost; covered by count
+checks). Seeded O data (mazes/forum/news SQL) is credscan-allowlisted by
+path — user post text may contain anything and must not be edited.
+
+## 2026-08-03 — milestone-2 seeding done file-level; live DB deferred
+Still no docker runtime on this machine. The milestone-1 decision said
+"validate before milestone 2 seeding"; that validation remains impossible
+here, so milestone 2 ships deterministic, content-tested SQL files and the
+docker-level import (mysql:5.5 actually executing them) is the FIRST step
+whenever a docker runtime appears. Until then the DDL has never been parsed
+by a real MySQL 5.5. Partially supersedes the milestone-1 docker entry.
