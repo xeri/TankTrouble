@@ -1,0 +1,123 @@
+.bubble .bottom {
+	background-image: url(../images/bubbleBottom.jpg);
+}
+
+.bubble .bottomLeft {
+	background-image: url(../images/bubbleBottomLeft.jpg);
+}
+
+.bubble .bottomRight {
+	background-image: url(../images/bubbleBottomRight.jpg);
+}
+
+.bubble .left {
+	background-image: url(../images/bubbleLeft.jpg);
+}
+
+.bubble .leftPointer {
+	background-image: url(../images/bubbleLeftPointer.jpg);
+}
+
+.bubble .right {
+	background-image: url(../images/bubbleRight.jpg);
+}
+
+.bubble .rightPointer {
+	background-image: url(../images/bubbleRightPointer.jpg);
+}
+
+.bubble .top {
+	background-image: url(../images/bubbleTop.jpg);
+}
+
+.bubble .topLeft {
+	background-image: url(../images/bubbleTopLeft.jpg);
+}
+
+.bubble .topRight {
+	background-image: url(../images/bubbleTopRight.jpg);
+}
+
+.grayBubble {
+	color: #cccccc;
+}
+
+.grayBubble .bottom {
+	background-image: url(../images/bubbleGrayBottom.jpg);
+}
+
+.grayBubble .bottomLeft {
+	background-image: url(../images/bubbleGrayBottomLeft.jpg);
+}
+
+.grayBubble .bottomRight {
+	background-image: url(../images/bubbleGrayBottomRight.jpg);
+}
+
+.grayBubble .left {
+	background-image: url(../images/bubbleGrayLeft.jpg);
+}
+
+.grayBubble .leftPointer {
+	background-image: url(../images/bubbleGrayLeftPointer.jpg);
+}
+
+.grayBubble .right {
+	background-image: url(../images/bubbleGrayRight.jpg);
+}
+
+.grayBubble .rightPointer {
+	background-image: url(../images/bubbleGrayRightPointer.jpg);
+}
+
+.grayBubble .top {
+	background-image: url(../images/bubbleGrayTop.jpg);
+}
+
+.grayBubble .topLeft {
+	background-image: url(../images/bubbleGrayTopLeft.jpg);
+}
+
+.grayBubble .topRight {
+	background-image: url(../images/bubbleGrayTopRight.jpg);
+}
+
+.yellowBubble .bottom {
+	background-image: url(../images/bubbleYellowBottom.jpg);
+}
+
+.yellowBubble .bottomLeft {
+	background-image: url(../images/bubbleYellowBottomLeft.jpg);
+}
+
+.yellowBubble .bottomRight {
+	background-image: url(../images/bubbleYellowBottomRight.jpg);
+}
+
+.yellowBubble .left {
+	background-image: url(../images/bubbleYellowLeft.jpg);
+}
+
+.yellowBubble .leftPointer {
+	background-image: url(../images/bubbleYellowLeftPointer.jpg);
+}
+
+.yellowBubble .right {
+	background-image: url(../images/bubbleYellowRight.jpg);
+}
+
+.yellowBubble .rightPointer {
+	background-image: url(../images/bubbleYellowRightPointer.jpg);
+}
+
+.yellowBubble .top {
+	background-image: url(../images/bubbleYellowTop.jpg);
+}
+
+.yellowBubble .topLeft {
+	background-image: url(../images/bubbleYellowTopLeft.jpg);
+}
+
+.yellowBubble .topRight {
+	background-image: url(../images/bubbleYellowTopRight.jpg);
+}

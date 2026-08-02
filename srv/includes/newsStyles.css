@@ -1,0 +1,334 @@
+.news3,
+.news4
+{
+	line-height: 18px;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+.news3 > div:first-child,
+.news4 > div:first-child
+{
+	border-radius: 6px 6px 0px 0px;
+	font-weight: bold;
+	padding: 6px 12px 6px 12px;
+}
+.news3 > div:first-child div,
+.news4 > div:first-child div
+{
+	float: right;
+}
+
+.news4 .social {
+	margin-top: 10px;
+	text-align: right;
+}
+.news4 .social .facebook {
+	-webkit-font-smoothing: antialiased;
+	background: #3b5999;
+	border-radius: 2px;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	height: 20px;
+	letter-spacing: normal;
+}
+.news4 .social .facebook:hover {
+	background: #5b7bd5;
+	background: -webkit-linear-gradient(#5b7bd5, #4864b1);
+	background: linear-gradient(#5b7bd5, #4864b1);
+}
+
+.news4 .social .facebook img {
+	height: 14px;
+	margin: 3px 4px 3px 4px;
+	vertical-align: middle;
+	width: 14px;
+}
+.news4 .social .facebook .caption {
+	display: inline;
+	padding-right: 4px;
+	text-shadow: 0 -1px 0 #354c8c;
+}
+
+.news3 > div:last-child,
+.news4 > div:last-child
+{
+	border-width: 2px;
+	border-style: solid;
+	border-top: 0px;
+	border-radius: 0px 0px 6px 6px;
+	padding: 10px;
+	text-align: justify;
+}
+
+
+.news3.standard > div:first-child,
+.news4.standard > div:first-child {
+	background-color: #999999;
+	color: #ffffff;
+}
+
+.news3.standard > div:last-child,
+.news4.standard > div:last-child {
+	background-color: #eeeeee;
+	border-color: #999999;
+	color: #666666;
+}
+
+.news4.attention > div:first-child {
+	background-image: url(../images/newsAttentionHeaderNews4.png);
+	color: #ffffff;
+}
+
+.news4.attention > div:last-child {
+	color: #000000;
+}
+
+.news4.christmas > div:first-child {
+	background-image: url(../images/newsChristmasHeaderNews4.png);
+	color: #ffffff;
+}
+
+.news4.christmas > div:last-child {
+	color: #00a404;
+}
+
+.news4.halloween > div:first-child {
+	background-color: #ff7e00;
+}
+
+.news4.halloween > div:last-child {
+	background-color: #000000;
+	color: #ff7e00;
+}
+
+.news4.important > div:first-child {
+	background-color: #ff0000;
+	color: #ffffff;
+}
+
+.news4.important > div:last-child {
+	color: #ff0000;
+}
+
+
+
+.news3.kickstarter > div:first-child,
+.news4.kickstarter > div:first-child {
+	background-color: #2BDE73;
+	color: #ffffff;
+}
+
+.news3.kickstarter > div:last-child,
+.news4.kickstarter > div:last-child {
+	background-color: #ffffff;
+	border-color: #2BDE73;
+	color: #666666;
+}
+
+.news4.mobile > div:first-child {
+	background-color: #000000;
+	color: #ffffff;
+}
+
+.news4.mobile > div:last-child {
+	background-color: #ffffff;
+	border-color: #000000;
+	color: #000000;
+}
+
+.news4.special > div:first-child {
+	background-color: #000000;
+	color: #ffffff;
+}
+
+.news4.special > div:last-child {
+	background-color: #000000;
+	border-color: #000000;
+	color: #ffffff;
+}
+
+
+
+
+
+.news {
+	margin-bottom: 10px;
+	width: 692px;
+}
+
+.news .header {
+	font-size: 13px;
+	font-weight: 700;
+	height: 16px;
+	line-height: 14px;
+	padding: 1px 8px 0px 8px;
+}
+
+.news .header div {
+	float: right;
+	font-size: 11px;
+	line-height: 12px;
+	margin-top: 2px;
+}
+
+.news .content {
+	height: 1%;	/* This line forces the element to have a layout which is necessary in IE to ensure that clientHeight is correct */
+	line-height: 12px;
+	padding: 5px 8px 1px 8px;
+	position: relative;
+	text-align: justify;
+}
+
+.news .bottom {
+	height: 7px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.news.attention .header {
+	background-image: url(../images/newsAttentionHeader.jpg);
+	color: #ffffff;
+}
+
+.news.attention .content {
+	background-image: url(../images/newsAttentionContent.jpg);
+	color: #666666;
+}
+
+.news.attention .bottom {
+	background-image: url(../images/newsAttentionBottom.jpg);
+}
+
+.news.christmas .header {
+	background-image: url(../images/newsChristmasHeader.jpg);
+	color: #ffffff;
+}
+
+.news.christmas .content {
+	background-image: url(../images/newsChristmasContent.jpg);
+	color: #028b05;
+}
+
+.news.christmas .bottom {
+	background-image: url(../images/newsChristmasBottom.jpg);
+}
+
+.news.facebook .header {
+	background-image: url(../images/newsFacebookHeader.jpg);
+	color: #ffffff;
+}
+
+.news.facebook .content {
+	background-image: url(../images/newsFacebookContent.jpg);
+	color: #3c5e94;
+}
+
+.news.glitch .bottom {
+	background-image: url(../images/newsGlitchBottom.jpg);
+}
+
+.news.glitch .header {
+	font-size: 11px;
+	line-height: 16px;
+	font-family: 'Commodore';
+	background-image: url(../images/newsGlitchHeader.jpg);
+	color: #40318d;
+}
+
+.news.glitch .content {
+	font-family: 'Commodore';
+	line-height: 13px;
+	text-align: left;
+	background-image: url(../images/newsGlitchContent.jpg);
+	color: #7869c4;
+}
+
+.news.facebook .bottom {
+	background-image: url(../images/newsFacebookBottom.jpg);
+}
+
+.news.mobile .header {
+	background-image: url(../images/newsMobileHeader.jpg);
+	color: #ffffff;
+}
+
+.news.mobile .content {
+	background-image: url(../images/newsMobileContent.jpg);
+	color: #666666;
+}
+
+.news.mobile .bottom {
+	background-image: url(../images/newsMobileBottom.jpg);
+}
+
+.news.halloween .header {
+	background-image: url(../images/newsHalloweenHeader.jpg);
+	color: #000000;
+}
+
+.news.halloween .content {
+	background-image: url(../images/newsHalloweenContent.jpg);
+	color: #ff7e00;
+}
+
+.news.halloween .bottom {
+	background-image: url(../images/newsHalloweenBottom.jpg);
+}
+
+.news.important .header {
+	background-image: url(../images/newsImportantHeader.jpg);
+	color: #ffffff;
+}
+
+.news.important .content {
+	background-image: url(../images/newsImportantContent.jpg);
+}
+
+.news.important .bottom {
+	background-image: url(../images/newsImportantBottom.jpg);
+}
+
+.news.lab .header {
+	background-image: url(../images/newsLabHeader.jpg);
+	color: #ffffff;
+}
+
+.news.lab .content {
+	background-image: url(../images/newsLabContent.jpg);
+	color: #666666;
+}
+
+.news.lab .bottom {
+	background-image: url(../images/newsLabBottom.jpg);
+}
+
+.news.special .header {
+	background-image: url(../images/newsSpecialHeader.jpg);
+	color: #ffffff;
+}
+
+.news.special .content {
+	background-image: url(../images/newsSpecialContent.jpg);
+	color: #ffffff;
+}
+
+.news.special .bottom {
+	background-image: url(../images/newsSpecialBottom.jpg);
+}
+
+.news.standard .header {
+	background-image: url(../images/newsStandardHeader.jpg);
+}
+
+.news.standard .content {
+	background-image: url(../images/newsStandardContent.jpg);
+	color: #666666;
+}
+
+.news.standard .bottom {
+	background-image: url(../images/newsStandardBottom.jpg);
+}

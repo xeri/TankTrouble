@@ -1,0 +1,486 @@
+.news {
+	position: relative;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.news .header {
+	padding: 0.5em 1em;
+	border-radius: 6px 6px 0 0;
+	font-size: 1.1em;
+	font-weight: bold;
+	word-wrap: break-word;
+}
+
+.news .header .time {
+	float: right;
+	margin-left: 2em;
+}
+
+.news .content {
+	display: inline-block;
+	box-sizing: border-box;
+	width: 100%;
+	border-style: none;
+	border-radius: 0 0 6px 6px;
+	border-width: 0 2px 2px 2px;
+	text-align: justify;
+}
+
+.news .content > * {
+	margin: 1em;
+}
+
+.news.attention .header {
+	background-image: url(../images/newsAttentionHeader.png);
+	color: #ffffff;
+}
+
+.news.attention .content {
+	border-style: solid;
+	background: #ffffff;
+}
+
+.news.beta .header {
+	background: #999999;
+	color: #ffffff;
+}
+
+.news.beta .content {
+	background: #ffffff;
+	background-image: url(../images/betaTester.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	border-style: solid;
+	border-color: #999999;
+	color: #666666;
+}
+
+.news.christmas .header {
+	background-image: url(../images/newsChristmasHeader.png);
+	color: #ffffff;
+}
+
+.news.christmas .content {
+	background: #ffffff;
+	border-style: solid;
+	color: #00a404;
+}
+
+.news.facebook .header {
+	background: #3c5e94;
+	color: #ffffff;
+}
+
+.news.facebook .content {
+	border-style: solid;
+	background: #ffffff;
+	color: #3c5e94;
+}
+
+.news.glitch .header {
+	background: #7869c4;
+	font-family: 'Commodore';
+	font-size: 11px;
+	color: #40318d;
+}
+
+.news.glitch .content {
+	background: #40318d;
+	font-family: 'Commodore';
+	font-size: 11px;
+	text-align: left;
+	line-height: 13px;
+	color: #7869c4;
+}
+
+.news.halloween .header {
+	background: #ff7e00;
+}
+
+.news.halloween .content {
+	background: #000000;
+	color: #ff7e00;
+}
+
+.news.important .header {
+	background: #ff0000;
+	color: #ffffff;
+}
+
+.news.important .content {
+	border-style: solid;
+	background-color: #ffffff;
+	color: #ff0000;
+}
+
+.news.kickstarter .header {
+	background: #2bde73;
+	color: #ffffff;
+}
+
+.news.kickstarter .content {
+	border-style: solid;
+	border-color: #2bde73;
+	background: #ffffff;
+	color: #666666;
+}
+
+.news.lab .header {
+	background: #73e800;
+	color: #ffffff;
+}
+
+.news.lab .content {
+	padding-left: calc(1em + 50px);
+	border-style: solid;
+	border-color: #73e800;
+	background: #ffffff;
+	background-image: url(../images/testTube.png);
+	background-position: 1em 1em;
+	background-repeat: no-repeat;
+	color: #666666;
+}
+
+.news.maze .header {
+	background: #000000;
+	color: #ffffff;
+}
+
+.news.maze .content {
+	border-style: solid;
+	background: #ffffff;
+	background-image: url(../images/maze.png);
+}
+
+.news.mobile .header {
+	background: #000000;
+	color: #ffffff;
+}
+
+.news.mobile .content {
+	border-style: solid;
+	background: #ffffff;
+}
+
+.news.poll .header {
+	background: #000000;
+	color: #ffffff;
+}
+
+.news.poll .content {
+	background: #ffffff;
+	border-style: solid;
+}
+
+.news.poll .content .closed {
+	position: absolute;
+	top: -30px;
+	left: calc(50% - 71px);
+}
+
+.news.poll .poll {
+	display: flex;
+	align-items: center;
+	text-align: left;
+}
+
+.news.poll .poll .image {
+	max-width: 30%;
+	margin-right: 1em;
+}
+
+.news.poll .poll .image img {
+	width: 100%;
+}
+
+.news.poll .poll .options {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	flex-shrink: 1000;
+}
+
+.news.poll .poll .options .option  {
+	position: relative;
+}
+
+.news.poll .poll .options .option:not(:first-child) {
+	margin-top: 0.5em;
+}
+
+.news.poll .poll .options .option div:first-child {
+	position: absolute;
+	height: 100%;
+	border-radius: 6px;
+}
+
+.news.poll .poll .options .option div:nth-child(2) {
+	position: relative;
+	padding: 0.5em 1em;
+}
+
+.news.poll .poll .options .option .first {
+	background: linear-gradient(#00ff00, #00ab00);
+}
+
+.news.poll .poll .options .option .second {
+	background: linear-gradient(#fff000, #faa900);
+}
+
+.news.poll .poll .options .option .third {
+	background: linear-gradient(#ff7d7d, #ff0000);
+}
+
+.news.special .header {
+	background: #000000;
+	color: #ffffff;
+}
+
+.news.special .content {
+	background: #000000;
+	color: #ffffff;
+}
+
+.news.standard .header {
+	background: #999999;
+	color: #ffffff;
+}
+
+.news.standard .content {
+	border-style: solid;
+	border-color: #999999;
+	background: #ffffff;
+	color: #666666;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------- BELOW STYLES NEED CLEANING UP ---------------------*/
+
+
+/*
+polls
+09-07-2019
+16-12-2017
+18-05-2017
+06-10-2016
+26-07-2016
+29-04-2016
+15-04-2016
+29-03-2016
+08-02-2016
+05-02-2016
+22-10-2015
+28-09-2015
+10-07-2015
+09-07-2015
+08-07-2015
+22-05-2015
+07-05-2015
+10-04-2015
+25-03-2015
+23-03-2015
+18-03-2015
+05-03-2015
+23-02-2015
+21-02-2015
+16-02-2015
+06-02-2015
+30-01-2015
+20-01-2015
+16-01-2015
+13-01-2015
+29-08-2014
+25-08-2014
+19-08-2014
+12-08-2012
+16-12-2011
+13-12-2011
+*/
+.news .content .subHeader {
+	font-size: 1.1em;
+	line-height: 1.4em;
+	text-align: center;
+}
+
+/*
+07-01-2015
+07-11-2014
+31-10-2014
+20-11-2012
+25-10-2012
+09-09-2012
+21-07-2011
+30-03-2011
+01-04-2009
+26-01-2009
+*/
+.news .content img.floatLeft {
+	float: left;
+	max-width: 50%;
+}
+
+/*
+10-05-2019
+16-12-2017
+10-06-2016
+17-11-2014
+04-11-2014
+16-12-2011
+01-12-2011
+10-07-2011
+11-05-2011
+08-03-2009
+24-02-2009
+08-07-2008
+18-06-2008
+25-03-2008
+*/
+.news .content img.floatRight {
+	float: right;
+	max-width: 50%;
+}
+
+@media (max-width: 600px) {
+	.news .content img.floatLeft,
+	.news .content img.floatRight {
+		display: block;
+		float: none;
+		max-width: calc(100% - 2em);
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+}
+
+
+
+/*
+10-04-2017		1 img
+13-05-2016		3 div
+15-04-2016		3 p p img
+11-03-2016		1 img
+13-04-2015		1 img
+05-03-2015		1 img
+06-02-2015		1 img
+09-11-2014		1 img
+29-08-2014		1 img
+25-12-2012		1 img
+05-09-2012		1 img
+10-05-2011		1 img
+14-04-2009		1 img
+*/
+.news .content .centre {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.news .content img.centre,
+.news .content .centre img {
+	max-width: calc(100% - 2em);
+}
+
+
+
+
+/*
+09-07-2019
+26-07-2016
+10-07-2015
+09-07-2015
+08-07-2015
+18-03-2015
+16-02-2015
+06-02-2015
+30-01-2015
+*/
+.news .content .infoBox {
+	border-radius: 6px;
+	background: #dddddd;
+	overflow: auto;
+}
+
+/*
+08-07-2008
+05-06-2008
+18-05-2008
+10-05-2008
+*/
+.news .content .warningBox {
+	border-radius: 6px;
+	padding-left: calc(1em + 28px);
+	background-color: #ff0000;
+	background-image: url(../images/attentionSign.png);
+	background-position: 1em center;
+	background-repeat: no-repeat;
+	overflow: auto;
+	color: #ffffff;
+}
+
+/* POSTS WITH INLINE STYLING
+
+<b> is used throughout
+
+18-07-2015		kickstarter rewards			position: absolute; top: 0; left: 50%; transform: translate(-50%, -93%); margin: 0;
+
+13-04-2015		kickstarter rewards			margin-bottom: 0;
+
+19-03-2015		app logos container 		margin-bottom: 0;
+19-03-2015		apple logo					margin-right: 1em; margin-bottom: 1em;
+19-03-2015		android logo				margin-bottom: 1em;
+
+05-03-2015		new sticker					position: absolute; top: 10%; left: 15%; transform: translateX(-50%); max-width: 30%;
+
+16-02-2015		kickstarter crates			position: absolute; top: 0; left: 50%; transform: translate(-50%, -90%); margin: 0;
+
+06-02-2015		paragraph					max-width: 60%;
+06-02-2015		kickstarter crates			margin-top: -20%
+
+23-01-2015		iframe container div		position: relative; width: calc(100% - 2em); padding-bottom: calc((100% - 2em) / 4 * 3);
+23-01-2015		iframe						position: absolute; top: 0; left:0; width: 100%; height: 100%;
+
+01-01-2015		app logos container			margin-bottom: 0;
+01-01-2015		apple logo					margin-right: 1em; margin-bottom: 1em;
+01-01-2015		android logo				margin-bottom: 1em;
+
+17-11-2014		postcard					margin-right: -10px;
+
+10-11-2014		glitch						overflow-wrap: break-word;
+
+04-11-2014		polariod donut				position: absolute; top: 5%; right: 5%; width: 50%; max-width: 261px;
+04-11-2014		polariod shaft				position: absolute; top: 220px; right: -5px; width: 50%; max-width: 254px;
+04-11-2014		TODO						position: relative; max-width: 70%; margin-top: 22%; margin-right: 17%; z-index: 100;
+
+31-10-2014		halloween Swag				margin-top: -60px;
+
+19-08-2014		android head				position: absolute; right: 20px; bottom: 2px; width: 120px; height: 80px; margin: 0; background: url(\"images/androidScared.png\") no-repeat;
+19-08-2014		subheader extra margin		position:relative; margin: 2em 0;
+
+24-02-2009		spray cans					margin-top: -20px;
+
+08-07-2008		speech bubble				margin-top: -45px; margin-right: -10px
+
+18-06-2008		spray cans					margin-top: -20px, margni-left: -20px
+
+10-05-2008		victories					position: relative, top: 3px
+10-05-2008		kills						position: relative, top: 3px
+10-05-2008		Deaths						position: relative, top: 3px
+
+16-12-2007		two images columns			text-align: center
+16-12-2007		two images columns			display: inline-block; margin-right: 1em;
+16-12-2007		two images columns			display: inline-block;
+*/
+
+/* USING STYLE PROPERTY
+18-07-2015		margin post above			margin-top: min(130px, 38%);
+16-02-2015		margin post above			margin-top: min(130px, 20%);
+*/

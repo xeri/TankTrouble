@@ -1,0 +1,181 @@
+.box {
+	float: left;
+	margin-bottom: 10px;
+	text-align: center;
+	width: 120px;
+}
+
+.box .bottom {
+	height: 7px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.box .bottom2Tabs {
+	height: 22px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.box .content {
+	padding: 3px 6px 0px 6px;
+}
+
+.box .header {
+	height: 15px;
+	padding: 2px 0px 0px 0px;
+}
+
+.box.christmas .bottom {
+	background-image: url(../images/boxChristmasBottom.jpg);
+}
+
+.box.christmas .content {
+	background-image: url(../images/boxChristmasContent.jpg);
+	color: #028b05;	
+}
+
+.box.christmas .header {
+	background-image: url(../images/boxChristmasHeader.jpg);
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.box.glitch .bottom {
+	background-image: url(../images/boxGlitchBottom.jpg);
+}
+
+.box.glitch .content {
+	background-image: url(../images/boxGlitchContent.jpg);	
+	font-family: 'Commodore';
+	font-size:11px;
+	line-height: 13px;
+	text-align: left !important;
+	color: #7869c4;
+}
+
+.box.glitch .header {
+	font-size: 11px;
+	line-height: 16px;
+	font-family: 'Commodore';
+	color: #40318d;
+	background-image: url(../images/boxGlitchHeader.jpg);
+}
+
+.box.halloween .bottom {
+	background-image: url(../images/boxHalloweenBottom.jpg);
+}
+
+.box.halloween .content {
+	background-image: url(../images/boxHalloweenContent.jpg);
+	color: #ff7e00;	
+}
+
+.box.halloween .header {
+	background-image: url(../images/boxHalloweenHeader.jpg);
+	color: #000000;
+	font-weight: bold;
+}
+
+.box.important .bottom {
+	background-image: url(../images/boxImportantBottom.jpg);
+}
+
+.box.important .content {
+	background-image: url(../images/boxImportantContent.jpg);	
+}
+
+.box.important .header {
+	background-image: url(../images/boxImportantHeader.jpg);
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.box.kickstarter .header {
+	color: #ffffff;
+	background-color: #2BDE73;
+	border-radius: 6px 6px 0 0;
+	padding: 6px;
+	font-weight: bold;
+}
+
+.box.kickstarter .content {
+	border-width: 0 2px 0 2px;
+	border-style: solid;
+	border-color: #2BDE73;
+	padding: 6px 6px 0 6px;
+}
+
+.box.kickstarter .bottom {
+	border-width: 0 2px 2px 2px;
+	border-radius: 0 0 6px 6px;
+	border-style: solid;
+	border-color: #2BDE73;
+}
+
+.box.mobile .bottom {
+	background-image: url(../images/boxMobileBottom.jpg);
+}
+
+.box.mobile .content {
+	background-image: url(../images/boxMobileContent.jpg);	
+}
+
+.box.mobile .header {
+	color: #ffffff;
+	background-image: url(../images/boxMobileHeader.jpg);
+	font-weight: bold;
+}
+
+.box.special .content {
+	background-image: url(../images/boxSpecialContent.jpg);	
+	color: #ffffff;
+}
+
+.box.special .bottom {
+	background-image: url(../images/boxSpecialBottom.jpg);
+}
+
+.box.special .header {
+	background-image: url(../images/boxSpecialHeader.jpg);
+	color: #ffffff;
+}
+
+.box.standard .bottom {
+	background-image: url(../images/boxStandardBottom.jpg);
+}
+
+.box.standard .bottom2Tabs.tab1Selected {
+	background-image: url(../images/boxStandardBottomTab1Selected.jpg);
+}
+
+.box.standard .bottom2Tabs.tab1Selected .tab1 {
+	color: #000000;
+	cursor: default;
+}
+
+.box.standard .bottom2Tabs.tab1Selected .tab2 {
+	color: #c0c0c0;
+	cursor: pointer;
+}
+
+.box.standard .bottom2Tabs.tab2Selected {
+	background-image: url(../images/boxStandardBottomTab2Selected.jpg);
+}
+
+.box.standard .bottom2Tabs.tab2Selected .tab1 {
+	color: #c0c0c0;
+	cursor: pointer;
+}
+.box.standard .bottom2Tabs.tab2Selected .tab2 {
+	color: #000000;
+	cursor: default;
+}
+
+.box.standard .content {
+	background-image: url(../images/boxStandardContent.jpg);	
+}
+
+.box.standard .header {
+	background-image: url(../images/boxStandardHeader.jpg);
+}
