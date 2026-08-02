@@ -9,7 +9,7 @@ from conftest import DASH, REPO, TEXT_EXTS, srv_files
 PROV_RE = re.compile(r"@provenance\s+(M1|M2|M3)")
 CRED_PATTERNS = [
     re.compile(r"(?i)passw(or)?d\s*[=:]\s*\S{4,}"),
-    re.compile(r"mysql://"),
+    re.compile(r"mysql:" + r"//"),  # split so the scanner never matches itself
     re.compile(r"(?i)authorization:\s*basic"),
 ]
 SCAN_DIRS = ["srv", "tools", "tests", "docker"]
