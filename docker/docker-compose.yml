@@ -1,0 +1,22 @@
+# UNVALIDATED skeleton — written 2026-08-02 on a machine without docker.
+# PHP 5.6 / MySQL 5.5 are intentionally obsolete (period fidelity).
+# NEVER expose beyond 127.0.0.1. See ../SECURITY.md.
+services:
+  php:
+    build: ./php
+    platform: linux/amd64
+    ports:
+      - "127.0.0.1:8056:80"
+    volumes:
+      - ../srv:/var/www/html
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:5.5
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: tanktrouble
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    # no host port published — reachable on the compose network only
