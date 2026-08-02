@@ -1,0 +1,6 @@
+# Path-level allowlist for test_no_credential_shaped_strings.
+# Repo-relative posix paths, one per line. Never "fix" O bytes to appease
+# the scanner — allowlist the path instead.
+docker/.env.example
+docker/docker-compose.yml
+srv/infirmary/index.html
