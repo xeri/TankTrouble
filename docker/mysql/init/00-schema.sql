@@ -1,0 +1,101 @@
+-- @provenance schema: shape M1 (columns observed in archived payloads/pages),
+--             names+types M3 (never observable through HTTP -- guide 5.2)
+-- @evidence   mazes: loadMaze.php wire format (DEDUCE.md 3.1);
+--             forum: modern JSON-RPC field inventory over 467 threads /
+--             228,316 replies; news: item shape of captured ?news bodies;
+--             users/accessories/achievements: see their seed files
+-- @written    2026-08-03 (hand-authored; regenerating seeds does not touch this)
+-- @caveat     Engine MyISAM, charset utf8 (utf8mb3), collation
+--             utf8_general_ci are period-plausible M3 choices recorded in
+--             DECISIONS.md. Corpus scan: zero astral chars, so utf8mb3 is
+--             lossless here. Do not present this DDL as recovered.
+
+CREATE DATABASE IF NOT EXISTS tanktrouble
+  CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE tanktrouble;
+
+-- one maze slot per user; keyed by the userName code the client sends to
+-- includes/loadMaze.php (observed in corpus filenames)
+CREATE TABLE mazes (
+  user_code  VARCHAR(32)  NOT NULL,   -- observed: 12-char A-Z0-9
+  title      VARCHAR(32)  NOT NULL,   -- editor limit 32, corpus max 32
+  author     VARCHAR(16)  NOT NULL,   -- editor limit 16, display metadata
+  data       VARCHAR(512) NOT NULL,   -- grid string, corpus max 275
+  PRIMARY KEY (user_code)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- creator/coCreator/moderatedBy are modern numeric user-id STRINGS kept as
+-- display metadata; deliberately no FK to users (guide 5.1)
+CREATE TABLE forum_threads (
+  id            INT UNSIGNED NOT NULL,
+  header        VARCHAR(64)  NOT NULL,      -- observed max 50
+  message       TEXT         NOT NULL,      -- observed max 5,755
+  created       INT UNSIGNED NOT NULL,      -- unix seconds
+  creator       VARCHAR(16)  NULL,
+  coCreator1    VARCHAR(16)  NULL,
+  coCreator2    VARCHAR(16)  NULL,
+  latestEdit    INT UNSIGNED NULL,
+  latestPost    INT UNSIGNED NOT NULL,
+  deleted       TINYINT(1)   NOT NULL,
+  moderatedBy   VARCHAR(16)  NULL,
+  approved      TINYINT(1)   NOT NULL,
+  banned        TINYINT(1)   NULL,          -- observed only as null; type M3
+  locked        TINYINT(1)   NOT NULL,
+  pinned        TINYINT(1)   NOT NULL,
+  hasAnyReplies TINYINT(1)   NOT NULL,
+  PRIMARY KEY (id),
+  KEY latestPost (latestPost)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE forum_replies (
+  id          INT UNSIGNED NOT NULL,
+  threadId    INT UNSIGNED NOT NULL,
+  message     TEXT         NOT NULL,
+  created     INT UNSIGNED NOT NULL,
+  creator     VARCHAR(16)  NULL,
+  coCreator1  VARCHAR(16)  NULL,
+  coCreator2  VARCHAR(16)  NULL,
+  latestEdit  INT UNSIGNED NULL,
+  deleted     TINYINT(1)   NOT NULL,
+  moderatedBy VARCHAR(16)  NULL,
+  approved    TINYINT(1)   NOT NULL,
+  banned      TINYINT(1)   NULL,
+  PRIMARY KEY (id),
+  KEY threadId (threadId, created)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- body is the byte-verbatim capture slice (anchor through closing div);
+-- whether the original stored these in a DB or a hand-edited file is NOT
+-- observable (seed_news.py header) -- this table is the rebuild's container
+-- for the blobs, nothing more
+CREATE TABLE news (
+  posted    DATE         NOT NULL,   -- the item's own permalink anchor
+  seq       TINYINT UNSIGNED NOT NULL,  -- anchor dates collide; page order
+  css_class VARCHAR(32)  NOT NULL,   -- markup generation, e.g. "news4 standard"
+  title     VARCHAR(255) NOT NULL,   -- convenience copy; body is the data
+  body      MEDIUMTEXT   NOT NULL,
+  PRIMARY KEY (posted, seq)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- M3 throughout: synthetic accounts only (guide 5.1)
+CREATE TABLE users (
+  id              INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  username        VARCHAR(16)  NOT NULL,
+  password_sha256 CHAR(64)     NOT NULL,  -- placeholder; milestone-3 auth decides
+  PRIMARY KEY (id),
+  UNIQUE KEY username (username)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- developer debug catalogue, NOT the live shop inventory (seed_static.py)
+CREATE TABLE accessories (
+  slot         ENUM('turret','barrel','front','back') NOT NULL,
+  accessory_id TINYINT UNSIGNED NOT NULL,
+  toolbox      TINYINT UNSIGNED NOT NULL,
+  PRIMARY KEY (slot, accessory_id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- observed ids only; names/art/thresholds were never client-visible
+CREATE TABLE achievements (
+  id TINYINT UNSIGNED NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
