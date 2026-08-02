@@ -10,7 +10,8 @@ DASH = "—"  # em dash: honest empty cell
 TIERS = {"O", "O?", "M1", "M2", "M3", "known-lost", "pending"}
 HEADER = ["path", "tier", "sha256", "source", "evidence", "verified_by", "notes"]
 TEXT_EXTS = {".php", ".js", ".css", ".html", ".htm", ".txt", ".md", ".yml",
-             ".yaml", ".py", ".tsv", ".ini", ".example", ".json", ".xml"}
+             ".yaml", ".py", ".tsv", ".ini", ".example", ".json", ".xml",
+             ".sql"}
 
 
 @pytest.fixture(scope="session")

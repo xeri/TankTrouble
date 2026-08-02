@@ -4,3 +4,7 @@
 docker/.env.example
 docker/docker-compose.yml
 srv/infirmary/index.html
+# seeded O data (verbatim archive text; user posts may contain anything)
+docker/mysql/init/10-mazes.sql
+docker/mysql/init/20-forum.sql
+docker/mysql/init/30-news.sql
