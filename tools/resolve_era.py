@@ -194,6 +194,17 @@ def digest_runs(rows):
     return [tuple(r) for r in runs]
 
 
+# ledger-source preference when bytes are identical: served-path and
+# capture-tree copies beat dev-tree (zip) copies
+SOURCE_RANK = ["includes-tree", "classic.tanktrouble.com", "commoncrawl",
+               "wayback-zip-swfs", "zip-extracted"]
+
+
+def source_rank(rel):
+    top = rel.split("/")[0]
+    return SOURCE_RANK.index(top) if top in SOURCE_RANK else len(SOURCE_RANK)
+
+
 def resolve(name, served_path, cands, cdx, root):
     infos = []
     for rel in cands:
@@ -208,21 +219,40 @@ def resolve(name, served_path, cands, cdx, root):
             "anchor": anchor_ts(rel),
         })
 
-    if len({i["sha256"] for i in infos}) == 1:
-        pick = min(infos, key=lambda i: i["anchor"])
-        return pick, "identical", "O", "", "all candidates byte-identical"
-
     rows = cdx.get(served_path, [])
     era_rows = [r for r in rows if ERA_START <= r[0] <= ERA_END
                 and r[1] in ("200", "-")]
     era_digests = sorted({r[2] for r in era_rows})
+
+    def era_count(i):
+        return sum(1 for r in era_rows if r[2] == i["sha1b32"])
+
+    if len({i["sha256"] for i in infos}) == 1:
+        pick = min(infos, key=lambda i: (source_rank(i["rel"]), i["anchor"]))
+        if era_count(pick):
+            return (pick, "identical+era-confirmed", "O", ";".join(era_digests),
+                    f"digest confirmed in era window ({era_count(pick)} rows)")
+        method = "single-capture" if len(infos) == 1 else "identical"
+        return (pick, method, "O", ";".join(era_digests),
+                "authentic bytes; era service not digest-confirmed"
+                + ("" if era_digests else " (no era CDX rows)"))
+
     runs = digest_runs(rows)
 
-    # method 2 — a candidate's payload sha1 seen in the window
-    hits = [i for i in infos if i["sha1b32"] in era_digests]
-    if len({i["sha256"] for i in hits}) == 1 and hits:
-        return (hits[0], "sha1-digest-match", "O", ";".join(era_digests),
-                f"digest {hits[0]['sha1b32']} observed in era window")
+    # method 2 — a candidate's payload sha1 seen in the window; on a mid-era
+    # content change with several held candidates, longest in-era presence wins
+    hits = [i for i in infos if era_count(i)]
+    if hits:
+        pick = max(hits, key=era_count)
+        if len({i["sha256"] for i in hits}) > 1:
+            detail = "; ".join(f"{i['rel']}={era_count(i)} era rows" for i in hits)
+            return (pick, "sha1-digest-match(mid-era-change)", "O",
+                    ";".join(era_digests),
+                    f"multiple held digests served in-era; longest presence "
+                    f"chosen ({detail})")
+        return (pick, "sha1-digest-match", "O", ";".join(era_digests),
+                f"digest {pick['sha1b32']} observed in era window "
+                f"({era_count(pick)} rows)")
 
     # method 3 — digest at the candidate's capture time runs into the window
     for i in infos:
