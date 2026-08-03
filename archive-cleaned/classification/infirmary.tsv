@@ -1,2 +1,2 @@
-region_id	ref_lines	status	sample
-S000	1-271	static	
+region_id	ref_lines	status	sample	annotation	region_sha
+S000	1-271	static		—	555b6745cbd5

@@ -1,62 +1,62 @@
-region_id	ref_lines	status	sample
-S000	1-5	static	
-D001	6-6	dynamic	<meta name="keywords" content="tank game, tankgame, 2 player, 3 player, TankTrou
-S002	7-8	static	<meta name="description" content="Most explosive 2 player tank game online! Grea
-D003	9-9	dynamic	<title>TANK TROUBLE Online Multiplayer Tank Game</title>
-S004	10-14	static	<link href="includes/styles.css" rel="stylesheet" type="text/css" />
-D005	15-16	dynamic	<script type="text/javascript" src="includes/phaser.min.js"></script>
-S006	17-96	static	<script type="text/javascript" src="includes/swfobject.js"></script>
-D007	97-97	dynamic	<img src="images/menuStartDeselect.jpg" alt=""/><a href="?game"><img src="images
-S008	98-150	static	<td style="background-image: url(images/menuBackground.jpg); background-repeat: 
-D009	151-482	dynamic	</script><a name="05-03-2018" id="05-03-2018"></a>
-S010	483-540	static	New Year's Fallout and Glow-in-the-dark Pepperoni
-D011	541-541	dynamic	This anniversary the master chef has prepared a delicious - he claims - French d
-S012	542-551	static	<br>
-D013	552-552	dynamic	description: '...a team of scientists located a mythical, cold-war research labo
-S014	553-2354	static	caption: 'TankTrouble.com'
-D015	2355-2355	dynamic	Rumor has it that hackers have been hijacking TankTrouble accounts. Here in the 
-S016	2356-3039	static	&nbsp;<br>
-D017	3040-3040	dynamic	<a name="01-12-2011" id="01-12-2011"></a>
-S018	3041-3043	static	<div class="news christmas">
-D019	3044-3044	dynamic	01-12-2011
-S020	3045-4641	static	</div>
-D021	4642-4650	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s
-S022	4651-4655	static	
-D023	4656-4656	dynamic	<div class="content" id="scrapyard" style="padding: 4px 0px 0px 0px; height: 18p
-S024	4657-4662	static	</div>
-D025	4663-4680	dynamic	var scrapyardElement = document.getElementById("scrapyard");
-S026	4681-4682	static	// -->
-D027	4683-4699	dynamic	
-S028	4700-4704	static	</div><div style="background-color: #ff0000; border: 2px solid #ff0000; border-t
-D029	4705-4705	dynamic	var s = (1475758800000 - new Date().getTime()) / 1000;
-S030	4706-4737	static	var t = "";
-D031	4738-4738	dynamic	t = "Online battles are in heavy development. Try now!";
-S032	4739-4743	static	}
-D033	4744-4744	dynamic	</script><div id="loginAllUserInfo" style="display: none;"></div>
-S034	4745-4764	static	<div id="login" class="box standard" style="position: relative; visibility: hidd
-D035	4765-4765	dynamic	<input id="loginpassword" type="password" name="password" size="12" value="passw
-S036	4766-4823	static	<div id="loginerror" style="width: 110px; height: 10px; float:left; display:none
-D037	4824-4828	dynamic	
-S038	4829-4879	static	}
-D039	4880-4880	dynamic	var c = new SWFObject("includes/signUpTankDesign18StandardColours.swf", "signUpT
-S040	4881-5256	static	c.addParam("allowScriptAccess", "sameDomain");
-D041	5257-5257	dynamic	Since 2007-12-16<br/><div style="padding: 2px 0px 2px 0px;" class="text normal">
-S042	5258-5259	static	</div>
-D043	5260-5261	dynamic	</div>
-S044	5262-5266	static	
-D045	5267-5275	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s
-S046	5276-5301	static	
-D047	5302-5302	dynamic	<div class="content text tiny gray" style="text-align: justify; height: 110px;">
-S048	5303-5390	static	<div class="tab1" style="width: 60px; text-align: center; position: absolute; bo
-D049	5391-5391	dynamic	window.open('https://beta.tanktrouble.com/#'+encodeURIComponent('type=messages')
-S050	5392-5397	static	
-D051	5398-5399	dynamic	};
-S052	5400-5513	static	</script> </div>
-D053	5514-5514	dynamic	if (username === currentUsertrailName)
-S054	5515-5532	static	return;
-D055	5533-5533	dynamic	if (currentElement.innerHTML === currentUsertrailName)
-S056	5534-5556	static	{
-D057	5557-5557	dynamic	currentUsertrailName = null;
-S058	5558-5956	static	}
-D059	5957-5963	dynamic	}
-S060	5964-5973	static	}
+region_id	ref_lines	status	sample	annotation	region_sha
+S000	1-5	static		—	e18bda0ce523
+D001	6-6	dynamic	<meta name="keywords" content="tank game, tankgame, 2 player, 3 player, TankTrou		7387a7eadd0b
+S002	7-8	static	<meta name="description" content="Most explosive 2 player tank game online! Grea	—	99da207d7e2c
+D003	9-9	dynamic	<title>TANK TROUBLE Online Multiplayer Tank Game</title>		ba612e32eec9
+S004	10-14	static	<link href="includes/styles.css" rel="stylesheet" type="text/css" />	—	72f10bb9fb47
+D005	15-16	dynamic	<script type="text/javascript" src="includes/phaser.min.js"></script>		a8dca34e2269
+S006	17-96	static	<script type="text/javascript" src="includes/swfobject.js"></script>	—	c406473b46f3
+D007	97-97	dynamic	<img src="images/menuStartDeselect.jpg" alt=""/><a href="?game"><img src="images		25fb30bd2ab1
+S008	98-150	static	<td style="background-image: url(images/menuBackground.jpg); background-repeat: 	—	02a07e26228f
+D009	151-482	dynamic	</script><a name="05-03-2018" id="05-03-2018"></a>		9089408309fb
+S010	483-540	static	New Year's Fallout and Glow-in-the-dark Pepperoni	—	1b65d3c47112
+D011	541-541	dynamic	This anniversary the master chef has prepared a delicious - he claims - French d		3664d4dd0f5e
+S012	542-551	static	<br>	—	635c1acf03ee
+D013	552-552	dynamic	description: '...a team of scientists located a mythical, cold-war research labo		84f04f88d08d
+S014	553-2354	static	caption: 'TankTrouble.com'	—	db660b5d27fe
+D015	2355-2355	dynamic	Rumor has it that hackers have been hijacking TankTrouble accounts. Here in the 		77637d301b9f
+S016	2356-3039	static	&nbsp;<br>	—	a8adaa46a012
+D017	3040-3040	dynamic	<a name="01-12-2011" id="01-12-2011"></a>		41978e56904e
+S018	3041-3043	static	<div class="news christmas">	—	08b567eb0703
+D019	3044-3044	dynamic	01-12-2011		870bba3f31c0
+S020	3045-4641	static	</div>	—	0dfc6830c167
+D021	4642-4650	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s		b4f1918a16e1
+S022	4651-4655	static		—	858c4732e8ed
+D023	4656-4656	dynamic	<div class="content" id="scrapyard" style="padding: 4px 0px 0px 0px; height: 18p		a9911960d7a6
+S024	4657-4662	static	</div>	—	7ce448f66560
+D025	4663-4680	dynamic	var scrapyardElement = document.getElementById("scrapyard");		e459cf549f3e
+S026	4681-4682	static	// -->	—	2c8d4d067987
+D027	4683-4699	dynamic			ff489a410ede
+S028	4700-4704	static	</div><div style="background-color: #ff0000; border: 2px solid #ff0000; border-t	—	2c8bc4b8352a
+D029	4705-4705	dynamic	var s = (1475758800000 - new Date().getTime()) / 1000;		db18584a49fd
+S030	4706-4737	static	var t = "";	—	cc768dec7789
+D031	4738-4738	dynamic	t = "Online battles are in heavy development. Try now!";		208ae081284b
+S032	4739-4743	static	}	—	022949edfd29
+D033	4744-4744	dynamic	</script><div id="loginAllUserInfo" style="display: none;"></div>		9c235fd4e4e0
+S034	4745-4764	static	<div id="login" class="box standard" style="position: relative; visibility: hidd	—	8b6561168569
+D035	4765-4765	dynamic	<input id="loginpassword" type="password" name="password" size="12" value="passw		88993e2a8b97
+S036	4766-4823	static	<div id="loginerror" style="width: 110px; height: 10px; float:left; display:none	—	f9a3f40318c8
+D037	4824-4828	dynamic			bf8aa1c32103
+S038	4829-4879	static	}	—	afaa8229f755
+D039	4880-4880	dynamic	var c = new SWFObject("includes/signUpTankDesign18StandardColours.swf", "signUpT		707e8e1b87fc
+S040	4881-5256	static	c.addParam("allowScriptAccess", "sameDomain");	—	3d61954e771d
+D041	5257-5257	dynamic	Since 2007-12-16<br/><div style="padding: 2px 0px 2px 0px;" class="text normal">		9bf41f741192
+S042	5258-5259	static	</div>	—	9a148c5779ca
+D043	5260-5261	dynamic	</div>		da724d0cbb69
+S044	5262-5266	static		—	eb2bce5d0c4d
+D045	5267-5275	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s		ddb025789030
+S046	5276-5301	static		—	1c113cb1269d
+D047	5302-5302	dynamic	<div class="content text tiny gray" style="text-align: justify; height: 110px;">		605c06d4f113
+S048	5303-5390	static	<div class="tab1" style="width: 60px; text-align: center; position: absolute; bo	—	9a75d2c49a97
+D049	5391-5391	dynamic	window.open('https://beta.tanktrouble.com/#'+encodeURIComponent('type=messages')		3a6650cabc6f
+S050	5392-5397	static		—	a5f76586af27
+D051	5398-5399	dynamic	};		dadff5d5816c
+S052	5400-5513	static	</script> </div>	—	2eaa14b6c907
+D053	5514-5514	dynamic	if (username === currentUsertrailName)		112d01bb988a
+S054	5515-5532	static	return;	—	1f6c34d90412
+D055	5533-5533	dynamic	if (currentElement.innerHTML === currentUsertrailName)		524c54cfad94
+S056	5534-5556	static	{	—	c562878e36f5
+D057	5557-5557	dynamic	currentUsertrailName = null;		c1226ca0ad8d
+S058	5558-5956	static	}	—	2ed80479b50a
+D059	5957-5963	dynamic	}		f9ce5c07e6eb
+S060	5964-5973	static	}	—	cca6c92631aa

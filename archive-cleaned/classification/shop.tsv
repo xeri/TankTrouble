@@ -1,52 +1,52 @@
-region_id	ref_lines	status	sample
-S000	1-5	static	
-D001	6-6	dynamic	<meta name="keywords" content="tank game, tankgame, 2 player, 3 player, TankTrou
-S002	7-8	static	<meta name="description" content="Most explosive 2 player tank game online! Grea
-D003	9-9	dynamic	<title>TANK TROUBLE Online Multiplayer Tank Game</title>
-S004	10-14	static	<link href="includes/styles.css" rel="stylesheet" type="text/css" />
-D005	15-16	dynamic	<script type="text/javascript" src="includes/phaser.min.js"></script>
-S006	17-96	static	<script type="text/javascript" src="includes/swfobject.js"></script>
-D007	97-97	dynamic	<img src="images/menuStartDeselect.jpg" alt=""/><a href="?game"><img src="images
-S008	98-107	static	<td style="background-image: url(images/menuBackground.jpg); background-repeat: 
-D009	108-112	dynamic	<div id='shop'>
-S010	113-119	static	</div>
-D011	120-128	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s
-S012	129-133	static	
-D013	134-134	dynamic	<div class="content" id="scrapyard" style="padding: 4px 0px 0px 0px; height: 18p
-S014	135-140	static	</div>
-D015	141-158	dynamic	var scrapyardElement = document.getElementById("scrapyard");
-S016	159-160	static	// -->
-D017	161-177	dynamic	
-S018	178-182	static	</div><div style="background-color: #ff0000; border: 2px solid #ff0000; border-t
-D019	183-183	dynamic	var s = (1475758800000 - new Date().getTime()) / 1000;
-S020	184-215	static	var t = "";
-D021	216-216	dynamic	t = "Online battles are in heavy development. Try now!";
-S022	217-221	static	}
-D023	222-222	dynamic	</script><div id="loginAllUserInfo" style="display: none;"></div>
-S024	223-242	static	<div id="login" class="box standard" style="position: relative; visibility: hidd
-D025	243-243	dynamic	<input id="loginpassword" type="password" name="password" size="12" value="passw
-S026	244-301	static	<div id="loginerror" style="width: 110px; height: 10px; float:left; display:none
-D027	302-306	dynamic	
-S028	307-357	static	}
-D029	358-358	dynamic	var c = new SWFObject("includes/signUpTankDesign18StandardColours.swf", "signUpT
-S030	359-734	static	c.addParam("allowScriptAccess", "sameDomain");
-D031	735-735	dynamic	Since 2007-12-16<br/><div style="padding: 2px 0px 2px 0px;" class="text normal">
-S032	736-737	static	</div>
-D033	738-739	dynamic	</div>
-S034	740-744	static	
-D035	745-753	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s
-S036	754-779	static	
-D037	780-780	dynamic	<div class="content text tiny gray" style="text-align: justify; height: 110px;">
-S038	781-868	static	<div class="tab1" style="width: 60px; text-align: center; position: absolute; bo
-D039	869-869	dynamic	window.open('https://beta.tanktrouble.com/#'+encodeURIComponent('type=messages')
-S040	870-875	static	
-D041	876-877	dynamic	};
-S042	878-991	static	</script> </div>
-D043	992-992	dynamic	if (username === currentUsertrailName)
-S044	993-1010	static	return;
-D045	1011-1011	dynamic	if (currentElement.innerHTML === currentUsertrailName)
-S046	1012-1034	static	{
-D047	1035-1035	dynamic	currentUsertrailName = null;
-S048	1036-1434	static	}
-D049	1435-1441	dynamic	}
-S050	1442-1451	static	}
+region_id	ref_lines	status	sample	annotation	region_sha
+S000	1-5	static		—	e18bda0ce523
+D001	6-6	dynamic	<meta name="keywords" content="tank game, tankgame, 2 player, 3 player, TankTrou		7387a7eadd0b
+S002	7-8	static	<meta name="description" content="Most explosive 2 player tank game online! Grea	—	99da207d7e2c
+D003	9-9	dynamic	<title>TANK TROUBLE Online Multiplayer Tank Game</title>		ba612e32eec9
+S004	10-14	static	<link href="includes/styles.css" rel="stylesheet" type="text/css" />	—	72f10bb9fb47
+D005	15-16	dynamic	<script type="text/javascript" src="includes/phaser.min.js"></script>		a8dca34e2269
+S006	17-96	static	<script type="text/javascript" src="includes/swfobject.js"></script>	—	c406473b46f3
+D007	97-97	dynamic	<img src="images/menuStartDeselect.jpg" alt=""/><a href="?game"><img src="images		46716f3fc842
+S008	98-107	static	<td style="background-image: url(images/menuBackground.jpg); background-repeat: 	—	c161a33e3810
+D009	108-112	dynamic	<div id='shop'>		208e3612b881
+S010	113-119	static	</div>	—	f3a6ee54e9b1
+D011	120-128	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s		b4f1918a16e1
+S012	129-133	static		—	858c4732e8ed
+D013	134-134	dynamic	<div class="content" id="scrapyard" style="padding: 4px 0px 0px 0px; height: 18p		a9911960d7a6
+S014	135-140	static	</div>	—	7ce448f66560
+D015	141-158	dynamic	var scrapyardElement = document.getElementById("scrapyard");		e459cf549f3e
+S016	159-160	static	// -->	—	2c8d4d067987
+D017	161-177	dynamic			3b6736840adf
+S018	178-182	static	</div><div style="background-color: #ff0000; border: 2px solid #ff0000; border-t	—	2c8bc4b8352a
+D019	183-183	dynamic	var s = (1475758800000 - new Date().getTime()) / 1000;		db18584a49fd
+S020	184-215	static	var t = "";	—	cc768dec7789
+D021	216-216	dynamic	t = "Online battles are in heavy development. Try now!";		208ae081284b
+S022	217-221	static	}	—	022949edfd29
+D023	222-222	dynamic	</script><div id="loginAllUserInfo" style="display: none;"></div>		9c235fd4e4e0
+S024	223-242	static	<div id="login" class="box standard" style="position: relative; visibility: hidd	—	8b6561168569
+D025	243-243	dynamic	<input id="loginpassword" type="password" name="password" size="12" value="passw		88993e2a8b97
+S026	244-301	static	<div id="loginerror" style="width: 110px; height: 10px; float:left; display:none	—	f9a3f40318c8
+D027	302-306	dynamic			bf8aa1c32103
+S028	307-357	static	}	—	afaa8229f755
+D029	358-358	dynamic	var c = new SWFObject("includes/signUpTankDesign18StandardColours.swf", "signUpT		707e8e1b87fc
+S030	359-734	static	c.addParam("allowScriptAccess", "sameDomain");	—	3d61954e771d
+D031	735-735	dynamic	Since 2007-12-16<br/><div style="padding: 2px 0px 2px 0px;" class="text normal">		1e3d9cf89213
+S032	736-737	static	</div>	—	9a148c5779ca
+D033	738-739	dynamic	</div>		da724d0cbb69
+S034	740-744	static		—	eb2bce5d0c4d
+D035	745-753	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s		ddb025789030
+S036	754-779	static		—	1c113cb1269d
+D037	780-780	dynamic	<div class="content text tiny gray" style="text-align: justify; height: 110px;">		f1cc01c096a2
+S038	781-868	static	<div class="tab1" style="width: 60px; text-align: center; position: absolute; bo	—	9a75d2c49a97
+D039	869-869	dynamic	window.open('https://beta.tanktrouble.com/#'+encodeURIComponent('type=messages')		3a6650cabc6f
+S040	870-875	static		—	a5f76586af27
+D041	876-877	dynamic	};		dadff5d5816c
+S042	878-991	static	</script> </div>	—	2eaa14b6c907
+D043	992-992	dynamic	if (username === currentUsertrailName)		112d01bb988a
+S044	993-1010	static	return;	—	1f6c34d90412
+D045	1011-1011	dynamic	if (currentElement.innerHTML === currentUsertrailName)		524c54cfad94
+S046	1012-1034	static	{	—	c562878e36f5
+D047	1035-1035	dynamic	currentUsertrailName = null;		c1226ca0ad8d
+S048	1036-1434	static	}	—	97034b1086db
+D049	1435-1441	dynamic	}		f9ce5c07e6eb
+S050	1442-1451	static	}	—	cca6c92631aa
