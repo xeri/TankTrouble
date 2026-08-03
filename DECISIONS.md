@@ -311,3 +311,17 @@ Consequence for gate B: byte-identical replay of archived bodies is
 impossible by construction (random shuffle + random selection); the gate
 compares canonical field content plus byte-exact notFound — recorded in
 the gate-B entry when tests/test_loadmaze_replay.py lands.
+
+## 2026-08-03 — mazes.author is VARBINARY(16): byte-exact key
+First import of the remodel failed: MySQL VARCHAR PKs compare PAD-SPACE and
+utf8_general_ci compares case-insensitively, and the corpus holds 12
+byte-distinct author pairs that collide under those semantics — 10 case
+pairs ('Cheesed'/'cheesed' …) and 2 trailing-space pairs ('b11'/'b11 ',
+'devo'/'devo '). Whether these were one live user or two is unknowable from
+the wire; merging them would invent identity and silently drop 12 observed
+states. VARBINARY (NO PAD, binary compare) keeps all 672. All corpus
+authors are pure ASCII, so no charset is lost. Consequence: the userName
+lookup in loadMaze.php becomes byte-exact — the original's case handling
+was never observable (M3 detail, noted in that file's @caveat). Rejected:
+utf8_bin collation (still PAD SPACE — trailing-space pairs still collide);
+merging under ci semantics (invents identity).

@@ -24,8 +24,12 @@ USE tanktrouble;
 -- time series of one live table -- latest capture wins (DECISIONS
 -- 2026-08-03). Column SET is M1 (t/n/d/s all observed); author-as-key is
 -- M2 (deduced from the userName query); names/types M3.
+-- author is VARBINARY: the corpus holds 12 byte-distinct author pairs that
+-- collide under any ci PAD-SPACE collation ('Cheesed'/'cheesed',
+-- 'b11'/'b11 '); byte-exact keying preserves every observed state instead
+-- of merging identities we cannot prove. All corpus authors are pure ASCII.
 CREATE TABLE mazes (
-  author  VARCHAR(16)  NOT NULL,   -- n= field; editor limit 16
+  author  VARBINARY(16) NOT NULL,  -- n= field; editor limit 16
   slot    TINYINT UNSIGNED NOT NULL,  -- s= field; observed only 1
   title   VARCHAR(32)  NOT NULL,   -- t= field; editor limit 32, corpus max 32
   data    VARCHAR(512) NOT NULL,   -- d= grid string, corpus max 275
