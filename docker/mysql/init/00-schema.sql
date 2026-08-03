@@ -111,3 +111,14 @@ CREATE TABLE achievements (
   id TINYINT UNSIGNED NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- Scrapyard counter state (M3 invention -- the ORIGINAL's storage is
+-- unobservable; only two response bodies survive, 2015-09-28 and
+-- 2016-01-26). Single row id=1. velocity keeps the archived decimal as a
+-- STRING so replay emits the exact bytes (no float re-formatting drift).
+CREATE TABLE scrapyard_state (
+  id       TINYINT UNSIGNED NOT NULL,
+  scraps   BIGINT UNSIGNED NOT NULL,
+  velocity VARCHAR(32) NULL,
+  PRIMARY KEY (id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
