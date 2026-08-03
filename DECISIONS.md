@@ -356,3 +356,83 @@ instructions, never skip — same philosophy as archive_root (a silently
 skipped gate is a green lie). Deliberate offline runs say so on the command
 line: pytest -m "not live" (gates A/D/S/C1 remain docker-free). Full suite
 green with the stack up is the milestone-3 definition of green.
+
+## 2026-08-03 — gate F mask model (vocabulary, sidecars, comparator)
+Classification TSVs gain annotation (5th col) + region_sha (6th col,
+sha256[:12] of the region's reference lines). Owned by
+tools/annotate_regions.py from now on; regeneration re-attaches annotations
+by (route, region_sha) and surfaces changed regions as unannotated — that
+is the safety property (tests/test_masks.py proves byte-stability).
+Vocabulary: echo:$name [re=regex, exactly one capture group, single-line
+regions only], loop:name, template-edit:FROM[..TO] (YYYYMMDD, inclusive),
+per-request:what, ad-block, needs-split:why. ';'-separated multi-annots,
+';' forbidden inside details, ' re=' cells are single-annotation. Empty or
+needs-split blocks gate F for the whole route (GATE_F_SPEC rule).
+template-edit is SIDE-DEPENDENT: capture side gated only inside the window
+(the ref bytes were live then), render side always gated (reconstruction
+emits era-final text). Refines GATE_F_SPEC's positional line-drop into
+difflib projection (era captures differ in line count): gated ref lines
+must survive byte-identical, masked regions absorb replace/delete, inserts
+must touch a masked region. Content REMOVED before the era-final reference
+has no ref lines to mask, so <route>-removed.tsv sidecars record
+(ref position, validity window, max observed lines, name); capture-side
+inserts matching a row are legal, the render side never gets the
+allowance. Sidecars are position-keyed to the current reference — if the
+reference changes they fail loudly and must be re-derived.
+
+## 2026-08-03 — annotation pass (all 217 regions, method + findings)
+Method: per-region variant dump across every era capture (annotate_regions
+--variants); regions whose byte-forms partition the timeline monotonically
+(no same-day clash, ref form last, form count small) are hand-edited
+template text -> template-edit:<first ts of ref form>; a form-count guard
+(forms > max(4, captures/3)) rejects always-varying regions that look
+trivially monotonic when every capture differs (top10 tables — this guard
+caught a real false positive on garage). 187 regions auto-classified this
+way, 30 classified manually, 0 needs-split. Manual classes: initCode
+(random k=<int> pair, base64, differs across same-day captures) ->
+echo:$initCode with full-line regex, validated against all 62 archived
+root+game lines; live-player-stats, top10-rankings, latest-posters (forum),
+random-tagline (root+game only; same-day captures differ -> per-request
+rotation), seasonal-promo (halloween box byte-identical 20171119 AND
+20181020, December calendar box tracks the DAY -> date-derived,
+per-request per "never fake the clock"); news D009 -> loop:news-items (era
+items accrete monotonically; DB as-of deferred to de-render). Ad
+skyscrapers: lijit/adsbygoogle ROTATED per-request pre-20170429 (same-day
+divergence) then froze -> template-edit:20170429 gates the stable era
+byte-exact, masks the rotating tail; stronger than always-masked ad-block
+(vocab kept for future use). Template history recovered: signUpTankDesign
+13->17 between 20170330..20170429 (NOT 2017-01-24 as planning notes had
+it), 17->18 between 20180722..20180814, so 2018-03-17 captures embed 17 —
+resolves the planning-agent conflict. showShop wrapper still present in
+the 20170330 root capture -> removal deploy in (20170330, 20170429], not
+2017-03-30 itself. sendFeedback block still present 20180422 -> removed by
+the (20180422, 20180523] deploy. Removed-block catalogue (72 rows):
+sendFeedback feature, showShop wrapper + shop backer items + showShop_cb
+js, lab statistics-link block (gone by 20171212) and v3.8c download line
+(gone by 20170228), one 20180814 leading-blank capture artifact,
+pre-cleanup whitespace-only lines.
+
+## 2026-08-03 — gate F activation + split (offline/live)
+Gate F runs in two halves. Offline (tests/test_masks.py, no docker): masks
+hold against every era capture of every route — wrong windows or missed
+dynamics fail here. Live (tests/test_render_diff.py): render vs era-final
+reference with render-side modes; transitivity (ref==capture offline,
+ref==render live) yields render==capture per capture without fetching once
+per capture; the render is fetched once per DISTINCT era Host (www/apex)
+instead. A route is active iff the serving file's ledger verified_by names
+tests/test_render_diff.py (gate-D mechanics); claimed-but-blocked masks and
+claimed-but-501 routes fail loudly; unclaimed routes stay gate-D 501s.
+Bring-up: infirmary (srv/infirmary/index.html, O) — zero dynamic regions,
+so the live half also byte-compares the raw body against the era-final
+capture; its ledger row flips verified_by tests/test_assets.py ->
+tests/test_render_diff.py (O bytes remain hash-locked by gate A
+regardless). statistics has 0 era captures — never activatable in-era.
+
+## 2026-08-03 — @O-begin fence grammar refinement
+README's fence grammar named only a source file; a bare path cannot be
+byte-verified. Fences now carry the span: /* @O-begin source=<path>
+lines=<a>-<b> */ ?> ... <?php /* @O-end */. Body = file text between the
+newline after ?> and the newline before the closing marker (PHP eats
+exactly one newline after ?>, so emitted bytes equal fenced bytes).
+tests/test_fenced_regions.py verifies byte-match + @contains declaration;
+a synthetic self-test keeps the parser honest while zero fences exist.
