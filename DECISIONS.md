@@ -436,3 +436,66 @@ newline after ?> and the newline before the closing marker (PHP eats
 exactly one newline after ?>, so emitted bytes equal fenced bytes).
 tests/test_fenced_regions.py verifies byte-match + @contains declaration;
 a synthetic self-test keeps the parser honest while zero fences exist.
+
+## 2026-08-03 — de-render strategy: verbatim fences, not shared emitters
+srv/index.php is generated (tools/derender.py) as: stock Sajax dispatcher +
+reconstructed behaviour (initCode, tagline) + per-route page functions that
+emit the route's ERA-FINAL capture bytes verbatim inside @O fences, split
+only at reconstructed-behaviour lines (root/game: tagline line 113,
+initCode line 202; other routes: one fence each; 11 fences total). The
+plan's shared-emitter dedup was rejected: per-route shell bytes are not
+provably identical across routes, and a shared chunk could name only one
+route's capture as its fence source — duplication inside fences is
+verbatim original bytes, zero invention, every byte source-named. The
+generator is deterministic; regenerating after mask/archive changes is the
+maintenance path (never hand-edit fenced bytes).
+
+## 2026-08-03 — SAJAX verdict: lightly modified 0.12
+Stock Sajax 0.12 obtained (thirdparty/sajax/FETCHED.md). Era pages embed
+sajax_get_common_js output byte-matching stock for 149 lines except
+sajax_remote_uri="/" (config) and four site-inserted sajax_debug lines;
+wrapper stubs match stock's template modulo site whitespace edits
+(two-tab indent, trailing tabs after the function name); header comment
+"(c) copyright 2005 modernmethod, inc" matches. Version pinned: 0.12,
+lightly modified. Consequences: dispatcher functions inherited verbatim
+from stock (sajax_esc, sajax_get_js_repr, sajax_handle_client_request:
+GET/POST rs, "-:<func> not callable" error form, "+:var res = ...; res;"
+success form, GET-path anti-cache headers); the in-page JS+wrappers ship
+inside the fenced verbatim bytes so no wrapper emitter is needed. The
+export list starts EMPTY: every era SAJAX function answers the stock
+"-:<func> not callable" — in-protocol and truthful (zero era SAJAX
+response bodies are archived; fabricating "+:" replies would violate
+guide 6.2 rule 3). Endpoints that get reconstructed (getScraps, milestone
+3 phase D) register into the list one by one.
+
+## 2026-08-03 — per-request and DB regions frozen at era-final bytes
+live-player-stats, top10-rankings, forum latest-posters, seasonal-promo,
+and the news item list render as the era-final capture bytes (inside the
+fences). The originals were live DB values / date-derived content; no
+archive evidence supports generating fresh values, so the reconstruction
+freezes what the archive holds. Gate F masks these regions (or gates them
+as template-edit windows), so the freeze is visible, not hidden. This
+settles DECISIONS-16's anticipation for news: the news page de-renders as
+literal HTML; the seeded news table remains data evidence, NOT wired into
+rendering. Reconstructed live behaviour is limited to what output alone
+proves: initCode (random k pair, naive swap-shuffle mirror of the client
+port, base64 — only mechanism consistent with both observed permutations;
+RNG/range unobservable, mt_rand(0, 2^31-1) chosen) and the tagline
+rotation (pool = 10 texts observed across all root+game era captures,
+uniform pick; pool completeness unknowable).
+
+## 2026-08-03 — route resolution
+Exact QUERY_STRING match: '' -> root page, the six evidenced route names ->
+their pages, rs= handled by the dispatcher before page emission, anything
+else -> loud 400 RECONSTRUCTION message. Archived request URLs evidence
+exactly these shapes; original behaviour on other inputs (mixed keys,
+unknown keys, cache-busted root) is unarchived and deliberately not
+guessed.
+
+## 2026-08-03 — index.php promoted M2 -> M1
+Citation: gate F offline half (masks hold against every era capture of all
+8 masked routes, ~205 captures), live half (root game garage news forum
+lab shop rendered under every distinct era Host and diffed against
+era-final references; infirmary byte-identical), fence verifier (11 @O
+fences byte-match their named capture spans). Full suite 50 passed with
+the stack up.
