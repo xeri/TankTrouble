@@ -171,6 +171,7 @@ class Editor {
         if (name == "tool") return tool;
         if (name == "titleText") return title;
         if (name == "errorVisible") return errorVisible ? "true" : "false";
+        if (name == "errorText") return panelTf.text;
         if (name == "stageAlpha") return String(Math.round(_root._alpha));
         return "";
     }
@@ -239,11 +240,46 @@ class Editor {
         return false;
     }
 
-    // ---- save (completed in Task 5) -------------------------------------
+    // ---- save ------------------------------------------------------------
     function doSave():Void {
         if (state != "edit") return;
         if (!validTitle(title)) { showError("Please give your maze a name."); return; }
-        // network save lands in Task 5
+        var inner:String = "t=" + title + "&n=" + userName + "&d="
+                         + cropToFloorBbox().emit() + "&s=" + slot;
+        var post:LoadVars = new LoadVars();
+        post.q = Base64.Encode(inner);
+        var reply:LoadVars = new LoadVars();
+        var owner:Editor = this;
+        reply.onLoad = function(ok:Boolean) {
+            if (!ok) { owner.showError("Could not reach the server."); return; }
+            // body is r=<base64>; LoadVars url-decodes it, turning '+'
+            // into space -- restore before decoding
+            var raw:String = Base64.StringReplaceAll(String(this.r), " ", "+");
+            var pairs:Array = Base64.Decode(raw).split("&");
+            var res:Object = {};
+            for (var i:Number = 0; i < pairs.length; i++) {
+                var kv:Array = pairs[i].split("=");
+                res[kv[0]] = kv[1];
+            }
+            if (res.saved == "true") {
+                owner.hideError();
+                owner.state = "preview";
+                owner.redraw();
+                getURL("javascript:hideMazeCreatorToolsAndTitle('" + owner.userId + "')");
+            } else {
+                owner.showError(owner.errorCopy(String(res.error)));
+            }
+        };
+        post.sendAndLoad(SAVE_ENDPOINT, reply, "POST");
+    }
+
+    // M3 copy -- the original panel text is unrecorded (known only from
+    // _root.errorPanel.hide; VISUAL-EVIDENCE-WANTED #2). Codes are the
+    // invented saveMaze.php set.
+    function errorCopy(code:String):String {
+        if (code == "badTitle") return "Please give your maze a name.";
+        if (code == "tooManyObjects") return "Too many spawn points.";
+        return "Your maze could not be saved.";
     }
 
     function validTitle(t:String):Boolean {

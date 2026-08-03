@@ -33,6 +33,7 @@ const server = http.createServer(async (req, res) => {
         body: req.method === "POST" ? Buffer.concat(chunks) : undefined,
       });
       const buf = Buffer.from(await upstream.arrayBuffer());
+      if (process.env.TT_DEBUG) console.log("proxy:", req.method, rel, "->", upstream.status, buf.toString().slice(0, 60));
       res.writeHead(upstream.status, { "Content-Type": "text/plain" });
       res.end(buf);
       return;
@@ -158,6 +159,7 @@ const calls2 = await page.evaluate(() => window.__calls);
 check("hide call fired on save", calls2.some(c => c[0] === "hide" && c[1] === "7"));
 check("save flips to preview", (await gv("state")) === "preview");
 check("no error on good save", (await gv("errorVisible")) === "false");
+if (process.env.TT_DEBUG) console.log("errorText:", await gv("errorText"));
 const savedD = await gv("mazeD");
 const q = Buffer.from("userName=testuser01&a=0.1&b=0.2").toString("base64");
 const body = await (await fetch(`http://127.0.0.1:8056/includes/loadMaze.php?q=${q}`)).text();
