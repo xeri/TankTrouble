@@ -612,3 +612,31 @@ Reversible: yes — the editor reads the reply through the same decodeMessage
 port, so format changes are one function on each side.
 Supersedes: the 2026-08-03 "constant + pending row, NO file" boundary entry
 (the constant and its name are unchanged).
+
+## 2026-08-03 — mazeCreator boundary-bit law + visual constants (phase 3)
+Tier: M2 (measured, 0 violations) for the law and constants; M3 where noted.
+Boundary-bit law (all 670 corpus grids, 4 directions, 0 violations): a
+wall bit whose edge borders exactly ONE floor cell is always 1; between
+two floor cells it is free user data (18,148 interior walls); between two
+non-floor cells it is always 0. Grids are tight floor bounding boxes
+(floor in row 0, col 0, last row, last col — 670/670). Consequence: the
+editor derives boundary bits from floor adjacency (normalizeBoundary) and
+crops to the floor bbox on save; only interior walls, floor, and objects
+are user-authored. South/east edges of the last row/col are unstorable in
+the wire format — the renderer closes them from floor adjacency.
+Visual constants: measured from the "Making a maze.png" screenshot at
+uniform scale 832/688 = 1.2093 (guide 6.5's per-axis factors were a chrome
+artifact) — see docs/mazecreator-visual-spec.md. CELL=32, lattice origin
+(56,50), wall 4px #444444, floors #dddddd/#eeeeee.
+Maze placement: the original centers the maze bbox on the 18x10 lattice at
+exact (L-size)/2 cell offsets — half-cell when parity is odd (both axes of
+the screenshot land exactly). Rebuild: boot placement uses the same rule
+(integer part into the lattice, fraction as a render/hit-test pixel
+shift), FIXED for the editing session — whether the original re-centered
+live while editing is unknown (VISUAL-EVIDENCE-WANTED #6).
+Floor tones: NOT a checkerboard; per-cell mix ~1/3 light with no
+deterministic rule visible. M3: rebuild uses hash (x*3+y*7)%3==0 -> light
+so both runtimes render identically (gate C); original pattern presumed
+runtime-random and unknowable (VISUAL-EVIDENCE-WANTED entry).
+Reversible: yes — constants are statics in MazeRenderer; the law is a
+corpus fact, not a choice.
