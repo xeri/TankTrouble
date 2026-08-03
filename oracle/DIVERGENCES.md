@@ -31,11 +31,12 @@ Known options, decision deferred to the mazeCreator design step:
 The paint-editor flow (getURL bridge) needs NO divergence — original SWFs
 run against the original page contract.
 
-### Projector half — NOT yet run
+### Projector half — HELD as of 2026-08-03
 
-No Flash projector binary exists in the archive or on this machine, so the
-Ruffle-vs-projector diff (gate C proper) has only its Ruffle half. Obtain an
-Adobe Flash projector (archive.org holds the last 32.0.0.371 standalone
-builds) before gate C rendering comparisons. Until then every Ruffle
-behaviour above is verified against the DECOMPILE's expectations, not
-against a running original player.
+Adobe Flash Player **32.0.0.465** standalone (the true final Windows build;
+the 32.0.0.371 guess above was superseded by the PE resource) now sits at
+`oracle/projector/flashplayer_32_sa.exe` — provenance and smoke-test record
+in `oracle/projector/FETCHED.md`. Query-string FlashVars (`file:///…?initCode=`)
+reach `_root` in the projector, so gate C can drive SWFs with the site's own
+initCode mechanism. Gate C rendering comparisons are now unblocked; the
+game SWF needs stack/initCode wiring (phase 2) before it renders standalone.
