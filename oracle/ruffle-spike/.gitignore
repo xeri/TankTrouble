@@ -1,0 +1,8 @@
+node_modules/
+ruffle/
+*.tgz
+*.swf
+Assets/
+results.json
+spike.png
+package-lock.json

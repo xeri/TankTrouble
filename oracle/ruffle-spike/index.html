@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ruffle SetVariable / JS-bridge spike</title>
+<script src="ruffle/ruffle.js"></script>
+<style>
+  body { font-family: monospace; margin: 8px; }
+  input { width: 120px; }
+  #log { white-space: pre; border: 1px solid #999; padding: 6px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<h3>Ruffle spike: signUpTankDesign13StandardColours.swf (original bytes)</h3>
+
+<!-- the ids the SWF's getURL("javascript:...") bridge writes to
+     (callBackName defaults to "signup" when no initCode FlashVar is given,
+     matching the era logged-out embed, which passes none) -->
+<form onsubmit="return false">
+  turretcolor <input id="signupturretcolor">
+  trackscolor <input id="signuptrackscolor">
+  turretaccessory <input id="signupturretaccessory">
+  barrelaccessory <input id="signupbarrelaccessory">
+  frontaccessory <input id="signupfrontaccessory">
+  backaccessory <input id="signupbackaccessory">
+  badge <input id="signupbadge">
+</form>
+
+<div id="swfhost" style="width:600px;height:250px;background:#eee"></div>
+<div id="log">log:
+</div>
+
+<script>
+window.__spike = { loaded: false, probes: {} };
+
+function log(m) {
+  document.getElementById('log').textContent += m + '\n';
+  console.log('[SPIKE] ' + m);
+}
+
+window.RufflePlayer = window.RufflePlayer || {};
+window.RufflePlayer.config = {
+  autoplay: 'on',
+  unmuteOverlay: 'hidden',
+  allowScriptAccess: true,   // era embed used allowScriptAccess=sameDomain
+  scale: 'showAll',
+  wmode: 'transparent',
+  logLevel: 'info',
+};
+
+window.addEventListener('load', function () {
+  var ruffle = window.RufflePlayer.newest();
+  var player = ruffle.createPlayer();
+  window.player = player;
+  player.id = 'signUpTankDesign';
+  player.style.width = '600px';
+  player.style.height = '250px';
+  document.getElementById('swfhost').appendChild(player);
+  player.load('signUpTankDesign13StandardColours.swf').then(function () {
+    log('SWF loaded');
+    setTimeout(function () { runProbes(); window.__spike.loaded = true; }, 2000);
+  }).catch(function (e) { log('LOAD FAIL: ' + e); window.__spike.loadfail = String(e); });
+});
+
+function probe(name, fn) {
+  var r;
+  try { r = String(fn()); }
+  catch (e) { r = 'THREW: ' + e; }
+  window.__spike.probes[name] = r;
+  log(name + ' -> ' + r);
+}
+
+function runProbes() {
+  probe('typeof SetVariable', function () { return typeof window.player.SetVariable; });
+  probe('typeof GetVariable', function () { return typeof window.player.GetVariable; });
+  probe('GetVariable($version)', function () { return window.player.GetVariable('$version'); });
+  probe('GetVariable(callBackName)', function () { return window.player.GetVariable('callBackName'); });
+  probe('SetVariable(spikeVar)', function () { window.player.SetVariable('spikeVar', 'hello-from-js'); return 'ok'; });
+  probe('GetVariable(spikeVar)', function () { return window.player.GetVariable('spikeVar'); });
+  probe('SetVariable(callBackName=spiked)', function () { window.player.SetVariable('callBackName', 'spiked'); return 'ok'; });
+  probe('GetVariable(callBackName) after', function () { return window.player.GetVariable('callBackName'); });
+  probe('SetVariable(callBackName=signup)', function () { window.player.SetVariable('callBackName', 'signup'); return 'ok'; });
+  log('--- probes done ---');
+}
+</script>
+</body>
+</html>
