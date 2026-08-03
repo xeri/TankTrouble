@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>editor spike</title>
+<script src="../ruffle-spike/ruffle/ruffle.js"></script>
+</head>
+<body>
+<div id="swfhost" style="width:688px;height:400px;background:#eee"></div>
+<script>
+window.__spike = { boot: null, saved: null };
+window.__spikeBoot  = function (d) { window.__spike.boot = d; };
+window.__spikeSaved = function (d) { window.__spike.saved = d; };
+
+window.RufflePlayer = window.RufflePlayer || {};
+window.RufflePlayer.config = {
+  autoplay: 'on',
+  unmuteOverlay: 'hidden',
+  allowScriptAccess: true,   // era embed used allowScriptAccess=sameDomain
+  scale: 'showAll',
+  wmode: 'transparent',      // srv/index.php:3617
+  logLevel: 'info',
+};
+
+window.addEventListener('load', function () {
+  var ruffle = window.RufflePlayer.newest();
+  var player = ruffle.createPlayer();
+  window.__player = player;
+  player.id = 'editorSpike';
+  player.style.width = '688px';
+  player.style.height = '400px';
+  document.getElementById('swfhost').appendChild(player);
+  // FlashVars as SWF query string -- same _root delivery, and the mechanism
+  // the projector run uses too. btoa("u=99&n=testuser01&")
+  player.load('spike.swf?initCode=' + btoa('u=99&n=testuser01&'))
+    .then(function () { window.__spike.loaded = true; })
+    .catch(function (e) { window.__spike.loadfail = String(e); });
+});
+</script>
+</body>
+</html>
