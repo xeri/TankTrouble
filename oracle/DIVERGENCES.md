@@ -69,3 +69,23 @@ ExternalInterface answers the ORIGINAL page JS call shape
 **zero page-side divergence**. Option 1 of the earlier note is adopted in
 its strongest form — no page adapter needed. Decision recorded in
 DECISIONS.md (2026-08-03, mazeCreator control channel).
+
+## 2026-08-03 — phase 2 round-trip gate: MazeData vs the corpus
+
+`oracle/editor-roundtrip/`: 670 unique corpus grids (672 seeded states,
+latest-wins; `tools/extract_maze_grids.py`) fed through the rebuilt
+editor's `MazeData.parse()` -> `emit()` under Ruffle 0.4.1 via an
+ExternalInterface `roundTrip` hook — **670/670 byte-identical**
+(`node run_roundtrip.mjs`, exit 0).
+
+Findings the gate/audit surfaced:
+
+* **Every corpus grid (670/670) carries bit-2 digits in row 0** — the
+  arena's top boundary wall. The O READER re-homes bit 2 onto the upper
+  cell and silently drops row 0's bit into `[x][-1]`
+  (MazeDataFetcher.as:126), so the game's model never sees the top border;
+  the WRITER plainly emitted it. The rebuilt model keeps bit 2 on its own
+  cell (`wallNorth[x][y]`) for byte-fidelity and derives the reader's view.
+* Emit-shape audit: `reserved` field is `0` in all 670 grids; every object
+  `params` field is empty; cell digit alphabet is exactly 0-7. The emitter
+  still round-trips `reserved` verbatim rather than hardcoding it.
