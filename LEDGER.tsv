@@ -6,7 +6,7 @@ srv/Assets/Tank.swf	O	cc116db1c16f14e5eb0bd2501fddf6d8e9d2324e38f7387dcbe1baebd3
 srv/ads.txt	known-lost	—	—	first CDX capture 2023-06-14, outside era	—	no body held; wayback-recoverable, out of milestone-1 scope
 srv/changePassword.php	M2	—	written 2026-08-02	inf; named in infirmary page author comment (srv/infirmary/index.html)	—	501 stub (milestone 1)
 srv/content.php	M2	—	written 2026-08-02	obs in CDX	—	501 stub (milestone 1)
-srv/embed.php	M2	—	written 2026-08-02	obs in CDX; embed target	—	501 stub (milestone 1)
+srv/embed.php	M1	—	written 2026-08-02	de-rendered 2026-08-03: era-final capture (20181020) verbatim in one @O fence (tools/derender.py); 9 era captures byte-stable since 20170124 incl. the page's own constant initCode numUsers=0	tests/test_render_diff.py	PROMOTED M2->M1 2026-08-03: all 5 dynamic regions template-edit:20170124 -> render fully gated by gate F
 srv/faq/index.php	M2	—	written 2026-08-02	directory /faq/ observed in CDX; index filename convention-inferred	—	501 stub (milestone 1)
 srv/feedback.php	M2	—	written 2026-08-02	http-observed (HUNT-LOG 46); referenced in 2018 bodies	—	501 stub (milestone 1)
 srv/getimage.php	M2	—	written 2026-08-02	obs in CDX x99; ?id=N ?at2x; images content-addressed by integer (HUNT-LOG 46 n.3)	—	501 stub (milestone 1)
@@ -170,7 +170,7 @@ srv/includes/c64.woff	O	08a1731b444929ea04a6056266a3b25f5e553761c05cf568be042eb6
 srv/includes/rebuild-db.php	M3	—	written 2026-08-03	none - name invented	tests/test_loadmaze_replay.py	DO NOT PROMOTE; deliberately modern name, guide 10.4 settled (DECISIONS 2026-08-03); verified transitively by gate B
 srv/includes/embed.js	O	9fc822c5f7998dcfe704c99a52a3183eee52b1862bde27db20896d1dcdd6c623	archive/includes-tree/20120912_embed.js	Wayback capture 2012-09-12	tests/test_assets.py	—
 srv/includes/forumStyles.css	O	59b604e88329a20fc097175ee33852d3a0053c91b27cbc7ef4d498962bd89b0b	archive/includes-tree/20130313_forumStyles.css	live 2017-2018 per identical+era-confirmed (tools/era_choices.tsv; era digests D6HDGOUQJFXIIIG7QQLL6EFVDYCU3WJ4)	tests/test_assets.py	era method: identical+era-confirmed; rejected: includes-tree/20201225_forumStyles.css
-srv/includes/getScrapyard.php	M2	—	written 2026-08-02	CDX params ?scraps &velocity; 2 captured response bodies (archive/includes-tree/20150928_getScrapyard.php, 20160126_getScrapyard.php)	—	501 stub (milestone 1)
+srv/includes/getScrapyard.php	M2	—	written 2026-08-02	2 archived request/response pairs (pre-era): ?scraps -> scraps=N (20160126), ?scraps&velocity -> scraps=N&velocity=F (20150928); query keys select fields; state in M3 scrapyard_state table	tests/test_getscrapyard_replay.py	real body 2026-08-03; tier stays M2 (replay evidence is pre-era; era used SAJAX getScraps instead)
 srv/includes/getUserAuthentication.php	M3	—	written 2026-08-02	5 client call sites in decompiled AS2; behaviour unknown	—	501 stub (milestone 1)
 srv/includes/ima3_preloader_1.5.swf	O	0875a0ca5677d6f9cae715c26b370c6a17f38390ff1973ff21178eb757f7f74c	archive/includes-tree/20161122_ima3_preloader_1.5.swf	Wayback capture 2016-11-22	tests/test_assets.py	—
 srv/includes/images/scrapyardPlates.png	known-lost	—	—	obs in CDX, 404 only	—	—
