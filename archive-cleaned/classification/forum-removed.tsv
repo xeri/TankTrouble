@@ -1,0 +1,9 @@
+removed_id	ref_pos	window	max_lines	name	sample
+R000	1	20180814..20180814	1	leading-blank-line (20180814 capture artifact)	
+R001	516	20170124..20180422	2	sendFeedback-feature-block (removed by 20180523 deploy, guide-known 2018-04 removal)	//TODO: Not necessary here as it is already in feedback.php. Should it be moved 
+R002	1128	20170124..20180422	7	sendFeedback-feature-block (removed by 20180523 deploy, guide-known 2018-04 removal)	<div id="feedbacktextopen" style="display: none; height: 100%;">
+R003	1134	20170124..20180422	5	sendFeedback-feature-block (removed by 20180523 deploy, guide-known 2018-04 removal)	var testFX = new Fx.Style(document.getElementById('feedback'), 'height', {onComp
+R004	1135	20170124..20180422	39	sendFeedback-feature-block (removed by 20180523 deploy, guide-known 2018-04 removal)	var feedbackclosedheight = document.getElementById('feedbacktextclosed').clientH
+R005	1140	20170124..20180422	17	sendFeedback-feature-block (removed by 20180523 deploy, guide-known 2018-04 removal)	testFX.start(feedbackclosedheight, feedbackopenheight);
+R006	1487	20170124..20180422	7	sendFeedback-feature-block (removed by 20180523 deploy, guide-known 2018-04 removal)	}
+R007	1700	20170124..20170228	7	showShop-sajax-wrapper (export removed by 20170429 deploy)	// wrapper for showShop

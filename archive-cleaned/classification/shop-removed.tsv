@@ -1,0 +1,11 @@
+removed_id	ref_pos	window	max_lines	name	sample
+R000	1	20180814..20180814	1	leading-blank-line (20180814 capture artifact)	
+R001	114	20170124..20170228	21	shop-backer-items (removed by 20170429 deploy)	<img style="float: left; padding: 10px 5px 5px 0;" src="images/shop/backerBoxSku
+R002	115	20170124..20170228	58	showShop_cb-js (removed by 20170429 deploy)	function showShop_cb(r)
+R003	253	20170124..20180422	2	sendFeedback-feature-block (removed by 20180523 deploy, guide-known 2018-04 removal)	//TODO: Not necessary here as it is already in feedback.php. Should it be moved 
+R004	859	20170124..20180422	7	sendFeedback-feature-block (removed by 20180523 deploy, guide-known 2018-04 removal)	<div id="feedbacktextopen" style="display: none; height: 100%;">
+R005	865	20170124..20180422	5	sendFeedback-feature-block (removed by 20180523 deploy, guide-known 2018-04 removal)	var testFX = new Fx.Style(document.getElementById('feedback'), 'height', {onComp
+R006	866	20170124..20180422	39	sendFeedback-feature-block (removed by 20180523 deploy, guide-known 2018-04 removal)	var feedbackclosedheight = document.getElementById('feedbacktextclosed').clientH
+R007	871	20170124..20180422	17	sendFeedback-feature-block (removed by 20180523 deploy, guide-known 2018-04 removal)	testFX.start(feedbackclosedheight, feedbackopenheight);
+R008	1218	20170124..20180422	7	sendFeedback-feature-block (removed by 20180523 deploy, guide-known 2018-04 removal)	}
+R009	1431	20170124..20170228	7	showShop-sajax-wrapper (export removed by 20170429 deploy)	// wrapper for showShop

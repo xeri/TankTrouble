@@ -1,54 +1,54 @@
 region_id	ref_lines	status	sample	annotation	region_sha
 S000	1-5	static		—	e18bda0ce523
-D001	6-6	dynamic	<meta name="keywords" content="tank game, tankgame, 2 player, 3 player, TankTrou		7387a7eadd0b
+D001	6-6	dynamic	<meta name="keywords" content="tank game, tankgame, 2 player, 3 player, TankTrou	template-edit:20180317	7387a7eadd0b
 S002	7-8	static	<meta name="description" content="Most explosive 2 player tank game online! Grea	—	99da207d7e2c
-D003	9-9	dynamic	<title>TANK TROUBLE Online Multiplayer Tank Game</title>		ba612e32eec9
+D003	9-9	dynamic	<title>TANK TROUBLE Online Multiplayer Tank Game</title>	template-edit:20180317	ba612e32eec9
 S004	10-14	static	<link href="includes/styles.css" rel="stylesheet" type="text/css" />	—	72f10bb9fb47
-D005	15-16	dynamic	<script type="text/javascript" src="includes/phaser.min.js"></script>		a8dca34e2269
+D005	15-16	dynamic	<script type="text/javascript" src="includes/phaser.min.js"></script>	template-edit:20170228	a8dca34e2269
 S006	17-96	static	<script type="text/javascript" src="includes/swfobject.js"></script>	—	c406473b46f3
-D007	97-97	dynamic	<img src="images/menuStartDeselect.jpg" alt=""/><a href="?game"><img src="images		9d3de2614d4d
+D007	97-97	dynamic	<img src="images/menuStartDeselect.jpg" alt=""/><a href="?game"><img src="images	template-edit:20180116	9d3de2614d4d
 S008	98-125	static	<td style="background-image: url(images/menuBackground.jpg); background-repeat: 	—	e3e660632877
-D009	126-160	dynamic	<!-- The Lab Report -->		2fcb82a5b48a
+D009	126-160	dynamic	<!-- The Lab Report -->	template-edit:20181214	2fcb82a5b48a
 S010	161-162	static		—	4003d60a841b
-D011	163-163	dynamic	<div class="text gray normal" style="margin-top: 30px; clear: both;">		d80f25a73143
+D011	163-163	dynamic	<div class="text gray normal" style="margin-top: 30px; clear: both;">	template-edit:20171212	d80f25a73143
 S012	164-206	static	<span class="text medium black">Bring destruction to your own website or blog!<b	—	d424de0035e3
-D013	207-215	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s		b4f1918a16e1
+D013	207-215	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s	template-edit:20170429	b4f1918a16e1
 S014	216-220	static		—	858c4732e8ed
-D015	221-221	dynamic	<div class="content" id="scrapyard" style="padding: 4px 0px 0px 0px; height: 18p		a9911960d7a6
+D015	221-221	dynamic	<div class="content" id="scrapyard" style="padding: 4px 0px 0px 0px; height: 18p	template-edit:20170228	a9911960d7a6
 S016	222-227	static	</div>	—	7ce448f66560
-D017	228-245	dynamic	var scrapyardElement = document.getElementById("scrapyard");		e459cf549f3e
+D017	228-245	dynamic	var scrapyardElement = document.getElementById("scrapyard");	template-edit:20170228	e459cf549f3e
 S018	246-247	static	// -->	—	2c8d4d067987
-D019	248-264	dynamic			3b6736840adf
+D019	248-264	dynamic		per-request:seasonal-promo (date-derived)	3b6736840adf
 S020	265-269	static	</div><div style="background-color: #ff0000; border: 2px solid #ff0000; border-t	—	2c8bc4b8352a
-D021	270-270	dynamic	var s = (1475758800000 - new Date().getTime()) / 1000;		db18584a49fd
+D021	270-270	dynamic	var s = (1475758800000 - new Date().getTime()) / 1000;	template-edit:20170429	db18584a49fd
 S022	271-302	static	var t = "";	—	cc768dec7789
-D023	303-303	dynamic	t = "Online battles are in heavy development. Try now!";		208ae081284b
+D023	303-303	dynamic	t = "Online battles are in heavy development. Try now!";	template-edit:20171212	208ae081284b
 S024	304-308	static	}	—	022949edfd29
-D025	309-309	dynamic	</script><div id="loginAllUserInfo" style="display: none;"></div>		9c235fd4e4e0
+D025	309-309	dynamic	</script><div id="loginAllUserInfo" style="display: none;"></div>	template-edit:20170625	9c235fd4e4e0
 S026	310-329	static	<div id="login" class="box standard" style="position: relative; visibility: hidd	—	8b6561168569
-D027	330-330	dynamic	<input id="loginpassword" type="password" name="password" size="12" value="passw		88993e2a8b97
+D027	330-330	dynamic	<input id="loginpassword" type="password" name="password" size="12" value="passw	template-edit:20171212	88993e2a8b97
 S028	331-388	static	<div id="loginerror" style="width: 110px; height: 10px; float:left; display:none	—	f9a3f40318c8
-D029	389-393	dynamic			bf8aa1c32103
+D029	389-393	dynamic		template-edit:20180619	bf8aa1c32103
 S030	394-444	static	}	—	afaa8229f755
-D031	445-445	dynamic	var c = new SWFObject("includes/signUpTankDesign18StandardColours.swf", "signUpT		707e8e1b87fc
+D031	445-445	dynamic	var c = new SWFObject("includes/signUpTankDesign18StandardColours.swf", "signUpT	template-edit:20180814	707e8e1b87fc
 S032	446-821	static	c.addParam("allowScriptAccess", "sameDomain");	—	3d61954e771d
-D033	822-822	dynamic	Since 2007-12-16<br/><div style="padding: 2px 0px 2px 0px;" class="text normal">		f4c2bde876af
+D033	822-822	dynamic	Since 2007-12-16<br/><div style="padding: 2px 0px 2px 0px;" class="text normal">	per-request:live-player-stats	f4c2bde876af
 S034	823-824	static	</div>	—	9a148c5779ca
-D035	825-826	dynamic	</div>		da724d0cbb69
+D035	825-826	dynamic	</div>	template-edit:20170429	da724d0cbb69
 S036	827-831	static		—	eb2bce5d0c4d
-D037	832-840	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s		ddb025789030
+D037	832-840	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s	template-edit:20170429	ddb025789030
 S038	841-866	static		—	1c113cb1269d
-D039	867-867	dynamic	<div class="content text tiny gray" style="text-align: justify; height: 110px;">		f1cc01c096a2
+D039	867-867	dynamic	<div class="content text tiny gray" style="text-align: justify; height: 110px;">	per-request:top10-rankings	f1cc01c096a2
 S040	868-955	static	<div class="tab1" style="width: 60px; text-align: center; position: absolute; bo	—	9a75d2c49a97
-D041	956-956	dynamic	window.open('https://beta.tanktrouble.com/#'+encodeURIComponent('type=messages')		3a6650cabc6f
+D041	956-956	dynamic	window.open('https://beta.tanktrouble.com/#'+encodeURIComponent('type=messages')	template-edit:20180619	3a6650cabc6f
 S042	957-962	static		—	a5f76586af27
-D043	963-964	dynamic	};		dadff5d5816c
+D043	963-964	dynamic	};	template-edit:20180619	dadff5d5816c
 S044	965-1078	static	</script> </div>	—	2eaa14b6c907
-D045	1079-1079	dynamic	if (username === currentUsertrailName)		112d01bb988a
+D045	1079-1079	dynamic	if (username === currentUsertrailName)	template-edit:20180619	112d01bb988a
 S046	1080-1097	static	return;	—	1f6c34d90412
-D047	1098-1098	dynamic	if (currentElement.innerHTML === currentUsertrailName)		524c54cfad94
+D047	1098-1098	dynamic	if (currentElement.innerHTML === currentUsertrailName)	template-edit:20180619	524c54cfad94
 S048	1099-1121	static	{	—	c562878e36f5
-D049	1122-1122	dynamic	currentUsertrailName = null;		c1226ca0ad8d
+D049	1122-1122	dynamic	currentUsertrailName = null;	template-edit:20180619	c1226ca0ad8d
 S050	1123-1521	static	}	—	43e24640157f
-D051	1522-1528	dynamic	}		f9ce5c07e6eb
+D051	1522-1528	dynamic	}	template-edit:20170228	f9ce5c07e6eb
 S052	1529-1538	static	}	—	cca6c92631aa
