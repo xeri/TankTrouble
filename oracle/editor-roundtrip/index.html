@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>maze roundtrip gate</title>
+<script src="../ruffle-spike/ruffle/ruffle.js"></script>
+</head>
+<body>
+<div id="swfhost" style="width:688px;height:400px"></div>
+<script>
+window.__gate = {};
+window.RufflePlayer = window.RufflePlayer || {};
+window.RufflePlayer.config = { autoplay: 'on', unmuteOverlay: 'hidden',
+                               allowScriptAccess: true, logLevel: 'warn' };
+window.addEventListener('load', function () {
+  var player = window.RufflePlayer.newest().createPlayer();
+  window.__player = player;
+  player.style.width = '688px'; player.style.height = '400px';
+  document.getElementById('swfhost').appendChild(player);
+  player.load('harness.swf')
+    .then(function () { window.__gate.loaded = true; })
+    .catch(function (e) { window.__gate.loadfail = String(e); });
+});
+</script>
+</body>
+</html>
