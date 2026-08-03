@@ -499,3 +499,43 @@ lab shop rendered under every distinct era Host and diffed against
 era-final references; infirmary byte-identical), fence verifier (11 @O
 fences byte-match their named capture spans). Full suite 50 passed with
 the stack up.
+
+## 2026-08-03 — scrapyard reconstructed on both surfaces
+Pre-era file surface: includes/getScrapyard.php answers exactly the two
+archived query strings (?scraps, ?scraps&velocity — the requested keys
+select the emitted fields, the only semantics consistent with both
+pairs); state lives in the M3 scrapyard_state single-row table (schema
+invention — original storage unobservable; velocity kept as the archived
+decimal STRING to avoid float re-formatting). Gate:
+tests/test_getscrapyard_replay.py injects each archived state via docker
+exec (credentials never leave the mysql container), replays both bodies
+byte-exact, restores the seed row. Tier stays M2: both observations are
+pre-era; the era pages call SAJAX getScraps instead. That era surface is
+reconstructed in index.php (export list = getScraps only): returns a JSON
+string parsed by scrapyard.js (shape deduced from the O parse code —
+scraps always, velocity iff the client asked; zero era bodies archived,
+so the checks are labelled shape-only). Seed: scraps from 2016-01-26,
+velocity from 2015-09-28, labelled arbitrary.
+
+## 2026-08-03 — updateGameStatistics.php stays 501 (and explains the
+## loadMaze 13-row anomaly)
+New digest pass archive/cdx-passes/N_updategamestatistics_digest.json
+(2,578 rows, fetched 2026-08-03): 2,415 status-200 rows carry 495 DISTINCT
+digests with varying lengths — the response body varied per request, and
+not one body is archived. Guide 6.2 rule 3: nothing to replay, nothing to
+copy — the stub stays 501. Request side for the record: ?q=<base64> with
+shuffled pairs (players=N, rounds=N, tanksSc…), same wire scheme as
+loadMaze. Bonus finding: the second-most-common digest
+(G7SVMWKCBAA3EZSAFHYBE3AM5PILZ3NX, 636 rows 2013-2020) is EXACTLY the
+digest of the 13 anomalous 2018-06 loadMaze CDX rows scoped out in the
+gate-B redesign — the anomaly is Wayback attributing a common
+updateGameStatistics response body to loadMaze.php URLs, not a lost
+loadMaze behaviour. The gate-B scope-out stands, now with a cause.
+
+## 2026-08-03 — endpoints that stay 501, as scope not neglect
+achievement.php: zero CDX rows of any kind — no observed response ever.
+getimage.php: all 99 CDX 200s are beta.tanktrouble.com/2021+ (the next
+site generation); the classic host has zero era rows — the classic file's
+behaviour is unobservable. Directory-index stubs (faq ios privacy like
+statistics spreadTheWord tellAFriendMail tankRanks theLabReport): no
+captured bodies. All remain loud 501 stubs through milestone 3.

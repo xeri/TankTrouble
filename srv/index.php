@@ -21,9 +21,13 @@
  *   stats, top10 rankings, forum latest-posters, seasonal promo (originals
  *   were live values / date-derived). Gate F masks them; DECISIONS records
  *   the freeze.
- * @caveat every SAJAX function answers "-:<func> not callable" (stock error
- *   form, empty export list) until its endpoint is reconstructed; zero era
- *   SAJAX response bodies are archived.
+ * @caveat every SAJAX function except getScraps answers "-:<func> not
+ *   callable" (stock error form) until its endpoint is reconstructed; zero
+ *   era SAJAX response bodies are archived.
+ * @caveat getScraps response SHAPE is deduced from the scrapyard.js parse
+ *   (JSON string with scraps and optional velocity); its VALUES come from
+ *   the M3 scrapyard_state table seeded with the archived 2015/2016
+ *   getScrapyard.php bodies -- labelled arbitrary, no era body archived.
  * @contains
  *   archive/commoncrawl/warc-bodies/20181218_www.tanktrouble.com_.txt lines=1-112
  *   archive/commoncrawl/warc-bodies/20181218_www.tanktrouble.com_.txt lines=114-201
@@ -40,12 +44,12 @@
 
 /* ---- Sajax 0.12 dispatcher, stock verbatim ----------------------------
  * source: thirdparty/sajax/Sajax-0.12-stock.php (sajax_esc lines 297-303,
- * sajax_get_js_repr lines 38-76, sajax_handle_client_request lines 78-123,
- * sajax_export lines 327-334). $sajax_export_list stays empty until an
- * endpoint is reconstructed (guide 6.2 rule 3: reject, never fake).
+ * sajax_get_js_repr lines 38-76, sajax_handle_client_request lines 78-123).
+ * Export list holds only reconstructed endpoints (guide 6.2 rule 3:
+ * reject, never fake).
  * -------------------------------------------------------------------- */
 
-$GLOBALS['sajax_export_list'] = array();
+$GLOBALS['sajax_export_list'] = array('getScraps');
 
 function sajax_esc($val)
 {
@@ -175,6 +179,26 @@ function tt_tagline_line()
 		'The race of destruction needs no instruction',
 	);
 	return "\t\t" . $pool[mt_rand(0, count($pool) - 1)] . "\t</span>\n";
+}
+
+/* Era scrapyard endpoint: pages call x_getScraps(includeVelocity, cb); the
+ * callback JSON.parses the returned STRING (srv/includes/scrapyard.js,
+ * O 2017-02-21). State lives in the M3 scrapyard_state table. */
+function getScraps($includeVelocity = '')
+{
+	require_once dirname(__FILE__) . '/includes/rebuild-db.php';
+	$res = mysql_query("SELECT scraps, velocity FROM scrapyard_state WHERE id = 1");
+	$row = $res ? mysql_fetch_assoc($res) : null;
+	if (!$row) {
+		header('HTTP/1.1 500 Internal Server Error');
+		die('RECONSTRUCTION: scrapyard_state row missing - reseed the stack');
+	}
+	$json = '{"scraps":' . (int) $row['scraps'];
+	if ($includeVelocity === 'true'
+			&& $row['velocity'] !== null && $row['velocity'] !== '') {
+		$json .= ',"velocity":' . $row['velocity'];
+	}
+	return $json . '}';
 }
 
 function tt_page_root() {
