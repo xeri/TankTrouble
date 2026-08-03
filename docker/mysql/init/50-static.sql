@@ -4,6 +4,7 @@
 -- @caveat     Regenerate with `python seed/seed_static.py`; do not hand-edit.
 -- @caveat     The live accessory catalogue was never captured; these rows are the developer's debug set. Achievement ids 1-27 and 33 existed (the numbering proves it) but were never observed -- no rows.
 
+SET NAMES utf8;
 USE tanktrouble;
 
 INSERT INTO accessories (slot, accessory_id, toolbox) VALUES

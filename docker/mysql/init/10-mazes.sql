@@ -4,6 +4,7 @@
 -- @caveat     Regenerate with `python seed/seed_mazes.py`; do not hand-edit.
 -- @caveat     Column names t/n/d and the userName key are observed; table and column NAMES in SQL are M3 (never observable through HTTP).
 
+SET NAMES utf8;
 USE tanktrouble;
 
 INSERT INTO mazes (user_code, title, author, data) VALUES

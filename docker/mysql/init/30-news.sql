@@ -4,6 +4,7 @@
 -- @caveat     Regenerate with `python seed/seed_news.py`; do not hand-edit.
 -- @caveat     body is the byte-verbatim capture slice; whether the original kept these blobs in a DB or a hand-edited file is NOT observable (see module docstring), hence schema M2 not M1.
 
+SET NAMES utf8;
 USE tanktrouble;
 
 INSERT INTO news (posted, seq, css_class, title, body) VALUES

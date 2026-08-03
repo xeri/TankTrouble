@@ -4,6 +4,7 @@
 -- @caveat     Regenerate with `python seed/seed_users.py`; do not hand-edit.
 -- @caveat     Hash format is a placeholder; milestone-3 auth (deliberate divergence, guide 6.4) owns the real decision.
 
+SET NAMES utf8;
 USE tanktrouble;
 
 INSERT INTO users (username, password_sha256) VALUES
