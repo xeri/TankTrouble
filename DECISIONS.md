@@ -738,3 +738,31 @@ evidence lands (docs/VISUAL-EVIDENCE-WANTED.md).
    reply; SetVariable null/"null"/"undefined" -> "".
 Reversible: all — each is a contained function or constant; the page
 contract and wire format are untouched by any of them.
+
+## 2026-08-04 — tab2/4/5Select.jpg placed on a timeline argument, tier O?
+Tier: O? (authentic captured bytes, era service inferred, NOT digest-proven).
+Symptom: clicking news/shop/forum collapsed the header tab — the selected-
+state sprite 404'd. `images/tab{2,4,5}Select.jpg` have a CDX gap
+20150315..2019090x: the 2017-2018 window never captured them, so
+resolve_assets.py could only call them `unobserved`.
+Argument (tools/asset_judgements.tsv, one row each, attackable):
+ * The 19-sprite nav strip is versioned as a SET — at 20150315 seventeen of
+   nineteen changed on one crawl day, the 2020 refresh moved the whole strip,
+   and no sprite has ever changed alone in 10 years of CDX rows.
+ * Cohort-B siblings crawled in Dec 2018 (tab1Deselect, tab3Select,
+   menuStartDeselect, menuDeselectToSelect) all take new bytes at 20181218,
+   dating the strip-wide change INSIDE the era window.
+ * tab3Select and tab6Select then hold one digest continuously from 20181218
+   to 20191217 — no further strip change between Dec 2018 and Dec 2019.
+ * Therefore the digest first seen at 2019-09 was already being served at the
+   20181218 de-render target.
+Mechanism: judgements are a pinned TSV, never an automated rule. A row fires
+only if the fetched payload's base32(SHA1) equals the digest it names, so a
+wrong timestamp cannot place wrong bytes; verdict `judged`, tier from the row
+(O? ceiling); the full argument is copied into the LEDGER note.
+Rejected: promoting these to O (no era capture exists — the digest match is
+against a 2019 row, not an era row); and synthesising the selected state from
+the held Deselect sprites (invented pixels where real bytes exist).
+Wanted: any true in-era capture of ?news/?shop/?forum with the strip visible
+would upgrade all three to O — logged in docs/VISUAL-EVIDENCE-WANTED.md.
+Reversible: yes — delete the three rows and the three files.

@@ -9,6 +9,31 @@ frame-step, crop; provenance **M2 at best, never O**), old screenshots,
 community archives. Record video URL, uploader, upload date, and timestamp
 in LEDGER.tsv for every asset derived this way (guide §6.5).
 
+## THE OVERHAUL RULE
+
+Every manually created (M2/M3) visual, animation, interaction model, or
+copy text in this rebuild is a **placeholder pending evidence, not a
+finished artifact**. When new evidence arrives — footage, a cleaner
+screenshot, a community archive — showing how something actually looked,
+moved, or behaved:
+
+1. **Rewrite the affected piece fully against the evidence. Do not patch
+   the invention to be "close enough".** The invented version has zero
+   authority; it exists only so the site runs end-to-end. If the evidence
+   shows different geometry, different animation curves, different copy,
+   different interaction — the invented implementation is replaced
+   wholesale, and its tests re-pinned to the evidence.
+2. This applies to whole files, not just constants: an M2 SWF whose real
+   appearance surfaces gets rebuilt against the footage, not tweaked.
+   The `.provenance` sidecars carry the same commitment.
+3. Archive the evidence first (read-only discipline), LEDGER row with
+   URL/uploader/date/timestamp, then overhaul, then record the
+   supersession in DECISIONS.md (what the invention was, what the
+   evidence showed, what changed).
+4. Gates keep the floor: byte-level gates (round-trip, replay, contract
+   tests) must stay green through any overhaul — evidence changes pixels
+   and behavior, never the wire format.
+
 Status values: `WANTED` / `PARTIAL` (some states held) / `FETCHED` (evidence
 in archive, redraw pending) / `DONE`.
 
@@ -84,6 +109,17 @@ edit elsewhere).
 ### 9. Tank paint editor icon states — WANTED (same JPG family, phase 4+)
 `images/userpanel*Paint*.jpg` states referenced by the paint flow; same
 video-frame technique applies when that milestone opens.
+
+### 10. Selected-state nav tabs for news / shop / forum — PARTIAL, era-inferred
+`images/tab2Select.jpg` (news), `tab4Select.jpg` (shop), `tab5Select.jpg`
+(forum) have a CDX gap 2015-03 to 2019-09 — the 2017-2018 window never
+captured them, so all three ship as **O?** on a timeline argument
+(`tools/asset_judgements.tsv`; DECISIONS 2026-08-04): the nav strip is
+versioned as a set, siblings date the strip-wide change to 20181218, and
+tab3/tab6Select prove no further change until Dec 2019. Needed to upgrade to
+O: any in-era capture of `/?news`, `/?shop` or `/?forum` — or of those three
+image paths — with the tab strip visible. A frame of era footage showing a
+raised NEWS/SHOP/FORUM tab would also confirm the artwork by eye.
 
 ---
 

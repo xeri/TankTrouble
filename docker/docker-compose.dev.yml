@@ -1,0 +1,19 @@
+# Dev overlay — eyeballing only, NEVER the stack a gate runs against.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+#
+# Paints the two AdSense skyscraper slots so a blank 160x600 box does not read
+# as breakage while reviewing a route. Nothing under srv/ changes; the CSS is
+# injected by docker/php/dev-filler.php at response time and is labelled in
+# the page as a dev filler. Declared in docs/DIVERGENCES-SERVED.md.
+#
+# Gate F must run against the DEFAULT stack. Bring the overlay down first:
+#   docker compose up -d --force-recreate php
+services:
+  php:
+    environment:
+      TT_DEV_FILLER: "1"
+    volumes:
+      - ../srv:/var/www/html
+      - ./php/dev-filler.php:/usr/local/etc/php/dev-filler.php:ro
+      - ./php/dev-filler.ini:/usr/local/etc/php/conf.d/zz-dev-filler.ini:ro

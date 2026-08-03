@@ -1,0 +1,15 @@
+target	capture_ts	capture_url	expected_digest	tier	reasoning
+# Hand-made era judgements for assets the 2017-2018 window never captured.
+#
+# resolve_assets.py resolves by DIGEST MATCH inside the era window. When the
+# window holds no capture at all, no automated rule can promote the file —
+# but the CDX timeline sometimes still pins the bytes. Each row here is one
+# such argument, written out so it can be attacked, and each is tier O? at
+# best: authentic captured bytes, era service INFERRED, never digest-proven.
+#
+# A row only takes effect if the fetched payload's base32(SHA1) equals
+# expected_digest, so a wrong timestamp cannot quietly place wrong bytes.
+# fetch_missing.py reads these rows too.
+images/tab2Select.jpg	20190910105340	https://tanktrouble.com/images/tab2Select.jpg	2O6VR4APCW6QGY3BGKEFLXNUO7HUXXIL	O?	Selected-state news tab. CDX gap 20150315..20190910 — no era capture. The nav strip is versioned as a set: at 20150315 seventeen of the nineteen sprites changed on one crawl day, and the 2020 refresh moved the whole strip; no sprite has ever changed alone. Cohort-B siblings crawled in Dec 2018 (tab1Deselect, tab3Select, menuStartDeselect, menuDeselectToSelect) took new bytes at 20181218, dating that strip-wide change inside the era window. tab3Select and tab6Select then hold ONE digest from 20181218 through 20191217, proving no further change between Dec 2018 and Dec 2019. The digest first seen at 20190910 was therefore already being served at the 20181218 de-render target. Wanted: any true in-era capture of ?news with the tab strip visible.
+images/tab4Select.jpg	20190909161948	https://tanktrouble.com/images/tab4Select.jpg	DG4HGLRHMWH66LSATKVQG27ZABSHCLI7	O?	Selected-state shop tab. Same argument as images/tab2Select.jpg — CDX gap 20150315..20190909, strip versioned as a set, no strip change between 20181218 and 20191217.
+images/tab5Select.jpg	20190910100442	https://tanktrouble.com/images/tab5Select.jpg	ZZNWGMBG3K32SFS7UI4LNPWFXWLKHLEC	O?	Selected-state forum tab. Same argument as images/tab2Select.jpg — CDX gap 20150315..20190910, strip versioned as a set, no strip change between 20181218 and 20191217.

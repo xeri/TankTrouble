@@ -1,0 +1,73 @@
+target	verdict	tier	chosen_source	sha256	sha1b32	era_digests	candidates	notes
+expressinstall.swf	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /expressinstall.swf
+images/300000000.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/300000000.jpg
+images/500000001.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/500000001.jpg
+images/AdventCalendarOverview.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/AdventCalendarOverview.jpg
+images/androidIngame.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/androidIngame.jpg
+images/androidScared.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/androidScared.png
+images/anniversaryCake.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/anniversaryCake.png
+images/availableOnAppStore.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/availableOnAppStore.png
+images/betaAccessNewsBackground.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/betaAccessNewsBackground.png
+images/bubble.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/bubble.png
+images/busyMaze.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/busyMaze.png
+images/christmasDisplay.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/christmasDisplay.png
+images/christmasPresentOpen.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/christmasPresentOpen.jpg
+images/crateSpawnToolDeselect.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/crateSpawnToolDeselect.jpg
+images/crateSpawnToolSelect.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/crateSpawnToolSelect.jpg
+images/cross.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/cross.jpg
+images/dimitrisDeathRay.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/dimitrisDeathRay.jpg
+images/dimitrisEmporium.png	weak-candidate-only	known-lost	—	—	—	—	ia-items/extracted/images/DimitrisEmporium.png;wiki-dumps/tt-game-wiki/images/DimitrisEmporium.png	no era CDX row and no copy at the served path; basename matches elsewhere in the archive (ia-items/extracted/images/DimitrisEmporium.png; wiki-dumps/tt-game-wiki/images/DimitrisEmporium.png) are unproven — adjudicate by eye before any promotion
+images/facebookTankTroubleLogo.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/facebookTankTroubleLogo.jpg
+images/formV.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/formV.jpg
+images/fourCrates.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/fourCrates.jpg
+images/greetingsFromTheBahamas.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/greetingsFromTheBahamas.png
+images/halloweenSwag.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/halloweenSwag.png
+images/hoodies.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/hoodies.png
+images/iPhone1.0.0.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/iPhone1.0.0.jpg
+images/jack-o-LanternOpen.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/jack-o-LanternOpen.png
+images/kickstarterCrates554x227.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/kickstarterCrates554x227.png
+images/laika.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/laika.jpg
+images/laikaSmall.jpg	weak-candidate-only	known-lost	—	—	—	—	ia-items/extracted/images/LaikaSmall.jpg;wiki-dumps/tt-game-wiki/images/LaikaSmall.jpg	no era CDX row and no copy at the served path; basename matches elsewhere in the archive (ia-items/extracted/images/LaikaSmall.jpg; wiki-dumps/tt-game-wiki/images/LaikaSmall.jpg) are unproven — adjudicate by eye before any promotion
+images/maze.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/maze.jpg
+images/mazeConstructToolDeselect.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/mazeConstructToolDeselect.jpg
+images/mazeConstructToolSelect.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/mazeConstructToolSelect.jpg
+images/mouseControl.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/mouseControl.jpg
+images/newStamp.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/newStamp.png
+images/nextWeaponSketches.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/nextWeaponSketches.jpg
+images/polaroidDonut.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/polaroidDonut.png
+images/polaroidShaft.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/polaroidShaft.png
+images/pollBarGreenLeft.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/pollBarGreenLeft.jpg
+images/pollBarGreenMiddle.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/pollBarGreenMiddle.jpg
+images/pollBarGreenRight.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/pollBarGreenRight.jpg
+images/pollBarRedLeft.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/pollBarRedLeft.jpg
+images/pollBarRedMiddle.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/pollBarRedMiddle.jpg
+images/pollBarRedRight.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/pollBarRedRight.jpg
+images/pollBarYellowLeft.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/pollBarYellowLeft.jpg
+images/pollBarYellowMiddle.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/pollBarYellowMiddle.jpg
+images/pollBarYellowRight.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/pollBarYellowRight.jpg
+images/pollKickstarterCrates.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/pollKickstarterCrates.png
+images/researchFacility.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/researchFacility.jpg
+images/shopCollection00.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/shopCollection00.jpg
+images/sixCrates.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/sixCrates.jpg
+images/skull.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/skull.jpg
+images/spannerRevealed.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/spannerRevealed.jpg
+images/sprayCans.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/sprayCans.png
+images/sprayCansChristmas.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/sprayCansChristmas.png
+images/sprayCansHotSummerFad.png	weak-candidate-only	known-lost	—	—	—	—	ia-items/extracted/images/SprayCansHotSummerFad.png;wiki-dumps/tt-game-wiki/images/SprayCansHotSummerFad.png	no era CDX row and no copy at the served path; basename matches elsewhere in the archive (ia-items/extracted/images/SprayCansHotSummerFad.png; wiki-dumps/tt-game-wiki/images/SprayCansHotSummerFad.png) are unproven — adjudicate by eye before any promotion
+images/sprayCansSpringFashion.png	weak-candidate-only	known-lost	—	—	—	—	ia-items/extracted/images/SprayCansSpringFashion.png;wiki-dumps/tt-game-wiki/images/SprayCansSpringFashion.png	no era CDX row and no copy at the served path; basename matches elsewhere in the archive (ia-items/extracted/images/SprayCansSpringFashion.png; wiki-dumps/tt-game-wiki/images/SprayCansSpringFashion.png) are unproven — adjudicate by eye before any promotion
+images/sprayCansWinterFashion.png	weak-candidate-only	known-lost	—	—	—	—	ia-items/extracted/images/SprayCansWinterFashion.png;wiki-dumps/tt-game-wiki/images/SprayCansWinterFashion.png	no era CDX row and no copy at the served path; basename matches elsewhere in the archive (ia-items/extracted/images/SprayCansWinterFashion.png; wiki-dumps/tt-game-wiki/images/SprayCansWinterFashion.png) are unproven — adjudicate by eye before any promotion
+images/tab2Select.jpg	judged	O?	archive/wayback-images-2026-08-03/20190910105340_tab2Select.jpg	9425504d26cc608a4cb0f027a7798148c8b68f717876b20a180895b6ebf83a35	2O6VR4APCW6QGY3BGKEFLXNUO7HUXXIL	—	wayback-images-2026-08-03/20190910105340_tab2Select.jpg	NOT era-digest-confirmed — no 2017-2018 capture of /images/tab2Select.jpg exists. Placed on the argument recorded in tools/asset_judgements.tsv, from capture 20190910105340 (2O6VR4APCW6QGY3BGKEFLXNUO7HUXXIL): Selected-state news tab. CDX gap 20150315..20190910 — no era capture. The nav strip is versioned as a set: at 20150315 seventeen of the nineteen sprites changed on one crawl day, and the 2020 refresh moved the whole strip; no sprite has ever changed alone. Cohort-B siblings crawled in Dec 2018 (tab1Deselect, tab3Select, menuStartDeselect, menuDeselectToSelect) took new bytes at 20181218, dating that strip-wide change inside the era window. tab3Select and tab6Select then hold ONE digest from 20181218 through 20191217, proving no further change between Dec 2018 and Dec 2019. The digest first seen at 20190910 was therefore already being served at the 20181218 de-render target. Wanted: any true in-era capture of ?news with the tab strip visible.
+images/tab4Select.jpg	judged	O?	archive/wayback-images-2026-08-03/20190909161948_tab4Select.jpg	0fd5577756da9ef3df4e0040751b89b5b0e96133051e3c54e32978523ad99d3d	DG4HGLRHMWH66LSATKVQG27ZABSHCLI7	—	wayback-images-2026-08-03/20190909161948_tab4Select.jpg	NOT era-digest-confirmed — no 2017-2018 capture of /images/tab4Select.jpg exists. Placed on the argument recorded in tools/asset_judgements.tsv, from capture 20190909161948 (DG4HGLRHMWH66LSATKVQG27ZABSHCLI7): Selected-state shop tab. Same argument as images/tab2Select.jpg — CDX gap 20150315..20190909, strip versioned as a set, no strip change between 20181218 and 20191217.
+images/tab5Select.jpg	judged	O?	archive/wayback-images-2026-08-03/20190910100442_tab5Select.jpg	0bc5c969fd8fc61f2856082c36dff7e1210e6f4ea6b378d9f045eaad0fab9cc4	ZZNWGMBG3K32SFS7UI4LNPWFXWLKHLEC	—	wayback-images-2026-08-03/20190910100442_tab5Select.jpg	NOT era-digest-confirmed — no 2017-2018 capture of /images/tab5Select.jpg exists. Placed on the argument recorded in tools/asset_judgements.tsv, from capture 20190910100442 (ZZNWGMBG3K32SFS7UI4LNPWFXWLKHLEC): Selected-state forum tab. Same argument as images/tab2Select.jpg — CDX gap 20150315..20190910, strip versioned as a set, no strip change between 20181218 and 20191217.
+images/tankSpawnToolDeselect.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/tankSpawnToolDeselect.jpg
+images/tankSpawnToolSelect.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/tankSpawnToolSelect.jpg
+images/tankWithGatlingGun.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/tankWithGatlingGun.jpg
+images/testTubeSmall.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/testTubeSmall.jpg
+images/thisPollIsClosed.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/thisPollIsClosed.png
+images/timeMagazine1963.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/timeMagazine1963.png
+images/toDo.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/toDo.png
+images/twoPawsUp.jpg	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/twoPawsUp.jpg
+images/visits20150107.png	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /images/visits20150107.png
+p2.js	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /p2.js
+src/p2.js	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /src/p2.js
+theLabReport/The_Lab_Report_volume_10_issue_4.pdf	unobserved	known-lost	—	—	—	—	—	referenced by the pages but no era CDX row and no held bytes for /theLabReport/The_Lab_Report_volume_10_issue_4.pdf

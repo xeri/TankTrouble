@@ -1,0 +1,18 @@
+referrer	family	target	evidence
+# Runtime-assembled asset names. No static reader can expand
+# 'images/x' + expr + 'Select.jpg', so every concrete name a family can
+# produce is enumerated here by hand and then judged by gate E exactly like a
+# literal reference. Adding a family without its rows fails
+# test_dynamic_families_declared; leaving a row behind after the source drops
+# the family fails test_dynamic_decl_rows_are_live.
+srv/embed.php	images/callToAction0*.png	images/callToAction00.png	srv/embed.php rotates callToAction00..04 by index; five files held
+srv/embed.php	images/callToAction0*.png	images/callToAction01.png	srv/embed.php rotates callToAction00..04 by index; five files held
+srv/embed.php	images/callToAction0*.png	images/callToAction02.png	srv/embed.php rotates callToAction00..04 by index; five files held
+srv/embed.php	images/callToAction0*.png	images/callToAction03.png	srv/embed.php rotates callToAction00..04 by index; five files held
+srv/embed.php	images/callToAction0*.png	images/callToAction04.png	srv/embed.php rotates callToAction00..04 by index; five files held
+srv/index.php	images/mazeConstructTool*elect.jpg	images/mazeConstructToolSelect.jpg	srv/index.php:3732 selectMazeCreatorTool() emits S|Des; VISUAL-EVIDENCE-WANTED 1
+srv/index.php	images/mazeConstructTool*elect.jpg	images/mazeConstructToolDeselect.jpg	srv/index.php:3732 selectMazeCreatorTool() emits S|Des; VISUAL-EVIDENCE-WANTED 1
+srv/index.php	images/crateSpawnTool*elect.jpg	images/crateSpawnToolSelect.jpg	srv/index.php:3733 selectMazeCreatorTool() emits S|Des; VISUAL-EVIDENCE-WANTED 1
+srv/index.php	images/crateSpawnTool*elect.jpg	images/crateSpawnToolDeselect.jpg	srv/index.php:3733 selectMazeCreatorTool() emits S|Des; VISUAL-EVIDENCE-WANTED 1
+srv/index.php	images/tankSpawnTool*elect.jpg	images/tankSpawnToolSelect.jpg	srv/index.php:3734 selectMazeCreatorTool() emits S|Des; VISUAL-EVIDENCE-WANTED 1
+srv/index.php	images/tankSpawnTool*elect.jpg	images/tankSpawnToolDeselect.jpg	srv/index.php:3734 selectMazeCreatorTool() emits S|Des; VISUAL-EVIDENCE-WANTED 1

@@ -21,7 +21,11 @@ srv/              the reconstructed document root
 docker/           PHP 5.6 + MySQL 5.5, validated; seeds in docker/mysql/init/
 seed/             importers: archive → deterministic init SQL
 tools/            era resolution, skeleton build, capture cleaning, region classify
-tests/            gates A (assets), D (structural), S (seeds), C1 (cleaned captures)
+                  refgraph/resolve_assets/fetch_missing/place_assets (gate E loop)
+tests/            gates A (assets), D (structural), E (subresources), S (seeds),
+                  C1 (cleaned captures)
+docs/             ASSET-DISCIPLINE.md (reference-derived inventories),
+                  DIVERGENCES-SERVED.md (every user-visible difference)
 oracle/           Ruffle spike harness + DIVERGENCES.md (gate C groundwork)
 archive/          junction to the read-only archive (not committed)
 archive-cleaned/  sha256-locked capture manifest + classification drafts
@@ -29,6 +33,12 @@ archive-cleaned/  sha256-locked capture manifest + classification drafts
 
 Run the stack: `cd docker`, put `MYSQL_ROOT_PASSWORD=<anything>` in `.env`,
 `docker compose up -d` → http://127.0.0.1:8056 (stubs 501 by design).
+
+That stack serves era bytes and is the one the gates measure. For eyeballing
+only, `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d`
+adds labelled filler to the two blank AdSense slots — off by default,
+declared in `docs/DIVERGENCES-SERVED.md`. Put it back with
+`docker compose up -d --force-recreate php` before running gate F.
 
 ## Setup
 
@@ -52,6 +62,12 @@ python -m pytest tests/ -q
 * **Gate D** (`tests/test_no_unlabelled.py`) — every `srv/` file has a ledger
   row; every `M*` text file has a parseable `@provenance` header; no
   unverified stub returns 200; credential-shaped-string scan.
+* **Gate E** (`tests/test_subresources.py`) — the other direction: every
+  subresource the served pages ask the browser for either exists under `srv/`
+  or carries a `known-lost` ledger row. A and D walk `srv/ → ledger`, F
+  byte-diffs HTML; without E a byte-perfect page serving zero images passes
+  all three, which is exactly what happened. Rules, tools and verdict
+  vocabulary: `docs/ASSET-DISCIPLINE.md`.
 
 ## Provenance conventions
 
