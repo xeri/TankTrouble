@@ -36,13 +36,19 @@ def fences_in(text):
     return list(FENCE_RE.finditer(text))
 
 
+def raw_read(path):
+    """No newline translation — fenced bytes may carry \\r\\n verbatim."""
+    with open(path, encoding="utf-8", errors="replace", newline="") as f:
+        return f.read()
+
+
 def mstar_texts():
     for r in parse_ledger():
         if r["tier"] not in ("M1", "M2", "M3"):
             continue
         f = REPO / r["path"]
         if f.is_file() and f.suffix.lower() in TEXT_EXTS:
-            yield r["path"], f.read_text(encoding="utf-8", errors="replace")
+            yield r["path"], raw_read(f)
 
 
 def test_fenced_regions_byte_match():
@@ -61,8 +67,9 @@ def test_fenced_regions_byte_match():
                 bad.append("%s: fence source missing %s" % (path,
                                                             m.group("src")))
                 continue
-            span = "\n".join(src.read_text(
-                encoding="utf-8", errors="replace").splitlines()[a - 1:b])
+            span = "".join(raw_read(src).splitlines(keepends=True)[a - 1:b])
+            if span.endswith("\n"):
+                span = span[:-1]
             if m.group("body") != span:
                 bad.append("%s: fence %s lines %d-%d does not byte-match"
                            % (path, m.group("src"), a, b))
@@ -77,7 +84,7 @@ def test_fenced_regions_byte_match():
 def test_fence_parser_self_test(tmp_path):
     """Guards the regex against rot while zero real fences exist."""
     src = tmp_path / "cap.txt"
-    src.write_text("l1\nl2\nl3\nl4\n", encoding="utf-8")
+    src.write_text("l1\nl2\nl3\nl4\n", encoding="utf-8", newline="\n")
     doc = ("<?php\n/* @O-begin source=%s lines=2-3 */ ?>\nl2\nl3\n"
            "<?php /* @O-end */\n" % src.as_posix())
     m = fences_in(doc)
