@@ -325,3 +325,34 @@ lookup in loadMaze.php becomes byte-exact — the original's case handling
 was never observable (M3 detail, noted in that file's @caveat). Rejected:
 utf8_bin collation (still PAD SPACE — trailing-space pairs still collide);
 merging under ci semantics (invents identity).
+
+## 2026-08-03 — gate B redesigned: content replay, not byte replay
+Guide §7.2 asks for byte-identical replay 843/843. The corpus proves that
+impossible (see the mazes-remodel entry): per-request response shuffle +
+random selection for 842/843 bodies. tests/test_loadmaze_replay.py instead
+gates every invariant the corpus DOES pin down:
+* notFound body byte-identical (r=bm90Rm91bmQ9dHJ1ZQ==) for replays of the
+  archived userName=undefined request shape;
+* outer `r=<base64>` format exact (regex + canonical-padding round-trip);
+* every sampled response's decoded field content equals a seeded winner
+  state, and coupon-collector sampling must surface ALL 672 states (cap
+  25,000 requests; expected ≈4.8k; P(miss) < 1e-12);
+* response key set exactly {t,n,d,s};
+* malformed/unknown input dies a loud 400 (guide 6.2 rule 3);
+* a clearly-labelled NON-GATE sanity test exercises the DEDUCED
+  userName->author lookup (never archived).
+Implementation choices in loadMaze.php, all caveated in-file: shuffle
+mirrors the client's naive swap-shuffle; ORDER BY RAND() selection; q read
+from QUERY_STRING+rawurldecode (archived requests are raw base64 or %3D —
+$_GET would corrupt a base64 '+' into space); lenient base64_decode like
+the client's decoder. The 13-row G7SVMWKCBAA3 anomaly (2018-06-03/04,
+stable unshuffled body, never archived) is explicitly out of scope.
+
+## 2026-08-03 — live gates FAIL without the stack; offline runs are explicit
+New pytest marker `live` (gates B, later F) with a session `stack` fixture
+that fetches includes/styles.css over 127.0.0.1:8056 and sha256-checks it
+against the ledger before any live test runs. No stack -> pytest.fail with
+instructions, never skip — same philosophy as archive_root (a silently
+skipped gate is a green lie). Deliberate offline runs say so on the command
+line: pytest -m "not live" (gates A/D/S/C1 remain docker-free). Full suite
+green with the stack up is the milestone-3 definition of green.

@@ -1,9 +1,19 @@
+import hashlib
+import http.client
 import os
 from pathlib import Path
 
 import pytest
 
 REPO = Path(__file__).resolve().parent.parent
+STACK_HOST, STACK_PORT = "127.0.0.1", 8056
+
+
+def pytest_configure(config):
+    config.addinivalue_line(
+        "markers",
+        "live: needs the seeded docker stack on 127.0.0.1:8056 "
+        '(gates B/F); run offline gates only with -m "not live"')
 SRV = REPO / "srv"
 LEDGER = REPO / "LEDGER.tsv"
 DASH = "—"  # em dash: honest empty cell
@@ -46,6 +56,33 @@ def parse_ledger():
 @pytest.fixture(scope="session")
 def ledger():
     return parse_ledger()
+
+
+@pytest.fixture(scope="session")
+def stack(ledger):
+    """The live docker pair. Live gates FAIL (never silently skip) without
+    it — same philosophy as archive_root. Deliberate offline runs must say
+    so on the command line: pytest -m "not live"."""
+    want = next(r["sha256"] for r in ledger
+                if r["path"] == "srv/includes/styles.css")
+    try:
+        conn = http.client.HTTPConnection(STACK_HOST, STACK_PORT, timeout=10)
+        conn.request("GET", "/includes/styles.css")
+        body = conn.getresponse().read()
+        conn.close()
+    except OSError as e:
+        pytest.fail(
+            "live gates (B/F) need the docker stack:\n"
+            "  cd docker && docker compose up -d   (needs docker/.env)\n"
+            'or run the offline gates only: pytest -m "not live"\n'
+            "(%s)" % e)
+    got = hashlib.sha256(body).hexdigest()
+    if got != want:
+        pytest.fail(
+            "stack is up but serves wrong bytes for includes/styles.css — "
+            "stale volume or wrong mount? Reseed:\n"
+            "  cd docker && docker compose down -v && docker compose up -d")
+    return (STACK_HOST, STACK_PORT)
 
 
 def srv_files():
