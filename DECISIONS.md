@@ -253,3 +253,26 @@ Combined with the ?query route evidence, index.php as the single dispatcher
 is confirmed, not assumed. Remaining §10 items: charset settled at
 milestone 2 (utf8); db.php rename and the save-endpoint constant stay open
 until their milestone-3 files are first touched.
+
+## 2026-08-03 — DB credentials reach PHP via TT_DB_* environment
+Milestone-3 endpoints need a DB connection. docker-compose.yml now creates a
+dedicated mysql user (MYSQL_USER/MYSQL_PASSWORD from .env — PHP never holds
+root) and passes TT_DB_HOST/NAME/USER/PASSWORD into the php container's
+environment; the include reads them with getenv(). Rejected: hard-coded
+credentials in PHP (gate D credscan exists precisely to forbid this; the
+original's config was never captured, so nothing is lost by diverging).
+Environment plumbing is infrastructure, invisible on the wire — tier
+concerns do not attach. Reversible: compose edit.
+
+## 2026-08-03 — §10.4 settled: db include renamed rebuild-db.php
+Tier: M3, DO NOT PROMOTE. The original surely had some shared DB include;
+neither its name nor its contents were ever observable. Renamed
+srv/includes/db.php -> srv/includes/rebuild-db.php: the hyphen and the word
+"rebuild" make it impossible to mistake for a recovered period file, which
+is exactly guide §10.4's ask. Rejected: keeping db.php (plausibility would
+harden into false provenance); config.php (equally plausible-period).
+Invented constants of later phases (e.g. the save-endpoint name) will live
+here so no second invented file is ever needed. Reversible: one
+require_once string per endpoint. Body stays a 501 stub until the first
+consumer (loadMaze.php) lands with gate B as its verified_by — gate D
+requires unverified M* stubs to die 501.
