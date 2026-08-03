@@ -1,0 +1,66 @@
+region_id	ref_lines	status	sample
+S000	1-5	static	
+D001	6-6	dynamic	<meta name="keywords" content="tank game, tankgame, 2 player, 3 player, TankTrou
+S002	7-8	static	<meta name="description" content="Most explosive 2 player tank game online! Grea
+D003	9-9	dynamic	<title>TANK TROUBLE Online Multiplayer Tank Game</title>
+S004	10-14	static	<link href="includes/styles.css" rel="stylesheet" type="text/css" />
+D005	15-16	dynamic	<script type="text/javascript" src="includes/phaser.min.js"></script>
+S006	17-96	static	<script type="text/javascript" src="includes/swfobject.js"></script>
+D007	97-97	dynamic	<img src="images/menuStartDeselect.jpg" alt=""/><a href="?game"><img src="images
+S008	98-381	static	<td style="background-image: url(images/menuBackground.jpg); background-repeat: 
+D009	382-384	dynamic	emailChecked = true;
+S010	385-471	static	document.getElementById('userSettingsTankFlash-'+user).SetVariable("fadeOut", "t
+D011	472-472	dynamic	else if (password1.value.length > 32)
+S012	473-777	static	{
+D013	778-778	dynamic	var sy = new SWFObject("includes/signUpTankDesign18StandardColours.swf", "userSe
+S014	779-807	static	sy.addParam("allowScriptAccess", "sameDomain");
+D015	808-808	dynamic	<td><input id="signuppassword1" type="password" name="password1" value="password
+S016	809-815	static	</tr>
+D017	816-816	dynamic	<td style="vertical-align: top;"><input id="signuppassword2" type="password" nam
+S018	817-843	static	</tr>
+D019	844-844	dynamic	var c = new SWFObject("includes/signUpTankDesign18StandardColours.swf", "signUpT
+S020	845-936	static	c.addParam("allowScriptAccess", "sameDomain");
+D021	937-937	dynamic	else if (password1.value.length > 32)
+S022	938-1015	static	{
+D023	1016-1020	dynamic	else if (r == "Username not allowed!")
+S024	1021-1242	static	else if(r == "Username already taken!")
+D025	1243-1251	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s
+S026	1252-1256	static	
+D027	1257-1257	dynamic	<div class="content" id="scrapyard" style="padding: 4px 0px 0px 0px; height: 18p
+S028	1258-1263	static	</div>
+D029	1264-1281	dynamic	var scrapyardElement = document.getElementById("scrapyard");
+S030	1282-1283	static	// -->
+D031	1284-1300	dynamic	
+S032	1301-1305	static	</div><div style="background-color: #ff0000; border: 2px solid #ff0000; border-t
+D033	1306-1306	dynamic	var s = (1475758800000 - new Date().getTime()) / 1000;
+S034	1307-1338	static	var t = "";
+D035	1339-1339	dynamic	t = "Online battles are in heavy development. Try now!";
+S036	1340-1344	static	}
+D037	1345-1345	dynamic	</script><div id="loginAllUserInfo" style="display: none;"></div>
+S038	1346-1365	static	<div id="login" class="box standard" style="position: relative; visibility: hidd
+D039	1366-1366	dynamic	<input id="loginpassword" type="password" name="password" size="12" value="passw
+S040	1367-1424	static	<div id="loginerror" style="width: 110px; height: 10px; float:left; display:none
+D041	1425-1429	dynamic	
+S042	1430-1480	static	}
+D043	1481-1481	dynamic	var c = new SWFObject("includes/signUpTankDesign18StandardColours.swf", "signUpT
+S044	1482-1857	static	c.addParam("allowScriptAccess", "sameDomain");
+D045	1858-1858	dynamic	Since 2007-12-16<br/><div style="padding: 2px 0px 2px 0px;" class="text normal">
+S046	1859-1860	static	</div>
+D047	1861-1862	dynamic	</div>
+S048	1863-1867	static	
+D049	1868-1876	dynamic	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></s
+S050	1877-1902	static	
+D051	1903-1903	dynamic	<div class="content text tiny gray" style="text-align: justify; height: 110px;">
+S052	1904-1991	static	<div class="tab1" style="width: 60px; text-align: center; position: absolute; bo
+D053	1992-1992	dynamic	window.open('https://beta.tanktrouble.com/#'+encodeURIComponent('type=messages')
+S054	1993-1998	static	
+D055	1999-2000	dynamic	};
+S056	2001-2114	static	</script> </div>
+D057	2115-2115	dynamic	if (username === currentUsertrailName)
+S058	2116-2133	static	return;
+D059	2134-2134	dynamic	if (currentElement.innerHTML === currentUsertrailName)
+S060	2135-2157	static	{
+D061	2158-2158	dynamic	currentUsertrailName = null;
+S062	2159-2557	static	}
+D063	2558-2564	dynamic	}
+S064	2565-2574	static	}
