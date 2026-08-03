@@ -10,6 +10,11 @@
 --             DECISIONS.md. Corpus scan: zero astral chars, so utf8mb3 is
 --             lossless here. Do not present this DDL as recovered.
 
+-- entrypoint client defaults to latin1 in 5.5; every init file sets this
+SET NAMES utf8;
+
+-- MYSQL_DATABASE may have pre-created the db with the server default
+-- charset; harmless, since every table below carries an explicit charset
 CREATE DATABASE IF NOT EXISTS tanktrouble
   CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE tanktrouble;

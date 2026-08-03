@@ -54,7 +54,9 @@ def provenance_header(name, tier_data, tier_schema, evidence, caveat=None):
     ]
     if caveat:
         lines.append("-- @caveat     %s" % caveat)
-    return "\n".join(lines) + "\n\nUSE tanktrouble;\n\n"
+    # SET NAMES: the mysql:5.5 entrypoint client defaults to latin1; without
+    # this the UTF-8 bytes of this file would be double-encoded on import
+    return "\n".join(lines) + "\n\nSET NAMES utf8;\nUSE tanktrouble;\n\n"
 
 
 def write_out(filename, text):
