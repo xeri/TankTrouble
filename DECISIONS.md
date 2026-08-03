@@ -640,3 +640,101 @@ so both runtimes render identically (gate C); original pattern presumed
 runtime-random and unknowable (VISUAL-EVIDENCE-WANTED entry).
 Reversible: yes — constants are statics in MazeRenderer; the law is a
 corpus fact, not a choice.
+
+## 2026-08-04 — asset inventory is reference-derived, not directory-derived
+Tier: process rule + O/known-lost rows.
+Finding: the de-rendered 2018 front page requested 193 assets `srv/` did not
+hold, none with a ledger row, every gate green. Gates A/D walk srv -> ledger
+and gate F byte-diffs HTML; nothing walked page -> subresource, so a
+byte-perfect page serving zero images passed all three. Root cause:
+`tools/build_skeleton.py` mirrored one archive folder
+(`IMAGES_DIR = "classic-ui-images"`, recorded in the guide as "122 classic UI
+images, complete"). Of the 112 files that mirror produced, 2 were referenced
+by anything the site serves; the page asks for `logInToGetStarted.gif` while
+the folder holds `.jpg`/`.png` — a different site generation.
+Decision: the work list comes from the site's own references. New gate E
+(`tests/test_subresources.py`) fails on any reference that neither resolves
+nor carries a `known-lost` row; `tools/refgraph.py` is the single shared
+definition of "referenced", imported by both the gate and the resolver.
+Rule and vocabulary: `docs/ASSET-DISCIPLINE.md`.
+Recovered this pass: 78 via era-digest match against
+`flashpoint-gamezip/content/tanktrouble.com/images/`, 53 refetched from
+Wayback into `archive/wayback-images-2026-08-03/`. Every acceptance required
+`base32(SHA1(payload))` to equal a 2017-2018 CDX digest for that exact served
+path — 0 rejected, 0 promoted on a name match. 66 references remain
+`known-lost`, each row carrying why.
+Rejected: copying `flashpoint-gamezip`'s `menuBackground.jpg` and the nav tab
+strip. Bytes exist there, but they hash to another era
+(`UWJWLWANNYT4JMMKYB7D2ZLHPC3PPEMV` vs the era window's
+`4IW4FYJLD4JDXRD3ZGKTDDASBR2FRJEL`, 53 rows). Wayback supplied the era bytes
+instead. Also rejected: promoting basename collisions from
+`ia-items/extracted/images/` (`DimitrisEmporium.png` != `dimitrisEmporium.png`)
+— verdict `weak-candidate-only`, left for human adjudication.
+Reversible: yes — every placed file is a copy of named archive bytes with its
+sha256 in the ledger.
+
+## 2026-08-04 — LEDGER correction: scrapyardPlates.png served path
+Tier: O (was known-lost at a path the site never requests).
+`srv/includes/scrapyard.js:104` calls
+`this.load.spritesheet('plates', 'images/scrapyardPlates.png', 11, 21, 20)`.
+A URL in a script string resolves against the DOCUMENT, not the script, so
+the browser requests `/images/scrapyardPlates.png` — confirmed on the live
+stack's network log. The row had been filed at
+`srv/includes/images/scrapyardPlates.png` ("obs in CDX, 404 only") because the
+path was read script-relative; that path was indeed only ever 404, so the
+Scrapyard flip-counter rendered blank and nobody had a lead to follow.
+The real path has 63 CDX rows in the era window on one digest
+(`SL3WLA7JEFSBO2J5ML42MS47KAL2VKRV`, first 200 at 20170221180110). Refetched,
+digest-verified, placed as `srv/images/scrapyardPlates.png` tier O; the
+counter now renders. The wrong-path row is removed — it asserted a loss at a
+URL the site never used.
+Consequence: `tools/refgraph.py` resolves script-string URLs
+document-relative and follows `.js` as well as `.css`; gate E covers both.
+Reversible: yes.
+
+## 2026-08-04 — ad slots: dev-only filler, off by default
+Tier: divergence, declared in `docs/DIVERGENCES-SERVED.md` entry 2.
+The two AdSense skyscrapers keep their 160x600 box offline but render blank.
+Blank slots read as breakage while reviewing routes, and that class of noise
+is what let the asset hole sit unnoticed. Decision: fill them ONLY through an
+opt-in docker overlay (`docker-compose.dev.yml`, `TT_DEV_FILLER=1`) that
+appends one labelled `<style>` at response time. The file lives outside
+`srv/`, has no ledger row, is unreachable by request, and no-ops without the
+env var, so the default stack — the one gate F measures — serves unmodified
+bytes. The fill is deliberately ugly and captioned "ad slot - dev filler, not
+original" so no screenshot taken with it on can be mistaken for evidence.
+Rejected: injecting markup into the page (would edit `@O` fence bytes) and
+serving a local stub at the AdSense hostname (needs host DNS, outside the
+repo).
+Reversible: yes — delete three files.
+
+## 2026-08-04 — mazeCreator editor rebuild: the M3 inventions inside the M2 shell
+Tier: M2 shell (contract, wire format, constraints, measured visuals all
+evidence-bound); the items below are M3 choices, each revisable when video
+evidence lands (docs/VISUAL-EVIDENCE-WANTED.md).
+1. Interaction model: construct tool — click near an interior gridline
+   between two floor cells toggles that wall; click elsewhere in a cell
+   toggles floor (clearing floor deletes its object, boundary bits
+   recomputed); spawn tools toggle an object on a floor cell, capped
+   5+5/10. Revised by: any editing footage (#5).
+2. initCode fields u,n,t,d,s (panel user id, author, title, grid, slot),
+   base64 of k=v& pairs through the shared decodeMessage shape. Phase 4
+   (markup reconstruction) owns the final field list.
+3. Boot -> preview; any click -> edit + getURL showMazeCreatorToolsAndTitle
+   (u, title); save success -> preview + hideMazeCreatorToolsAndTitle(u).
+   The original preview (garage) look is unknown (#4).
+4. Error panel: dark rounded box + white _sans copy ("Please give your
+   maze a name." / "Too many spawn points." / generic). Never captured (#2).
+5. Boot visibility: ExternalInterface.available ? start at _alpha 0
+   awaiting fadeOut=false (page fades us in at +1200ms) : boot visible
+   (projector/standalone).
+6. Floor tone hash (x*3+y*7)%3==0 -> light, ~1/3 light like the shot;
+   original rule unknowable (#8a). Deterministic for gate C.
+7. Placement: boot maze centered at exact (L-size)/2 cell offsets
+   (integer part into the 18x10 lattice, half-cell remainder as a pixel
+   shift), FIXED for the session (#6).
+8. Save transport quirks normalized in the SWF: LoadVars' '+'-to-space
+   url-decode restored before Base64.Decode on both initCode and the r=
+   reply; SetVariable null/"null"/"undefined" -> "".
+Reversible: all — each is a contained function or constant; the page
+contract and wire format are untouched by any of them.

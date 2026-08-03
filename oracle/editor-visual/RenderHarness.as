@@ -4,6 +4,7 @@ import flash.external.ExternalInterface;
 
 class RenderHarness {
     static function main() {
+        MazeRenderer.initConstants();
         var bg:MovieClip = _root.createEmptyMovieClip("bg", 1);
         bg.beginFill(0xFFFFFF);
         bg.moveTo(0, 0); bg.lineTo(688, 0); bg.lineTo(688, 400); bg.lineTo(0, 400);

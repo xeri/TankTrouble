@@ -11,21 +11,44 @@
 // between Ruffle and the projector.
 class MazeRenderer {
 
-    static var CELL:Number = 32;
-    static var LATTICE_X:Number = 56;
-    static var LATTICE_Y:Number = 50;
-    static var LATTICE_W:Number = 18;
-    static var LATTICE_H:Number = 10;
-    static var WALL_T:Number = 4;
-    static var COLOR_WALL:Number = 0x444444;
-    static var COLOR_FLOOR_LIGHT:Number = 0xEEEEEE;
-    static var COLOR_FLOOR_DARK:Number = 0xDDDDDD;
-    static var COLOR_TANK_LINE:Number = 0x5555BB;
-    static var COLOR_TANK_FILL:Number = 0xAFB4EE;   // core tone (175,180,238)
-    static var COLOR_CRATE_FILL:Number = 0xDBB755;  // core tone (219,183,85)
-    static var COLOR_CRATE_EDGE:Number = 0xAA8232;
-    static var COLOR_CRATE_GLOW:Number = 0xF0D060;
-    static var COLOR_TANK_GLOW:Number = 0x8890E8;
+    // Assigned in initConstants(), NOT as field initializers: MTASC's
+    // static-initializer order across auto-included classes is not
+    // dependable under the real Flash 8 player (statics read as
+    // undefined -> NaN geometry -> empty render), while Ruffle happens
+    // to initialize eagerly. Editor.main() calls initConstants() first.
+    static var CELL:Number;
+    static var LATTICE_X:Number;
+    static var LATTICE_Y:Number;
+    static var LATTICE_W:Number;
+    static var LATTICE_H:Number;
+    static var WALL_T:Number;
+    static var COLOR_WALL:Number;
+    static var COLOR_FLOOR_LIGHT:Number;
+    static var COLOR_FLOOR_DARK:Number;
+    static var COLOR_TANK_LINE:Number;
+    static var COLOR_TANK_FILL:Number;
+    static var COLOR_CRATE_FILL:Number;
+    static var COLOR_CRATE_EDGE:Number;
+    static var COLOR_CRATE_GLOW:Number;
+    static var COLOR_TANK_GLOW:Number;
+
+    static function initConstants():Void {
+        CELL = 32;
+        LATTICE_X = 56;
+        LATTICE_Y = 50;
+        LATTICE_W = 18;
+        LATTICE_H = 10;
+        WALL_T = 4;
+        COLOR_WALL = 0x444444;
+        COLOR_FLOOR_LIGHT = 0xEEEEEE;
+        COLOR_FLOOR_DARK = 0xDDDDDD;
+        COLOR_TANK_LINE = 0x5555BB;
+        COLOR_TANK_FILL = 0xAFB4EE;   // core tone (175,180,238)
+        COLOR_CRATE_FILL = 0xDBB755;  // core tone (219,183,85)
+        COLOR_CRATE_EDGE = 0xAA8232;
+        COLOR_CRATE_GLOW = 0xF0D060;
+        COLOR_TANK_GLOW = 0x8890E8;
+    }
 
     // exact centering offsets in CELLS -- half-cell when parity is odd,
     // exactly as the screenshot lands (spec: 13-wide -> 2.5, 8-tall -> 1)

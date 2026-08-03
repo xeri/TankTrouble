@@ -12,7 +12,10 @@ import flash.external.ExternalInterface;
 class Editor {
 
     static var app:Editor;
-    static function main() { app = new Editor(); }
+    static function main() {
+        MazeRenderer.initConstants();   // see note in MazeRenderer
+        app = new Editor();
+    }
 
     static var SAVE_ENDPOINT:String = "saveMaze.php"; // sibling of the SWF in includes/
     static var EDGE_TOL:Number = 6;

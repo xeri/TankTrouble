@@ -89,3 +89,37 @@ Findings the gate/audit surfaced:
 * Emit-shape audit: `reserved` field is `0` in all 670 grids; every object
   `params` field is empty; cell digit alphabet is exactly 0-7. The emitter
   still round-trips `reserved` verbatim rather than hardcoding it.
+
+## 2026-08-04 — gate C: rebuilt mazeCreator, projector vs Ruffle
+
+SWF: srv/includes/mazeCreator_v0.3.swf sha256 2df553765d6abe1c6b319f812eef082087853cad95a747889aa95a86b5bc440c
+Runtimes: Flash projector 32.0.0.465 (oracle/projector) vs Ruffle 0.4.1
+(oracle/ruffle-spike), same maze both sides (oracle/editor-visual/
+gatec_maze.json — a real corpus maze, 4x4, 2 tanks + 2 crates).
+Method: oracle/projector/shot_editor.ps1 (topmost + validated
+CopyFromScreen; PrintWindow is black for this player) vs
+`node run_editor.mjs --screenshot`; diff via tools/diff_render.py.
+
+Numbers: masked (title + watermark device-text bands) mean=0.02
+max=239 pct_over_32=0.01 · unmasked mean=0.26 max=239 pct_over_32=0.27.
+Verdict: **pass — vector geometry pixel-identical**; all visible
+divergence is device-font rasterization (_sans differs per runtime) and
+faint icon-glow alpha rounding. Cosmetic only.
+
+Runtime divergences found while wiring the editor (all mitigated):
+1. **Ruffle SetVariable("name", "")** delivers null (watch channel
+   stringifies to "null"); real Flash keeps "". Editor normalizes
+   null/"null"/"undefined" to "" at the vocabulary entry point.
+2. **Relative LoadVars URLs**: Flash resolves against the SWF's URL,
+   Ruffle against the page URL. The SWF keeps the Flash-faithful sibling
+   path ("saveMaze.php"); harnesses (and any future Ruffle embed) must set
+   RufflePlayer config.base to the SWF's directory ("includes/").
+3. **Projector truncates its command-line URL near MAX_PATH (~260
+   chars)** — diagnosed with oracle/editor-visual/Diag.as marker bars
+   (initCode arrived 185/300 chars). Only affects the projector-CLI
+   harness path, never the real page embed (FlashVars param). Gate C
+   uses a short corpus maze; shot_editor.ps1 guards the length.
+4. MTASC static field initializers were replaced with an explicit
+   MazeRenderer.initConstants() call. Suspected cause of an empty
+   projector render — **falsified** (truncation was the cause) — kept as
+   defensive hardening.

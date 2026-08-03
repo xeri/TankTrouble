@@ -16,7 +16,8 @@ const MIME = { ".html": "text/html", ".js": "text/javascript",
                ".wasm": "application/wasm", ".swf": "application/x-shockwave-flash" };
 const SHOT = process.argv.includes("--screenshot");
 
-const gauntlet = JSON.parse(readFileSync(path.join(DIR, "gauntlet.json"), "utf8"));
+const gauntlet = JSON.parse(readFileSync(
+  path.join(DIR, SHOT ? "gatec_maze.json" : "gauntlet.json"), "utf8"));
 const INIT = Buffer.from(
   `u=7&n=testuser01&t=${gauntlet.title}&d=${gauntlet.d}&s=1`).toString("base64");
 
