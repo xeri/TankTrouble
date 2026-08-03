@@ -29,3 +29,11 @@ function tt_db_escape($s)
 {
     return mysql_real_escape_string($s);
 }
+
+/* Guide 3.3's own worked example: the maze-save endpoint NAME is pure
+ * invention (M3) - the editor SWF that called it is lost (mazeCreator,
+ * guide 6.5) and no request for it was ever archived. The constant lives
+ * here so every invented name stays findable in one place;
+ * srv/includes/saveMaze.php is a `pending` ledger row with NO file until
+ * the mazeCreator milestone reconstructs the caller. */
+define('TT_SAVE_MAZE_ENDPOINT', 'saveMaze.php');

@@ -539,3 +539,32 @@ site generation); the classic host has zero era rows — the classic file's
 behaviour is unobservable. Directory-index stubs (faq ios privacy like
 statistics spreadTheWord tellAFriendMail tankRanks theLabReport): no
 captured bodies. All remain loud 501 stubs through milestone 3.
+
+## 2026-08-03 — auth divergence implemented; logged-in rendering is a boundary
+getUserAuthentication.php gets its guide-6.4 body: POST-only (GET -> 405
+with the divergence explanation), bcrypt password_verify against the ten
+synthetic testuser rows, minimal PHP session, invented response format
+("ok"/"denied" — no original response was ever archived), M3 BY CHOICE
+with a never-promote note. users.password_sha256 placeholder becomes
+password_hash VARCHAR(60); seeds are bcrypt produced once inside the
+stack's own php:5.6 container with PRNG-fixed salts so the seed file
+stays byte-stable; the per-user secrets derive from the same fixed-seed
+PRNG (seed_users.secrets()), which is how tests/test_auth_divergence.py
+logs in without any plaintext secret existing in the repo. BOUNDARY:
+logged-in page rendering is NOT reconstructed — near-zero logged-in
+captures exist; anything beyond "session variable set" would be invention.
+TLS termination is out of scope for the 127.0.0.1-only stack.
+
+## 2026-08-03 — saveMaze constant + write-side boundary (milestone 3 ends here)
+TT_SAVE_MAZE_ENDPOINT = 'saveMaze.php' lands in includes/rebuild-db.php
+(guide 3.3's own worked example of an invented name), with a `pending`
+ledger row and NO file — the caller (mazeCreator SWF, guide 6.5) is lost
+and no request for the endpoint was ever archived; the mazeCreator
+milestone owns both. Write-side SAJAX functions (login, signup, vote,
+updateTank, post/moderation set, sendFeedback, ...) stay OUT of the export
+list and answer the stock "-:<func> not callable": zero era request or
+response bodies are archived for any of them, and a write path that
+fabricates success would corrupt the seeded archive it exists to protect
+(guide 6.3). Milestone 3's write-side surface is: loadMaze (M1, gate B),
+getScraps (shape-only), getScrapyard replay (M2), auth divergence (M3) —
+everything else loud, in-protocol errors.
