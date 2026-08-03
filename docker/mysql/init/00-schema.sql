@@ -93,7 +93,7 @@ CREATE TABLE news (
 CREATE TABLE users (
   id              INT UNSIGNED NOT NULL AUTO_INCREMENT,
   username        VARCHAR(16)  NOT NULL,
-  password_sha256 CHAR(64)     NOT NULL,  -- placeholder; milestone-3 auth decides
+  password_hash   VARCHAR(60)  NOT NULL,  -- bcrypt (guide 6.4 divergence: password_hash, never the original GET scheme)
   PRIMARY KEY (id),
   UNIQUE KEY username (username)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

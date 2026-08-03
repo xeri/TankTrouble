@@ -140,8 +140,8 @@ def test_news_bodies_are_verbatim_capture_slices(archive_root):
 
 def test_users_are_obviously_synthetic():
     text = sql("40-users.sql")
-    names = re.findall(r"\('([^']+)', '[0-9a-f]{64}'\)", text)
-    assert names, "no user rows parsed"
+    names = re.findall(r"\('([^']+)', '\$2y\$10\$[./A-Za-z0-9]{53}'\)", text)
+    assert names, "no user rows parsed (bcrypt password_hash expected)"
     assert all(re.fullmatch(r"testuser\d{2}", n) for n in names), (
         "user rows must be obviously fake: %s" % names)
 
