@@ -178,13 +178,18 @@ def route_context(route):
 
 # -------------------------------------------------------------- projection
 
-def project(ref, other, a, b):
-    """other-capture lines aligned (difflib) to ref[a:b]. Replace blocks are
-    attributed whole if they overlap the range; inserts attach at either
-    boundary."""
+def opcodes(ref, other):
+    """One difflib pass per capture; project() reuses it for every region."""
+    return difflib.SequenceMatcher(
+        a=ref, b=other, autojunk=False).get_opcodes()
+
+
+def project(ops, other, a, b):
+    """other-capture lines aligned (via precomputed opcodes) to ref[a:b].
+    Replace blocks are attributed whole if they overlap the range; inserts
+    attach at either boundary."""
     out = []
-    sm = difflib.SequenceMatcher(a=ref, b=other, autojunk=False)
-    for tag, i1, i2, j1, j2 in sm.get_opcodes():
+    for tag, i1, i2, j1, j2 in ops:
         if tag == "equal":
             lo, hi = max(i1, a), min(i2, b)
             if lo < hi:
@@ -220,14 +225,15 @@ def cmd_check():
 
 def cmd_variants(route, only_rid=None):
     caps, bodies, ref, survives = route_context(route)
+    ops_by_cap = [opcodes(ref, body) for body in bodies]
     for rid, a, b, status in cls.region_runs(survives):
         if status != "dynamic" or (only_rid and rid != only_rid):
             continue
         print("== %s %s lines %d-%d sha=%s" % (
             route, rid, a + 1, b, region_sha(ref, a, b)))
         forms = {}
-        for cap, body in zip(caps, bodies):
-            form = tuple(project(ref, body, a, b))
+        for cap, body, ops in zip(caps, bodies, ops_by_cap):
+            form = tuple(project(ops, body, a, b))
             forms.setdefault(form, []).append(cap["ts"])
         for form, tss in sorted(forms.items(), key=lambda kv: kv[1][0]):
             print("  -- %d capture(s) %s%s" % (
