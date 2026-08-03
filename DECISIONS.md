@@ -568,3 +568,28 @@ fabricates success would corrupt the seeded archive it exists to protect
 (guide 6.3). Milestone 3's write-side surface is: loadMaze (M1, gate B),
 getScraps (shape-only), getScrapyard replay (M2), auth divergence (M3) —
 everything else loud, in-protocol errors.
+
+## 2026-08-03 — mazeCreator control channel: dual-channel SWF, page JS untouched
+Tier: M2 (editor SWF, phase 2), O (page contract unchanged).
+The rebuilt editor implements BOTH control routes: (a)
+ExternalInterface.addCallback("SetVariable"/"GetVariable"), so Ruffle's
+player element answers the ORIGINAL page calls verbatim — proven by
+oracle/editor-spike (results 2026-08-03, all four verdicts true); and (b)
+_root variable watch, so native SetVariable works under real Flash
+(projector 32.0.0.465, oracle/projector/). Page-side JS stays the O bytes —
+zero divergence. Names arriving with a "_root." prefix through route (a)
+are resolved by stripping the prefix, reproducing the native plugin's
+path resolution.
+Header facts pinned by measurement: SWF version 8, 688x400, 25 fps —
+sibling paint editors and the game all read version=8 fps=25
+(tools/swf_header.py), stage from the O embed line (srv/index.php:3617),
+25fps corroborated by the O comment (srv/index.php:3637).
+Toolchain: MTASC 1.14 (thirdparty/mtasc/FETCHED.md) — era-plausible open
+AS2 compiler; the ORIGINAL was authored in the Flash IDE, so the rebuilt
+SWF is M2 regardless of compiler.
+Rejected: page-side adapter shim (needless — (a) answers the original call
+shape); HTML5 port for the editor (PORT-FEASIBILITY.md remains the fallback
+if Ruffle regresses).
+Reversible: yes — channel (b) alone suffices for any real-Flash runtime.
+Supersedes: the "decision deferred" options list in oracle/DIVERGENCES.md
+2026-08-03 SetVariable spike entry.
