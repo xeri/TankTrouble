@@ -12,12 +12,19 @@ services:
       - ../srv:/var/www/html
     depends_on:
       - mysql
+    environment:
+      TT_DB_HOST: mysql
+      TT_DB_NAME: tanktrouble
+      TT_DB_USER: ${TT_DB_USER}
+      TT_DB_PASSWORD: ${TT_DB_PASSWORD}
   mysql:
     image: mysql:5.5
     platform: linux/amd64
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: tanktrouble
+      MYSQL_USER: ${TT_DB_USER}
+      MYSQL_PASSWORD: ${TT_DB_PASSWORD}
     volumes:
       - ./mysql/init:/docker-entrypoint-initdb.d
     # no host port published — reachable on the compose network only
