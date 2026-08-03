@@ -16,13 +16,19 @@ calls live in `DECISIONS.md` (append-only).
 ```
 LEDGER.tsv        one row per srv/ path — the spine
 DECISIONS.md      append-only log of judgement calls
+DEDUCE.md         how every claim was deduced; evidence grades
 srv/              the reconstructed document root
-docker/           PHP 5.6 + MySQL 5.5 skeleton (UNVALIDATED — no docker here yet)
-tools/            resolve_era.py (era choice), build_skeleton.py (copy/verify/stub)
-tests/            CI gates A (asset integrity) + D (structural)
+docker/           PHP 5.6 + MySQL 5.5, validated; seeds in docker/mysql/init/
+seed/             importers: archive → deterministic init SQL
+tools/            era resolution, skeleton build, capture cleaning, region classify
+tests/            gates A (assets), D (structural), S (seeds), C1 (cleaned captures)
+oracle/           Ruffle spike harness + DIVERGENCES.md (gate C groundwork)
 archive/          junction to the read-only archive (not committed)
-archive-cleaned/  created at order-of-work step 3, not yet — cleaned O captures
+archive-cleaned/  sha256-locked capture manifest + classification drafts
 ```
+
+Run the stack: `cd docker`, put `MYSQL_ROOT_PASSWORD=<anything>` in `.env`,
+`docker compose up -d` → http://127.0.0.1:8056 (stubs 501 by design).
 
 ## Setup
 
@@ -68,10 +74,13 @@ python -m pytest tests/ -q
 
 ## What comes next (guide §9)
 
-1. ~~Skeleton + LEDGER + gates A/D~~ ← this milestone
-2. **Ruffle vs projector spike on `SetVariable`** — do EARLY, can change design
-3. Clean captures + un-do PageSpeed (§6.1a steps 1–2) → `archive-cleaned/` as O
-4. Seed DB from archive
-5. `loadMaze.php` → gate B, 843/843
-6. De-render the 6 routes → gate F byte-diff. **Build the Gate F harness
-   before writing any route PHP** (§7.4a).
+1. ~~Skeleton + LEDGER + gates A/D~~ (`skeleton-complete`)
+2. ~~Ruffle spike on `SetVariable`~~ — bridge works, SetVariable ABSENT;
+   consequences in `oracle/DIVERGENCES.md`. Projector half still open.
+3. ~~Clean captures~~ (`archive-cleaned/`; classic captures are PageSpeed-free)
+4. ~~Seed DB from archive~~ (`seed-complete`; live-imported and verified)
+5. `loadMaze.php` → gate B, 843/843 ← **milestone 3 starts here**
+6. De-render the 6 routes → gate F byte-diff. Harness spec ready
+   (`tests/GATE_F_SPEC.md`); masks drafted
+   (`archive-cleaned/classification/`); **annotate every dynamic region
+   before writing route PHP** (§7.4a).
