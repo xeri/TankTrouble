@@ -19,14 +19,17 @@ CREATE DATABASE IF NOT EXISTS tanktrouble
   CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE tanktrouble;
 
--- one maze slot per user; keyed by the userName code the client sends to
--- includes/loadMaze.php (observed in corpus filenames)
+-- one row per (author, slot): loadMaze.php is queried by userName
+-- (MazeDataFetcher.as), the response carries s=<slot>, and the corpus is a
+-- time series of one live table -- latest capture wins (DECISIONS
+-- 2026-08-03). Column SET is M1 (t/n/d/s all observed); author-as-key is
+-- M2 (deduced from the userName query); names/types M3.
 CREATE TABLE mazes (
-  user_code  VARCHAR(32)  NOT NULL,   -- observed: 12-char A-Z0-9
-  title      VARCHAR(32)  NOT NULL,   -- editor limit 32, corpus max 32
-  author     VARCHAR(16)  NOT NULL,   -- editor limit 16, display metadata
-  data       VARCHAR(512) NOT NULL,   -- grid string, corpus max 275
-  PRIMARY KEY (user_code)
+  author  VARCHAR(16)  NOT NULL,   -- n= field; editor limit 16
+  slot    TINYINT UNSIGNED NOT NULL,  -- s= field; observed only 1
+  title   VARCHAR(32)  NOT NULL,   -- t= field; editor limit 32, corpus max 32
+  data    VARCHAR(512) NOT NULL,   -- d= grid string, corpus max 275
+  PRIMARY KEY (author, slot)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- creator/coCreator/moderatedBy are modern numeric user-id STRINGS kept as

@@ -276,3 +276,38 @@ here so no second invented file is ever needed. Reversible: one
 require_once string per endpoint. Body stays a 501 stub until the first
 consumer (loadMaze.php) lands with gate B as its verified_by — gate D
 requires unverified M* stubs to die 501.
+
+## 2026-08-03 — mazes remodel: the corpus is a time series, one row per
+## (author, slot), latest capture wins  [SUPERSEDES "maze seed keyed by
+## corpus filename code", 2026-08-03]
+Three findings force this (all re-verified against the raw corpus today):
+1. The filename CODE is the first 12 chars of the Wayback sha1-base32
+   digest of the response body (matches 843/843) — a CAPTURE identity, not
+   a "userName request code" as the superseded entry said. And per
+   archive/cdx-passes/F_loadmaze200.json, 842/843 bodies answered anonymous
+   `c=<random>` requests — no archived response was produced by a real
+   userName query.
+2. The true wire format is r=<base64(shuffle("t=&n=&d=&s="))> — `s` sits
+   INSIDE the base64 (all 842 payloads have exactly keys {t,n,d,s}; the
+   guide §6.2 comment `r=<b64>&s=<slot>` does not match the corpus), and
+   the inner pair order is a per-request server shuffle: all 24
+   permutations occur. The old seed silently discarded s and the (random,
+   unreproducible) order.
+3. The corpus spans fetches 2017-01..2019-04: 842 bodies -> 744 distinct
+   contents -> 672 distinct (author, slot) states; 70 authors were
+   re-captured with DIFFERENT mazes that never coexisted in the live DB.
+Row model chosen: one row per (author, slot), latest fetchts wins — the DB
+is one site snapshot, matching the notFound precedent (absence of a row is
+also a dated observation). Superseded captures and per-row witnesses live
+in the 10-mazes.sql trailer; the corpus remains the O record. s observed
+only as 1; emitted from the row, not hardcoded. unquote_plus dropped: zero
+% and zero + across all 842 payloads (fields are raw bytes, not
+urlencoded); the seed now FAILS if either char ever appears, so the
+encoding question reopens loudly instead of silently mangling.
+Rejected: digest-keyed rows (models the corpus, not the site; 98
+duplicate-content rows); all-744-contents rows (co-hosts states that
+provably never coexisted); per-capture snapshots (mutates seed per test).
+Consequence for gate B: byte-identical replay of archived bodies is
+impossible by construction (random shuffle + random selection); the gate
+compares canonical field content plus byte-exact notFound — recorded in
+the gate-B entry when tests/test_loadmaze_replay.py lands.

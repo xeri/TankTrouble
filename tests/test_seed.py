@@ -78,15 +78,25 @@ def test_generated_seeds_are_reproducible(tmp_path, archive_root):
 
 
 def test_maze_rows_match_corpus(archive_root):
+    """One row per (author, slot), latest capture wins (DECISIONS
+    2026-08-03) — recompute the winner count from the corpus by the same
+    rule the seed uses, independently of the seed's own code."""
     files = glob.glob(str(archive_root / "maze-corpus" / "raw" / "*.txt"))
-    notfound = 0
+    states, notfound = set(), 0
     for f in files:
         r = dict(p.split("=", 1) for p in open(f).read().strip().split("&"))
-        if base64.b64decode(r["r"]) == b"notFound=true":
+        inner = base64.b64decode(r["r"]).decode("utf-8")
+        if inner == "notFound=true":
             notfound += 1
+            continue
+        fields = dict(p.split("=", 1) for p in inner.split("&"))
+        assert set(fields) == {"t", "n", "d", "s"}, f
+        states.add((fields["n"], fields["s"]))
     text = sql("10-mazes.sql")
-    assert rows_of(text, "mazes") == len(files) - notfound
-    assert str(notfound or "none") in text.split("notFound")[-1] or notfound > 0
+    assert len(files) == 843 and notfound == 1, "corpus changed — re-audit"
+    assert rows_of(text, "mazes") == len(states) == 672
+    assert "-- superseded" in text and "-- witness" in text, (
+        "time-series trailer missing")
 
 
 def test_forum_rows_match_corpus(archive_root):
