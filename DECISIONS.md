@@ -593,3 +593,22 @@ if Ruffle regresses).
 Reversible: yes — channel (b) alone suffices for any real-Flash runtime.
 Supersedes: the "decision deferred" options list in oracle/DIVERGENCES.md
 2026-08-03 SetVariable spike entry.
+
+## 2026-08-03 — saveMaze.php wire format: mirror loadMaze, POST-only (M3)
+Tier: M3 — every choice here is invention; the real format lived only in
+the lost mazeCreator_v0.3.swf.
+Chosen: POST q=<base64(shuffle("t&n&d&s"))>; reply r=<base64(shuffle(
+"saved=true&s="))> or r=<base64("error=<code>")> with codes badTitle,
+badAuthor, badGrid, tooManyObjects, badSlot. Rationale: the era SWF used
+LoadVars (POST-default) and the site's only fully-observed endpoint pair
+message is loadMaze's q=/r= convention — mirroring it is the least
+inventive option. Validation = the corpus-measured constraints (guide 6.5).
+Errors are in-band (error=<code>) because the SWF owned an error panel, so
+the response had to be machine-readable by the SWF.
+Rejected: SAJAX (no maze function among the 36 — evidence against);
+GET (write over GET is the vulnerability class 6.4 exists to avoid);
+HTTP-status-only errors (panel needs a reason).
+Reversible: yes — the editor reads the reply through the same decodeMessage
+port, so format changes are one function on each side.
+Supersedes: the 2026-08-03 "constant + pending row, NO file" boundary entry
+(the constant and its name are unchanged).
