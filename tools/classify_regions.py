@@ -18,6 +18,12 @@ one statement per line almost everywhere, so lines approximate PHP
 echo-boundaries well. Byte-level refinement belongs to milestone 3.
 
 Deterministic: same archive -> byte-identical outputs.
+
+Milestone 3: annotate_regions.py imports this module's loading/alignment
+functions and OWNS the TSVs from then on (adds annotation + region_sha
+columns, merges annotations across regenerations). Do not run this file's
+main() once annotations exist -- it writes the draft 4-column format and
+would drop them; use `python tools/annotate_regions.py --regen` instead.
 """
 
 import difflib
@@ -59,6 +65,49 @@ def era_captures(rows, route):
     return sorted(picked, key=lambda r: r["ts"])
 
 
+def load_bodies(root, caps):
+    """splitlines() bodies for manifest rows, archive order preserved."""
+    bodies = []
+    for r in caps:
+        src = os.path.join(root, r["source"].replace("archive/", "", 1))
+        bodies.append(open(src, encoding="utf-8",
+                           errors="replace").read().splitlines())
+    return bodies
+
+
+def compute_survives(bodies):
+    """(ref, survives): ref = latest era capture, survives[i] True iff ref
+    line i is byte-matched in EVERY other era capture."""
+    ref = bodies[-1]
+    survives = [True] * len(ref)
+    for other in bodies[:-1]:
+        matched = [False] * len(ref)
+        for op in difflib.SequenceMatcher(
+                a=ref, b=other, autojunk=False).get_matching_blocks():
+            for i in range(op.a, op.a + op.size):
+                matched[i] = True
+        survives = [s and m for s, m in zip(survives, matched)]
+    return ref, survives
+
+
+def region_runs(survives):
+    """Contiguous (region_id, start0, end0_excl, status) runs, the exact
+    numbering the draft TSVs used."""
+    runs = []
+    rid = 0
+    i = 0
+    n = len(survives)
+    while i < n:
+        j = i
+        while j < n and survives[j] == survives[i]:
+            j += 1
+        runs.append(("%s%03d" % ("S" if survives[i] else "D", rid), i, j,
+                     "static" if survives[i] else "dynamic"))
+        rid += 1
+        i = j
+    return runs
+
+
 def main():
     root = archive_root()
     rows = manifest_rows()
@@ -76,54 +125,17 @@ def main():
             report.append("| %s | %d | — | — | too few era captures |"
                           % (route, len(caps)))
             continue
-        bodies = []
-        for r in caps:
-            src = os.path.join(root, r["source"].replace("archive/", "", 1))
-            bodies.append(open(src, encoding="utf-8",
-                               errors="replace").read().splitlines())
-        ref = bodies[-1]
-        survives = [True] * len(ref)
-        for other in bodies[:-1]:
-            matched = [False] * len(ref)
-            for op in difflib.SequenceMatcher(
-                    a=ref, b=other, autojunk=False).get_matching_blocks():
-                for i in range(op.a, op.a + op.size):
-                    matched[i] = True
-            survives = [s and m for s, m in zip(survives, matched)]
-
-        regions = []
-        i = 0
-        while i < len(ref):
-            if not survives[i]:
-                j = i
-                while j < len(ref) and not survives[j]:
-                    j += 1
-                regions.append((i, j))
-                i = j
-            else:
-                i += 1
+        bodies = load_bodies(root, caps)
+        ref, survives = compute_survives(bodies)
+        regions = [(a, b) for _, a, b, st in region_runs(survives)
+                   if st == "dynamic"]
 
         out_path = os.path.join(OUT, "%s.tsv" % route)
         with open(out_path, "w", encoding="utf-8", newline="\n") as f:
             f.write("region_id\tref_lines\tstatus\tsample\n")
-            rid = 0
-            i = 0
-            while i < len(ref):
-                if survives[i]:
-                    j = i
-                    while j < len(ref) and survives[j]:
-                        j += 1
-                    f.write("S%03d\t%d-%d\tstatic\t%s\n" % (
-                        rid, i + 1, j, sample(ref[i])))
-                    i = j
-                else:
-                    j = i
-                    while j < len(ref) and not survives[j]:
-                        j += 1
-                    f.write("D%03d\t%d-%d\tdynamic\t%s\n" % (
-                        rid, i + 1, j, sample(ref[i])))
-                    i = j
-                rid += 1
+            for rid_s, i, j, status in region_runs(survives):
+                f.write("%s\t%d-%d\t%s\t%s\n" % (
+                    rid_s, i + 1, j, status, sample(ref[i])))
         n_static = sum(survives)
         report.append("| %s | %d | %d | %d (%.0f%%) | %d |" % (
             route, len(caps), len(ref), n_static,
