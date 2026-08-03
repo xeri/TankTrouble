@@ -1,0 +1,5 @@
+harness.swf
+editor.swf
+*.png
+node_modules
+results.json
