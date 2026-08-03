@@ -185,3 +185,71 @@ here, so milestone 2 ships deterministic, content-tested SQL files and the
 docker-level import (mysql:5.5 actually executing them) is the FIRST step
 whenever a docker runtime appears. Until then the DDL has never been parsed
 by a real MySQL 5.5. Partially supersedes the milestone-1 docker entry.
+
+## 2026-08-03 — docker stack VALIDATED; both deferrals closed
+Docker became available. mysql:5.5 executed all six init files with zero
+errors; row counts exact (mazes 842, threads 467, replies 228,316, news 224,
+users 10, accessories 21, achievements 8); the notFound maze slot is
+correctly absent; byte round-trips green for maze data and for non-ASCII
+forum text (© U+00A9, soft hyphen U+00AD) read back with
+--default-character-set=utf8. One import bug found and fixed BEFORE first
+import: the 5.5 entrypoint client defaults to latin1, which would have
+double-encoded the UTF-8 seed bytes — every generated file now opens with
+`SET NAMES utf8;` (seed/common.py). php:5.6 image builds; serves O bytes
+byte-identically (styles.css sha256 match over HTTP); every probed stub dies
+with 501; php bound 127.0.0.1:8056 only, mysql has no host port. Supersedes
+the two "docker unvalidated/deferred" entries above.
+
+## 2026-08-03 — archive-cleaned/ is a locked manifest, not a byte-copy tree
+Guide §6.1a step 1 wants cleaned captures as O ground truth. Survey of all
+628 warc-bodies: zero gzip bodies, zero Wayback markers — every Common Crawl
+body is already exactly what the server sent. Copying ~150 MB of them into
+git would duplicate the archive to say "no transform needed"; instead
+archive-cleaned/MANIFEST.tsv sha256-locks all 411 in-scope captures at their
+archive paths (Gate C1 re-verifies), and a physical file appears under
+archive-cleaned/ only where bytes must actually change (so far: none).
+Scope: classic era (<= 2020-12-04), hosts tanktrouble.com/www, routes
+root/game/garage/news/forum/lab/shop + embed.php + infirmary + statistics.
+
+## 2026-08-03 — classic captures are PageSpeed-free; depagespeed/ empty
+Guide §6.1a step 2 (un-do PageSpeed) does not bite the classic site: every
+capture containing `.pagespeed.` is either beta.tanktrouble.com (HTML5
+client) or tanktrouble.com from 2021+ (modern SPA era) — the classic PHP
+pages were never served through PageSpeed in anything we hold.
+tools/clean_captures.py keeps a verified inverter (jc-bundle splitting, URL
+de-mangling) for the day a PageSpeed-bearing classic capture surfaces, and
+the manifest counts artefacts per file (all zeros today). The §6.1a example
+bundle came from the beta client tree, which is out of classic scope.
+
+## 2026-08-03 — region classification draft (guide 6.1a step 3)
+tools/classify_regions.py diffs every era capture per route against the
+latest era capture, line-level. Line static-rates: root 93%, game 93%,
+garage 96%, news 93%, forum 95%, lab 92%, shop 94% — the six routes are
+overwhelmingly literal template, strongly de-renderable. embed.php is 18%
+static (its body is per-request embed-config JS + RELEASE-tag cache-busted
+asset URLs — correctly dynamic); infirmary is 100% static across its 2 era
+captures. Outputs under archive-cleaned/classification/ are the DRAFT masks
+for gate F; milestone 3 must annotate every dynamic region before writing
+route PHP (tests/GATE_F_SPEC.md). Line granularity chosen because classic
+captures are artifact-free and the originals keep one statement per line
+almost everywhere; byte-level refinement is milestone-3 work.
+
+## 2026-08-03 — Ruffle spike verdict (guide §9 step 2, run before step 8)
+Headless-Chromium harness (oracle/ruffle-spike/) ran the ORIGINAL
+signUpTankDesign13 bytes under Ruffle 0.4.1:
+* getURL("javascript:") SWF-to-page bridge WORKS — paint-can clicks wrote
+  0xff00/0x80ff into the page's signup* inputs, original page contract.
+* SetVariable/GetVariable page-to-SWF API is ABSENT from Ruffle's player
+  element — and the recovered garage JS drives mazeCreator EXCLUSIVELY
+  through SetVariable. Original page JS + rebuilt SWF cannot work as-is
+  under Ruffle; design options recorded in oracle/DIVERGENCES.md, decision
+  deferred to the mazeCreator step. The projector half of gate C is not yet
+  runnable: no Flash projector binary held; gap recorded.
+
+## 2026-08-03 — §10.3 settled: single dispatcher, no per-route files
+74,165-row CDX scan: zero hits for garage.php / news.php / forum.php /
+shop.php / lab.php / game.php (or .html variants) on any tanktrouble host.
+Combined with the ?query route evidence, index.php as the single dispatcher
+is confirmed, not assumed. Remaining §10 items: charset settled at
+milestone 2 (utf8); db.php rename and the save-endpoint constant stay open
+until their milestone-3 files are first touched.
