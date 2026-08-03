@@ -10,6 +10,14 @@ class TestHarness {
             if (!m.parse(d)) return "PARSE-FAIL";
             return m.emit();
         });
+        // boundary-bit law (DECISIONS 2026-08-03): normalize must be a
+        // no-op on every corpus grid
+        ExternalInterface.addCallback("roundTripNormalized", null, function(d:String):String {
+            var m:MazeData = new MazeData();
+            if (!m.parse(d)) return "PARSE-FAIL";
+            m.normalizeBoundary();
+            return m.emit();
+        });
         // visible liveness marker
         var c:MovieClip = _root.createEmptyMovieClip("bg", 1);
         c.beginFill(0x224422);

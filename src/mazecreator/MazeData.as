@@ -66,6 +66,24 @@ class MazeData {
         return true;
     }
 
+    // Corpus law (670/670 grids, DECISIONS 2026-08-03): a wall bit whose edge
+    // borders exactly one floor cell is always 1; between two floors it is
+    // free user data; between two non-floors it is always 0. Editing code
+    // calls this after floor changes so emit() stays corpus-shaped.
+    function normalizeBoundary():Void {
+        for (var x:Number = 0; x < w; x++) {
+            for (var y:Number = 0; y < h; y++) {
+                var f:Number = floor[x][y];
+                var fa:Number = (y > 0) ? floor[x][y - 1] : 0;
+                var fl:Number = (x > 0) ? floor[x - 1][y] : 0;
+                if (f != fa) wallNorth[x][y] = 1;
+                else if (f == 0) wallNorth[x][y] = 0;
+                if (f != fl) wallWest[x][y] = 1;
+                else if (f == 0) wallWest[x][y] = 0;
+            }
+        }
+    }
+
     function emit():String {
         var cells:String = "";
         for (var y:Number = 0; y < h; y++) {

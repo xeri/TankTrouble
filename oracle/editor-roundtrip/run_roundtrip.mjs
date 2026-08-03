@@ -45,5 +45,16 @@ for (const d of grids) {
 writeFileSync(path.join(DIR, "results.json"), JSON.stringify(out, null, 2));
 console.log(`roundtrip: ${out.pass}/${out.total} byte-identical, ${out.fail} failures`);
 if (out.failures.length) console.log("first failure:", JSON.stringify(out.failures[0], null, 2));
+
+// second pass: normalizeBoundary must be a no-op on corpus grids
+const norm = { pass: 0, fail: 0, failures: [] };
+for (const d of grids) {
+  const got = await page.evaluate(g => window.__player.roundTripNormalized(g), d);
+  if (got === d) norm.pass++;
+  else { norm.fail++; if (norm.failures.length < 5) norm.failures.push({ d, got }); }
+}
+console.log(`normalize no-op: ${norm.pass}/${grids.length}, ${norm.fail} failures`);
+if (norm.failures.length) console.log("first:", JSON.stringify(norm.failures[0]));
+
 await browser.close(); server.close();
-process.exit(out.fail === 0 ? 0 : 1);
+process.exit(out.fail === 0 && norm.fail === 0 ? 0 : 1);

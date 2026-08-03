@@ -70,6 +70,15 @@ A cleaner capture or any frame at native scale would pin the actual font
 15 frames @ 25fps is O evidence (srv/index.php:3637 comment). Unknown:
 linear alpha vs eased. Any open/close footage of the maze creator panel.
 
+### 8a. Floor tone pattern — WANTED
+Editor floor is a per-cell mix of #dddddd/#eeeeee, ~1/3 light, no
+deterministic rule fits the screenshot (not parity, not rows/columns).
+Rebuild uses a fixed hash. Two different frames of the SAME maze would
+settle it instantly: identical tones = deterministic function (then
+derivable); different tones = runtime random (rebuild hash is then a fair
+stand-in). Any footage showing one maze twice (reopen, or before/after an
+edit elsewhere).
+
 ## Older / other routes
 
 ### 9. Tank paint editor icon states — WANTED (same JPG family, phase 4+)
