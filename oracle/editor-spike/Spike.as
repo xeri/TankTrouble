@@ -42,6 +42,10 @@ class Spike {
         // Channel C: SWF -> page, already proven for ORIGINAL bytes; this
         // proves it for MTASC-built bytes too.
         getURL("javascript:__spikeBoot('" + initDecoded + "')");
+
+        // Projector-visible FlashVars proof (getURL is inert there): a white
+        // strip 10px per decoded char. "u=99&n=testuser01&" -> 180px.
+        drawMarker();
     }
 
     function onSetVariable(n:String, v:String):Void {
@@ -61,6 +65,16 @@ class Spike {
         c.beginFill(rgb);
         c.moveTo(0, 0); c.lineTo(688, 0); c.lineTo(688, 400); c.lineTo(0, 400);
         c.endFill();
+        drawMarker();
+    }
+
+    function drawMarker():Void {
+        var m:MovieClip = _root.createEmptyMovieClip("marker", 2);
+        var w:Number = initDecoded.length * 10;
+        if (w <= 0) return;
+        m.beginFill(0xffffff);
+        m.moveTo(0, 390); m.lineTo(w, 390); m.lineTo(w, 400); m.lineTo(0, 400);
+        m.endFill();
     }
 
     // Minimal Base64 -- the era client ships its own __Packages.Base64; the
