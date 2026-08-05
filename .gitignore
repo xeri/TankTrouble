@@ -12,3 +12,6 @@ __pycache__/
 # Ruffle spike / visual-diff working artifacts (screenshots, projector dumps).
 # The harnesses that produce them are tracked; their output is not.
 /oracle/editor-visual/diag.swf
+
+# Local scratch analysis. Not published.
+/note.txt
