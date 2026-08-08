@@ -1,1 +1,7 @@
 * -text
+
+# Published verbatim copies of archive documents, and the evidence analyses.
+# Vendored so they do not distort language stats or dominate diffs; they are
+# corrected by superseding, never by editing (see their header blocks).
+docs/REBUILD-GUIDE.md linguist-vendored
+docs/evidence/** linguist-vendored
