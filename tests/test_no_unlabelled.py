@@ -46,6 +46,24 @@ def test_mstar_headers(ledger):
     assert not bad, "\n".join(bad)
 
 
+def test_invented_files_declare_a_caveat(ledger):
+    """M2/M3 means something was chosen where the evidence ran out. The header
+    must name it: an uncaveated invention is indistinguishable from a finding.
+    M1 is exempt — it is gated byte-for-byte against real captures."""
+    bad = []
+    for r in mstar_file_rows(ledger):
+        if r["tier"] not in ("M2", "M3"):
+            continue
+        f = REPO / r["path"]
+        if f.suffix.lower() not in TEXT_EXTS:
+            continue
+        head = f.read_text(encoding="utf-8", errors="replace")[:2048]
+        if "@caveat" not in head:
+            bad.append(f"{r['path']} [{r['tier']}]: no @caveat — say what was "
+                       f"chosen where the evidence ran out")
+    assert not bad, "\n".join(bad)
+
+
 def test_stubs_never_200(ledger):
     """A stub that returns plausible data is the most dangerous thing in this
     project. Exemption: verified_by names an existing test file (validated in

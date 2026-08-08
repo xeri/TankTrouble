@@ -5,7 +5,7 @@ Gates A and D walk srv/ -> LEDGER (does this file have a row, do its bytes
 match). Gate F byte-diffs HTML against the captures. None of them walks the
 other way, page -> subresource, so a byte-perfect page that serves zero images
 passed all three green. It did: milestone-3 review found 193 referenced-and-
-absent assets, none with a ledger row. See docs/ASSET-DISCIPLINE.md.
+absent assets, none with a ledger row. See docs/standards/ASSET-DISCIPLINE.md.
 
 Offline gate. Runs on every commit alongside A and D.
 """
