@@ -23,7 +23,7 @@ Extraction is deliberately STATIC and conservative:
 Runtime-assembled names ('images/tool' + x + 'Select.jpg') are NOT resolvable
 statically. They are collected separately as `dynamic` so they show up in
 reports instead of silently counting as "no reference" — see
-docs/ASSET-DISCIPLINE.md.
+docs/standards/ASSET-DISCIPLINE.md.
 
 Reachability starts at every .php/.htm(l) under srv/ (each is a route or an
 endpoint) and follows referenced stylesheets AND scripts. Assets referenced

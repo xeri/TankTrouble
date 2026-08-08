@@ -177,4 +177,4 @@ Scrapyard flip-counter renders again.
    that it is lost. A red gate is a to-do list; a fabricated file is a
    forgery.
 4. If the reconstruction has to differ from what the original served, that is
-   a divergence: record it in `docs/DIVERGENCES-SERVED.md` before shipping.
+   a divergence: record it in `docs/standards/DIVERGENCES-SERVED.md` before shipping.

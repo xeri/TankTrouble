@@ -5,7 +5,7 @@
 # Paints the two AdSense skyscraper slots so a blank 160x600 box does not read
 # as breakage while reviewing a route. Nothing under srv/ changes; the CSS is
 # injected by docker/php/dev-filler.php at response time and is labelled in
-# the page as a dev filler. Declared in docs/DIVERGENCES-SERVED.md.
+# the page as a dev filler. Declared in docs/standards/DIVERGENCES-SERVED.md.
 #
 # Gate F must run against the DEFAULT stack. Bring the overlay down first:
 #   docker compose up -d --force-recreate php

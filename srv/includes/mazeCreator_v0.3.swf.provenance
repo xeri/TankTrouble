@@ -7,7 +7,7 @@ evidence:
   - wire format + reader semantics: MazeDataFetcher.as decompile (O);
     round-trip gate 670/670 (oracle/editor-roundtrip)
   - visuals: 'Making a maze.png' screenshot at uniform 832/688 = 1.2093
-    scale (M2) -- docs/mazecreator-visual-spec.md; geometry lands
+    scale (M2) -- docs/standards/MAZECREATOR-VISUAL-SPEC.md; geometry lands
     pixel-aligned on the capture (mean channel delta 4.4)
   - constraints: corpus-measured (guide 6.5); boundary-bit law 670/670
     (DECISIONS 2026-08-03)
@@ -17,12 +17,12 @@ invented (M3 inside an M2 shell, see DECISIONS):
     (mirrors loadMaze -- pinned by tests/test_savemaze.py)
 caveat: DO NOT PROMOTE. Original pixels, fonts, tweens, preview mode and
   interaction are unrecovered; icon-state art and transitions await video
-  evidence (docs/VISUAL-EVIDENCE-WANTED.md).
+  evidence (docs/standards/VISUAL-EVIDENCE-WANTED.md).
 overhaul-commitment: this file is a placeholder pending evidence. When
   footage or cleaner captures show the real editor (visuals, animations,
   interaction, copy), the affected parts are REBUILT fully against that
   evidence, not patched — see THE OVERHAUL RULE in
-  docs/VISUAL-EVIDENCE-WANTED.md. Wire format and page contract stay
+  docs/standards/VISUAL-EVIDENCE-WANTED.md. Wire format and page contract stay
   gate-pinned through any overhaul.
 gates: oracle/editor-roundtrip/run_roundtrip.mjs (670/670 + normalize),
   oracle/editor-visual/run_editor.mjs (28/28), tests/test_mazecreator_

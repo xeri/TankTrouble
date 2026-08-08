@@ -766,3 +766,46 @@ the held Deselect sprites (invented pixels where real bytes exist).
 Wanted: any true in-era capture of ?news/?shop/?forum with the strip visible
 would upgrade all three to O — logged in docs/VISUAL-EVIDENCE-WANTED.md.
 Reversible: yes — delete the three rows and the three files.
+
+## 2026-08-08 — docs reorganised; ALL-CAPS-KEBAB naming; rename map
+Housekeeping, recorded because this log is append-only and every entry ABOVE
+this line cites the pre-rename paths. Those citations are historically correct
+and are deliberately NOT rewritten; use this map to resolve them.
+
+Naming rule adopted: documents are ALL-CAPS-KEBAB.md, directories are
+lowercase-kebab. Applies to every .md except the conventional root files
+(README, CLAUDE, AGENTS, SECURITY).
+
+Moved / renamed:
+  docs/ASSET-DISCIPLINE.md        -> docs/standards/ASSET-DISCIPLINE.md
+  docs/DIVERGENCES-SERVED.md      -> docs/standards/DIVERGENCES-SERVED.md
+  docs/VISUAL-EVIDENCE-WANTED.md  -> docs/standards/VISUAL-EVIDENCE-WANTED.md
+  docs/BACKEND-CONTRACTS.md       -> docs/standards/BACKEND-CONTRACTS.md
+  docs/UI-RECONSTRUCTION.md       -> docs/standards/UI-RECONSTRUCTION.md
+  docs/mazecreator-visual-spec.md -> docs/standards/MAZECREATOR-VISUAL-SPEC.md
+  docs/agent/architecture.md      -> docs/reference/ARCHITECTURE.md
+  docs/agent/commands.md          -> docs/reference/COMMANDS.md
+  docs/agent/reasoning.md         -> docs/reference/REASONING.md
+  docs/agent/glossary.md          -> docs/reference/GLOSSARY.md
+  docs/HUNT-LOG.md                -> docs/evidence/HUNT-LOG.md
+  docs/evidence/manualevidence/   -> docs/evidence/manual-evidence/
+  PORT-FEASIBILITY.md             -> docs/PORT-FEASIBILITY.md
+  docs/superpowers/plans/*        -> docs/plans/*
+
+Deleted: note.txt and _files-in-evidence-folder — both untracked, both stale.
+note.txt claimed the milestone-3 decisions had no entry here; they are the
+2026-08-03 entries above. A stale status file that contradicts the log is worse
+than none.
+
+NOT moved, deliberately: LEDGER.tsv, DECISIONS.md, DEDUCE.md, SECURITY.md and
+README/CLAUDE/AGENTS stay at the root. The first three are cited by bare
+filename from inside srv/ provenance headers, from tools/, from tests/ and from
+~200 places in this log; relocating them would rot every one of those for no
+gain. SECURITY.md is where GitHub looks for a security policy.
+
+Rejected: lowercase-kebab for all documents (would rename the twelve ALL-CAPS
+standing docs that the log already cites, for aesthetics only); moving
+DECISIONS/DEDUCE into docs/ (cost above); a docs/adr/ split (this project has
+one append-only log, not per-decision files, and that is load-bearing for the
+"supersede, never edit" rule).
+Reversible: yes — the map above run backwards.

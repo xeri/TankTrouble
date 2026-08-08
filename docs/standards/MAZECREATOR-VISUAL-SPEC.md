@@ -38,7 +38,7 @@ wire format (44 floor cells, 10 objects, boundary bits normalized per the
 670/670 invariant). Interior-wall reads are best-effort from an upscaled
 capture; the render-compare in the visual harness is the accuracy check.
 
-## Known unknowns (see docs/VISUAL-EVIDENCE-WANTED.md)
+## Known unknowns (see docs/standards/VISUAL-EVIDENCE-WANTED.md)
 
 Floor tone pattern rule; icon rotation (if any); exact font faces; error
 panel (never captured); preview mode; fade easing.

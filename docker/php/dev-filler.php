@@ -16,7 +16,7 @@
  *
  * The fill is deliberately ugly and labelled: nobody should ever mistake it
  * for era artwork, and no screenshot taken with it on can be evidence.
- * Declared in docs/DIVERGENCES-SERVED.md.
+ * Declared in docs/standards/DIVERGENCES-SERVED.md.
  */
 
 if (getenv('TT_DEV_FILLER') !== '1') {

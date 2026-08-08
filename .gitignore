@@ -7,11 +7,10 @@ __pycache__/
 # Research evidence dumps — ~3.8 GB of scraped archives, captures and reference
 # material. Local-only working material; never published.
 /evidence/
-/_files-in-evidence-folder
 
 # Ruffle spike / visual-diff working artifacts (screenshots, projector dumps).
 # The harnesses that produce them are tracked; their output is not.
 /oracle/editor-visual/diag.swf
 
-# Local scratch analysis. Not published.
-/note.txt
+# Personal, per-machine agent instructions. The shared ones are CLAUDE.md.
+/CLAUDE.local.md

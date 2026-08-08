@@ -1,15 +1,25 @@
 # TankTrouble classic — reconstruction
 
-Rebuild of the classic tanktrouble.com PHP/Flash site, governed by
-`archive/REBUILD-GUIDE.md`. **Target era: 2017–2018.**
+Byte-faithful rebuild of the classic tanktrouble.com PHP/Flash site.
+**Target era: 2017–2018.**
 
 > A reconstruction that cannot be told apart from the original is a forgery,
 > not a preservation.
 
 Every file in `srv/` carries a provenance tier in `LEDGER.tsv`
 (`O` / `O?` / `M1` / `M2` / `M3`; `known-lost` and `pending` rows have no file).
-Original bytes are never edited. Made files announce themselves. Judgement
-calls live in `DECISIONS.md` (append-only).
+Original bytes are never edited. Made files announce themselves. Judgement calls
+live in `DECISIONS.md`, append-only.
+
+## Start here
+
+| | |
+|---|---|
+| Working on it | `CLAUDE.md` — the operating manual, and `docs/NOW.md` — the current target |
+| The rules | `docs/REBUILD-GUIDE.md` — read its "Superseded sections" table first |
+| What is committed to structurally | `docs/FOUNDATIONS.md` |
+| What is done, active, blocked | `docs/PROGRESS.md` · plans in `docs/plans/` |
+| Commands and the gate matrix | `docs/reference/COMMANDS.md` |
 
 ## Layout
 
@@ -20,64 +30,62 @@ DEDUCE.md         how every claim was deduced; evidence grades
 srv/              the reconstructed document root
 docker/           PHP 5.6 + MySQL 5.5, validated; seeds in docker/mysql/init/
 seed/             importers: archive → deterministic init SQL
-tools/            era resolution, skeleton build, capture cleaning, region classify
-                  refgraph/resolve_assets/fetch_missing/place_assets (gate E loop)
-tests/            gates A (assets), D (structural), E (subresources), S (seeds),
-                  C1 (cleaned captures)
-docs/             ASSET-DISCIPLINE.md (reference-derived inventories),
-                  DIVERGENCES-SERVED.md (every user-visible difference)
-oracle/           Ruffle spike harness + DIVERGENCES.md (gate C groundwork)
-archive/          junction to the read-only archive (not committed)
-archive-cleaned/  sha256-locked capture manifest + classification drafts
+tools/            era resolution, skeleton build, capture cleaning, region
+                  classify/annotate, and the gate E asset loop
+tests/            the gates
+src/mazecreator/  AS2 source for the rebuilt editor SWF
+oracle/           Ruffle + Flash-projector harnesses (gate C)
+archive/          junction to the read-only archive — not committed
+archive-cleaned/  sha256-locked capture manifest + classification masks
+docs/             the guide, the registers, agent reference, published evidence
 ```
 
-Run the stack: `cd docker`, put `MYSQL_ROOT_PASSWORD=<anything>` in `.env`,
-`docker compose up -d` → http://127.0.0.1:8056 (stubs 501 by design).
+## Run it
+
+```bash
+cd docker && docker compose up -d      # needs MYSQL_ROOT_PASSWORD in .env
+```
+
+→ http://127.0.0.1:8056. Unreconstructed endpoints return 501 by design.
 
 That stack serves era bytes and is the one the gates measure. For eyeballing
-only, `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d`
-adds labelled filler to the two blank AdSense slots — off by default,
-declared in `docs/DIVERGENCES-SERVED.md`. Put it back with
-`docker compose up -d --force-recreate php` before running gate F.
+only, the dev overlay labels the two blank AdSense slots; it is off by default
+and declared in `docs/standards/DIVERGENCES-SERVED.md`. Gate F must run against the
+default stack.
 
 ## Setup
 
-The archive junction (needs no admin):
+The archive junction — needs no administrator rights:
 
 ```powershell
 New-Item -ItemType Junction -Path "C:\Users\eth\websites\TankTrouble\archive" -Target "C:\Users\eth\websites\_NOT-PART-OF-MAIN-ARCHIVE_swf-recovered-2026-08-02"
 ```
 
-Alternative: set `TT_ARCHIVE_ROOT` to the archive path. Tests fail (never
-skip) if neither resolves.
+Alternative: set `TT_ARCHIVE_ROOT`. Gates fail — never skip — if neither
+resolves.
 
 ## Gates
 
-```
-python -m pytest tests/ -q
+```bash
+python -m pytest tests/ -q                 # everything
+python -m pytest tests/ -m "not live" -q   # offline only
 ```
 
-* **Gate A** (`tests/test_assets.py`) — every `O`/`O?` row: sha256 recomputed
-  from `srv/` AND from the archive source; three-way match or red.
-* **Gate D** (`tests/test_no_unlabelled.py`) — every `srv/` file has a ledger
-  row; every `M*` text file has a parseable `@provenance` header; no
-  unverified stub returns 200; credential-shaped-string scan.
-* **Gate E** (`tests/test_subresources.py`) — the other direction: every
-  subresource the served pages ask the browser for either exists under `srv/`
-  or carries a `known-lost` ledger row. A and D walk `srv/ → ledger`, F
-  byte-diffs HTML; without E a byte-perfect page serving zero images passes
-  all three, which is exactly what happened. Rules, tools and verdict
-  vocabulary: `docs/ASSET-DISCIPLINE.md`.
+Full matrix, including which gates need the stack:
+`docs/reference/COMMANDS.md`. The one asymmetry worth knowing up front: gates A, D
+and F all walk `srv/` → ledger, and only gate E walks page → subresource. That
+is why a byte-perfect page serving zero images once passed three gates at once
+(`docs/standards/ASSET-DISCIPLINE.md`).
 
 ## Provenance conventions
 
-* `O` files: no header injected (that would edit original bytes) — provenance
-  lives in the ledger row only.
+* `O` files: no injected header — that would edit original bytes. Provenance
+  lives in the ledger row.
 * `M*` text files: machine-parseable header (`@provenance`, `@evidence`,
   `@verified`, `@written`, `@caveat`, optional `@contains`).
-* `M*` binaries (none yet): sidecar `<name>.provenance`.
-* Mixed files (from de-rendering, guide §6.1a): file tier = authorship tier;
-  verbatim-original regions are fenced in-file:
+* `M*` binaries: sidecar `<name>.provenance`.
+* Mixed files (de-rendered pages): file tier = authorship tier; verbatim
+  original regions are fenced in-file and declared in `@contains`:
 
   ```php
   /* @O-begin source=archive-cleaned/<capture> */ ?>
@@ -85,18 +93,14 @@ python -m pytest tests/ -q
   <?php /* @O-end */
   ```
 
-  and declared in the header's `@contains` line. The step-6 harness verifies
-  each fenced region byte-matches its named source span.
+  `tests/test_fenced_regions.py` byte-matches each region against its source.
 
-## What comes next (guide §9)
+## State
 
-1. ~~Skeleton + LEDGER + gates A/D~~ (`skeleton-complete`)
-2. ~~Ruffle spike on `SetVariable`~~ — bridge works, SetVariable ABSENT;
-   consequences in `oracle/DIVERGENCES.md`. Projector half still open.
-3. ~~Clean captures~~ (`archive-cleaned/`; classic captures are PageSpeed-free)
-4. ~~Seed DB from archive~~ (`seed-complete`; live-imported and verified)
-5. `loadMaze.php` → gate B, 843/843 ← **milestone 3 starts here**
-6. De-render the 6 routes → gate F byte-diff. Harness spec ready
-   (`tests/GATE_F_SPEC.md`); masks drafted
-   (`archive-cleaned/classification/`); **annotate every dynamic region
-   before writing route PHP** (§7.4a).
+Milestones 1–3 are done and tagged (`skeleton-complete`, `seed-complete`,
+`m3-complete`), as is the mazeCreator rebuild (`mazecreator-editor-complete`)
+and the reference-derived asset pass.
+
+Current work, blockers and the open overhaul items are in `docs/PROGRESS.md` —
+this section deliberately does not restate them, because a roadmap in two places
+goes stale in one.

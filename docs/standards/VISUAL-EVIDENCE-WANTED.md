@@ -169,7 +169,7 @@ not exist.
 | S11 | **Feedback box — open state** | page-look / flow | `sendFeedback` SAJAX + removed markup block existed until (2018-04-22, 2018-05-23] — in-page form look unknown | `srv/index.php:1183-1210`; removed-block catalogue | 2017/early-2018 video clicking the "Got Feedback?" box — form expands in place | MED |
 | S12 | **`ima3_preloader_1.5.swf` pre-roll + `#preloader`** | SWF / flow | Handlers reference `#preloader` which exists in no era page; SWF held O, on-screen behaviour unknown | `srv/index.php:228-240`; `srv/includes/ima3_preloader_1.5.swf` | Pre-2017 footage starting before the game shows an interstitial in the 712×490 stage | LOW |
 | S13 | **Game stage slide-up transition** | animation | `#TankTrouble` at `top:60px`; page polls for `-10px`. SWF performs the move; duration/easing unknown | `srv/index.php:324-333`, `:433-443` | Click 1/2/3-PLAYER — frame-step teaser text vanish + 70px slide | HIGH |
-| S14 | **Scrapyard counter in motion** | animation | Rebuild freezes after ~60s (declared divergence). Real flip cadence/roll direction unobserved | `docs/DIVERGENCES-SERVED.md` §5; `scrapyard.js:104-251` | Sidebar "Scrapyard" number visible >2min — count plate flips | HIGH |
+| S14 | **Scrapyard counter in motion** | animation | Rebuild freezes after ~60s (declared divergence). Real flip cadence/roll direction unobserved | `docs/standards/DIVERGENCES-SERVED.md` §5; `scrapyard.js:104-251` | Sidebar "Scrapyard" number visible >2min — count plate flips | HIGH |
 | S15 | **Pre-2017 scrapyard SWFs** | SWF | `scrapyard06/10/11.swf` held O, referenced by no era page; others known-lost (`09` inferred, may not exist) | LEDGER rows 191-198 | Pre-2017-02 footage of the left sidebar counter | MED |
 | S16 | **Seasonal side-box variants never rendered** | page-look | `.box.christmas/.halloween/.glitch/.kickstarter` fully in `boxStyles.css`, used by zero captured page | `srv/includes/boxStyles.css:31-70+` | Halloween/Christmas-week front-page footage — sidebar boxes change skin | MED |
 | S17 | **`Commodore` (c64) webfont in the wild** | typography | Declared + used by `.box.glitch` and two news rules; no captured page uses them | `styles.css:86-93`, `boxStyles.css:50,60`, `newsStyles.css:237,243` | Any frame with a blocky pixel-font box or news item | LOW |
@@ -178,7 +178,7 @@ not exist.
 | S20 | **`favicon.ico`** | icon-state | **79 CDX 200s, zero ledger rows, no file.** Silently absent | `DEDUCE.md:149` | Any era browser-tab frame (common in tutorials) | HIGH |
 | S21 | **`expressinstall.swf` "Flash required" screen** | page-look | known-lost; named in `swfobject.js:40` | LEDGER 428 | Old footage on outdated Flash — upgrade panel in the stage | LOW |
 | S22 | **`?r=` referral landing** | flow | `?r=Link%20iframe/embed`, `/spreadTheWord/` source; on-screen effect unknown | `srv/index.php:427`; `DEDUCE.md:152` | Arrival via the banner inside an embedded portal copy | LOW |
-| S23 | **AdSense skyscrapers as rendered** | page-look | Two 160×600 slots ship blank by design | `docs/DIVERGENCES-SERVED.md` §2 | Full-window frame — confirm layout never reflowed by ads | HIGH |
+| S23 | **AdSense skyscrapers as rendered** | page-look | Two 160×600 slots ship blank by design | `docs/standards/DIVERGENCES-SERVED.md` §2 | Full-window frame — confirm layout never reflowed by ads | HIGH |
 
 ## B. Logged-in garage / userpanel — largest single hole
 
@@ -317,7 +317,7 @@ rendered forum HTML exists at all.
 
 | # | Item | Category | What exists / what's missing | Evidence pointer | FOOTAGE TRIGGER | Rec. |
 |---|---|---|---|---|---|---|
-| S105 | **Frozen live regions — real ranges + format** | page-look | Player stats, Top-10, forum latest-posters, visit counter frozen at 20181214/18 bytes | `docs/DIVERGENCES-SERVED.md` §3 | Any frame — read counters, confirm formatting stayed constant across years | HIGH |
+| S105 | **Frozen live regions — real ranges + format** | page-look | Player stats, Top-10, forum latest-posters, visit counter frozen at 20181214/18 bytes | `docs/standards/DIVERGENCES-SERVED.md` §3 | Any frame — read counters, confirm formatting stayed constant across years | HIGH |
 | S106 | **Seasonal promo box rotation** | page-look | Halloween box byte-identical 2017/2018; full year-round set unknown | DECISIONS "seasonal-promo" | Front-page footage from Feb-Sep (uncaptured months) | HIGH |
 | S107 | **Sign-up template swap dates** | flow | 13→17 in (2017-03-30, 2017-04-29]; 17→18 in (2018-07-22, 2018-08-14] — wide windows | DECISIONS "annotation pass" | Dated video inside either window narrows the deploy day | HIGH |
 | S108 | **Editor title font: device vs embedded** | typography | Gate C attributes residual divergence to `_sans` — unconfirmed against original pixels | `oracle/DIVERGENCES.md` gate C | Native-resolution frame of editor title — AA pattern distinguishes | LOW |

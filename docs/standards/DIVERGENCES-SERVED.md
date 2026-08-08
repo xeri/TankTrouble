@@ -107,8 +107,8 @@ and the flip-plate counter climbed continuously.
 **Now:** the table holds one frozen row —
 `scraps=1785664230, velocity=0.0071382502652744` (seed
 `docker/mysql/init/60-scrapyard.sql`, labelled ARBITRARY: latest archived
-scraps from `includes-tree/20160126_getScrapyard.php`, the only archived
-velocity from `20150928_getScrapyard.php`).
+scraps from `archive/includes-tree/20160126_getScrapyard.php`, the only archived
+velocity from `archive/includes-tree/20150928_getScrapyard.php`).
 
 **Observed behaviour and why**, traced through the O client
 (`srv/includes/scrapyard.js`):
