@@ -33,26 +33,26 @@ Anything else is not a page. Directory listing is off site-wide, and
 
 ### The document root
 
+What a browser could reach in 2018, and what the pages of that year actually
+asked for.
+
 ```
 /
 ├── index.php ····················· all six routes + the SAJAX dispatcher
 ├── embed.php ····················· the embeddable stage for other sites
 ├── content.php · getimage.php ···· media delivery
-├── changePassword.php
-├── sendRequest.php · feedback.php
-├── uploadimage.php
+├── changePassword.php · sendRequest.php · feedback.php · uploadimage.php
 ├── robots.txt
 │
-├── Assets/ ······················· runtime-shared Flash libraries
-│   └── Tank.swf · GameTank.swf · Crate.swf · Laika.swf
+├── Assets/ ······················· runtime-shared libraries — the game pulls
+│   └── Tank.swf · GameTank.swf ··· these itself, the page never names them
+│       Crate.swf · Laika.swf
 │
 ├── includes/ ····················· 403 to the browser; the server's own shelf
 │   ├── TankTrouble_v4.0.swf ······ the game
-│   ├── TankTrouble_v4.03.swf · v3.6c · v3.6e ··· older builds, still served
-│   ├── mazeCreator_v0.3.swf ······ the maze editor
-│   ├── signUpTankDesign*.swf ····· the tank-designer, five generations
-│   ├── scrapyard06/10/11.swf · laika02.swf · loggedInTank06.swf
-│   ├── ima3_preloader_1.5.swf
+│   ├── mazeCreator_v0.3.swf ······ the maze editor, opened from the garage
+│   ├── signUpTankDesign18StandardColours.swf ··· the tank designer
+│   ├── laika02.swf · loggedInTank06.swf ······· lab and header decoration
 │   │
 │   ├── loadMaze.php · saveMaze.php ············ the maze store
 │   ├── getScrapyard.php ······················· the scrap counter
@@ -60,13 +60,15 @@ Anything else is not a page. Directory listing is off site-wide, and
 │   ├── updateGameStatistics.php
 │   │
 │   ├── mootools-release-1.11.js ··············· the UI framework
-│   ├── swfobject.js · embed.js · scrapyard.js · phaser.min.js
-│   ├── styles.css · main.css · boxStyles.css
-│   ├── forumStyles.css · newsStyles.css · news.css · shopStyles.css
-│   ├── c64.ttf · c64.woff · c64.eot ·········· the headline face
-│   └── TTTradingCards*.pdf ··················· four printable card sheets
+│   ├── swfobject.js ·········· embeds the game
+│   ├── scrapyard.js ·········· drives the flip-counter
+│   ├── embed.js · phaser.min.js
+│   ├── styles.css · boxStyles.css ············ page and panel chrome
+│   ├── forumStyles.css · newsStyles.css · shopStyles.css
+│   ├── c64.eot · c64.woff · c64.ttf ·········· the headline face
+│   └── TTTradingCards Series I · II · Special Anniversary  (.pdf)
 │
-├── images/ ······················· 254 files
+├── images/ ······················· the whole UI, as flat files
 │   ├── box* ·········· 49   the three-slice panel chrome, per colour
 │   ├── bigBox* ······· 28   the wide variant
 │   ├── tab* ·········· 16   the six nav tabs, selected and deselected
@@ -140,6 +142,32 @@ Original bytes are never edited. Written files carry a header naming their
 evidence and their caveats. Judgement calls go into `DECISIONS.md`,
 append-only — superseded, never rewritten.
 
+### Where it differs from 2018
+
+Every user-visible difference is written down **before** it ships, not after
+someone notices, and anything visibly non-original announces itself on screen —
+so no screenshot taken from this stack can be mistaken for evidence. Full log
+with the undo for each: [`docs/standards/DIVERGENCES-SERVED.md`](docs/standards/DIVERGENCES-SERVED.md).
+
+| | |
+|---|---|
+| **The game does not run** | Browsers have no Flash plugin, so the stage shows the browser's own message. Nothing is substituted and no shim is injected — a player would change what the page contains, and players are judged separately against the original SWF. |
+| **The ad slots are empty** | Both `160×600` boxes keep their exact size; the layout never depended on an ad rendering. A dev overlay can fill them with labelled hatching, off by default. |
+| **Live numbers are frozen** | Visit counters, online counts, top-ten rankings, forum latest-posters, the rotating tagline, seasonal promos — all held at the era-final capture's bytes. They are unrecoverable state, and plausible invented numbers would be the most dangerous kind of stub. |
+| **The Scrapyard counter stops** | It creeps for about a minute, then pins. The seed row is frozen, so the original client re-derives a velocity of zero — the endpoint, the seed and the untouched client are all behaving exactly as written. |
+| **Most SAJAX calls refuse** | Only reconstructed functions are exported; everything else answers the stock `not callable` error. Reject, never fake. |
+| **Login is deliberately modern** | The original ran authentication over `GET`, which is why real credentials sit in the public archive index to this day. This rebuild uses `POST` and hashed passwords, verifies only synthetic accounts, and will never reproduce that. |
+| **Nothing behind the login renders** | Almost no logged-in page was ever captured. Reconstructing the garage from nothing would be invention, so it is left undone rather than guessed. |
+
+Two other things are **not** divergences, and are not to be "fixed":
+
+- The older game builds and earlier tank-designer generations sit on the shelf
+  under `includes/`. The 2018 server still answered for them; the 2018 pages
+  just never asked. The map above shows what the pages asked for.
+- Duplicated version strings across four files, and `infirmary/index.html`
+  being a hand-copy rather than a template — those are the original's own
+  faults, reproduced on purpose.
+
 ### Run it
 
 ```bash
@@ -150,10 +178,6 @@ cd docker && docker compose up -d      # needs MYSQL_ROOT_PASSWORD in .env
 
 The stack is period-correct — PHP 5.6, MySQL 5.5, both long past end of life —
 and binds `127.0.0.1` only. It must never face the internet (`SECURITY.md`).
-
-Browsers no longer have Flash, so the game stage shows the browser's own
-message. Nothing is substituted into the page; players belong in the pixel
-oracle, not in the served bytes.
 
 ### Setup
 
